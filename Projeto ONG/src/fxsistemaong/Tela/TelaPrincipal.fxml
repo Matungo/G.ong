@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaPrincipalController">
+   <children>
+      <MenuBar fx:id="MenuLogout">
+        <menus>
+          <Menu fx:id="menuCadastros" mnemonicParsing="false" text="Cadastros">
+            <items>
+              <MenuItem fx:id="menuItemFuncionarios" mnemonicParsing="false" onAction="#handleMenuItemFuncionarios" text="Funcionários" />
+                  <MenuItem fx:id="menuItemUsuarios" mnemonicParsing="false" onAction="#handleMenuItemUsuarios" text="Usuários" />
+                  <MenuItem fx:id="menuItemDependentes" mnemonicParsing="false" onAction="#handleMenuItemDependentes" text="Dependentes" />
+            </items>
+          </Menu>
+          <Menu fx:id="menuBiblioteca" mnemonicParsing="false" text="Biblioteca">
+               <items>
+                  <MenuItem fx:id="menuItemCadastroLivros" mnemonicParsing="false" onAction="#handleMenuItemCadastroLivro" text="Cadastro de Livros" />
+                  <MenuItem fx:id="menuItemEmprestimoLivros" mnemonicParsing="false" onAction="#handleMenuItemEmprestimoLivro" text="Empréstimo de Livro" />
+               </items></Menu>
+          <Menu fx:id="menuOficinas" mnemonicParsing="false" text="Oficinas">
+               <items>
+                  <MenuItem fx:id="menuItemAberturaOficina" mnemonicParsing="false" onAction="#handleMenuAberturaOficina" text="Abertura de Oficinas" />
+                  <MenuItem fx:id="menuItemInclusaoAluno" mnemonicParsing="false" onAction="#handleMenuInclusaoAlunoOficina" text="Inclusão de Alunos" />
+               </items></Menu>
+            <Menu fx:id="menuConsulta" mnemonicParsing="false" text="Consultas">
+               <items>
+                  <MenuItem fx:id="menuItemAgendamentoConsulta" mnemonicParsing="false" onAction="#handleMenuAgendamentoConsulta" text="Agendamento" />
+               </items></Menu>
+            <Menu fx:id="menuEstoque" mnemonicParsing="false" text="Estoque">
+               <items>
+                  <MenuItem fx:id="menuItemEntradaMercadoria" mnemonicParsing="false" onAction="#handleMenuEntradaMercadoria" text="Entrada de Mercadoria" />
+                  <MenuItem fx:id="menuItemSaidaMercadoria" mnemonicParsing="false" onAction="#handleMenuSaidaMercadoria" text="Saída de Mercadoria" />
+               </items></Menu>
+            <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
+               <items>
+                  <MenuItem fx:id="menuItemRelatorioBeneficiarios" mnemonicParsing="false" text="Beneficiário" />
+                  <MenuItem fx:id="menuItemRelatorioDoacoes" mnemonicParsing="false" text="Doações" />
+                  <MenuItem fx:id="menuItemRelatorioGastos" mnemonicParsing="false" text="Gastos" />
+               </items></Menu>
+            <Menu fx:id="menuLogout" mnemonicParsing="false" text="Logoff" />
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="anchorPane" prefHeight="711.0" prefWidth="1024.0" />
+   </children>
+</VBox>

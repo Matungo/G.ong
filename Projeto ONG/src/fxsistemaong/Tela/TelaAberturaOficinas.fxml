@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaAberturaOficinasController">
+   <children>
+      <Label layoutX="41.0" layoutY="152.0" text="Oficina:" />
+      <ComboBox fx:id="ComboBoxOficina" layoutX="99.0" layoutY="147.0" prefHeight="27.0" prefWidth="304.0" />
+      <Label layoutX="41.0" layoutY="213.0" text="Horário:" />
+      <CheckBox fx:id="CheckboxSextoHorario3" layoutX="519.0" layoutY="239.0" mnemonicParsing="false" text="12:00 - 13:00" />
+      <CheckBox fx:id="CheckboxTerceiroHorario2" layoutX="284.0" layoutY="299.0" mnemonicParsing="false" text="09:00 - 10:00" />
+      <CheckBox fx:id="CheckboxSegundoHorario" layoutX="284.0" layoutY="269.0" mnemonicParsing="false" text="08:00 - 09:00" />
+      <Label layoutX="749.0" layoutY="239.0" text="Sábado:" />
+      <CheckBox fx:id="CheckboxSabadoTarde" layoutX="804.0" layoutY="269.0" mnemonicParsing="false" text="Tarde" />
+      <CheckBox fx:id="CheckboxSabadoManha" layoutX="804.0" layoutY="239.0" mnemonicParsing="false" text="Manhã" />
+      <CheckBox fx:id="CheckboxDecimoHorario" layoutX="519.0" layoutY="359.0" mnemonicParsing="false" text="16:00 - 17:00" />
+      <CheckBox fx:id="CheckboxNonoHorario" layoutX="519.0" layoutY="329.0" mnemonicParsing="false" text="15:00 - 16:00" />
+      <CheckBox fx:id="CheckboxOitavoHorario" layoutX="519.0" layoutY="299.0" mnemonicParsing="false" text="14:00 - 15:00" />
+      <CheckBox fx:id="CheckboxSetimoHorario" layoutX="519.0" layoutY="269.0" mnemonicParsing="false" text="13:00 - 14:00" />
+      <CheckBox fx:id="CheckboxQuintoHorario" layoutX="284.0" layoutY="359.0" mnemonicParsing="false" text="11:00 - 12:00" />
+      <CheckBox fx:id="CheckboxQuartoHorario" layoutX="284.0" layoutY="329.0" mnemonicParsing="false" text="10:00 - 11:00" />
+      <CheckBox fx:id="CheckboxPrimeiroHorario" layoutX="284.0" layoutY="239.0" mnemonicParsing="false" text="07:30 - 08:00" />
+      <CheckBox fx:id="CheckboxSexta" layoutX="64.0" layoutY="359.0" mnemonicParsing="false" text="Sexta-Feira" />
+      <CheckBox fx:id="CheckboxQuinta" layoutX="64.0" layoutY="329.0" mnemonicParsing="false" text="Quinta-Feira" />
+      <CheckBox fx:id="CheckboxQuarta" layoutX="64.0" layoutY="299.0" mnemonicParsing="false" text="Quarta-Feira" />
+      <CheckBox fx:id="CheckboxTerca" layoutX="64.0" layoutY="269.0" mnemonicParsing="false" text="Terça-Feira" />
+      <CheckBox fx:id="CheckboxSegunda" layoutX="64.0" layoutY="239.0" mnemonicParsing="false" text="Segunda-Feira" />
+      <Label layoutX="45.0" layoutY="477.0" text="Cursos Abertos:" />
+      <TableView layoutX="63.0" layoutY="502.0" prefHeight="162.0" prefWidth="866.0">
+        <columns>
+          <TableColumn fx:id="TableColumnOficina" prefWidth="297.0" text="Oficina" />
+          <TableColumn fx:id="TableColumnInstrutor" prefWidth="214.0" text="Instrutor" />
+            <TableColumn fx:id="TableColumnHorario" prefWidth="354.0" text="Horário" />
+        </columns>
+      </TableView>
+      <Label layoutX="458.0" layoutY="152.0" text="Instrutor:" />
+      <ComboBox fx:id="ComboBoxInstrutor" layoutX="527.0" layoutY="147.0" prefWidth="150.0" />
+      <Button fx:id="BtnAdicionarOficina" layoutX="45.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Adicionar" />
+      <Button fx:id="BtnLimparCampos" layoutX="322.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Limpar" />
+   </children>
+</AnchorPane>

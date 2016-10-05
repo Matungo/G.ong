@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaCadastroFuncionarioController">
+   <children>
+      <TextField fx:id="TxtDataCadastroFuncionario" layoutX="522.0" layoutY="24.0" prefHeight="27.0" prefWidth="152.0" />
+      <Label layoutX="406.0" layoutY="29.0" text="Data de Cadastro:" />
+      <Label layoutX="20.0" layoutY="68.0" text="Dados Pessoais" />
+      <Separator layoutX="134.0" layoutY="75.0" prefHeight="3.0" prefWidth="857.0" />
+      <Label layoutX="45.0" layoutY="29.0" text="Código" />
+      <TextField fx:id="TxtCodigoFuncionario" layoutX="105.0" layoutY="24.0" />
+      <Button fx:id="BtnPesquisar" layoutX="292.0" layoutY="24.0" mnemonicParsing="false" text="PESQUISAR" onAction="#BtnPesquisar"/>
+      <Label layoutX="45.0" layoutY="98.0" prefHeight="18.0" prefWidth="40.0" text="Nome" />
+      <Label layoutX="45.0" layoutY="142.0" text="RG" />
+      <Label layoutX="357.0" layoutY="142.0" text="CPF" />
+      <Label layoutX="45.0" layoutY="177.0" text="E-mail" />
+      <Label layoutX="647.0" layoutY="99.0" text="Data de Nascimento:" />
+      <Separator layoutX="170.0" layoutY="223.0" prefHeight="3.0" prefWidth="824.0" />
+      <TextField fx:id="TxtNomeFuncionario" layoutX="95.0" layoutY="94.0" prefHeight="27.0" prefWidth="526.0" />
+      <TextField fx:id="TxtRGFuncionario" layoutX="95.0" layoutY="137.0" prefHeight="27.0" prefWidth="240.0" />
+      <TextField fx:id="TxtCPFFuncionario" layoutX="387.0" layoutY="137.0" prefHeight="27.0" prefWidth="240.0" />
+      <TextField fx:id="TxtEmailFuncionario" layoutX="95.0" layoutY="172.0" prefHeight="27.0" prefWidth="602.0" />
+      <TextField fx:id="TxtNascimentoFuncionario" layoutX="788.0" layoutY="94.0" prefHeight="27.0" prefWidth="179.0" />
+      <Button fx:id="BtnConsultarFuncionario" layoutX="647.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="CONSULTAR" />
+      <Label layoutX="20.0" layoutY="216.0" text="Dados complementais" />
+      <Label layoutX="45.0" layoutY="249.0" text="Endereço" />
+      <Label layoutX="634.0" layoutY="249.0" text="Número:" />
+      <Label layoutX="496.0" layoutY="287.0" text="Bairro:" />
+      <Label layoutX="724.0" layoutY="287.0" text="Cidade:" />
+      <Label layoutX="793.0" layoutY="249.0" text="CEP:" />
+      <Label layoutX="20.0" layoutY="328.0" text="Demais informações" />
+      <Label layoutX="45.0" layoutY="287.0" text="Complemento" />
+      <TextField fx:id="TxtEnderecoFuncionario" layoutX="140.0" layoutY="244.0" prefHeight="27.0" prefWidth="474.0" />
+      <TextField fx:id="TxtNumeroFuncionario" layoutX="697.0" layoutY="244.0" prefHeight="27.0" prefWidth="83.0" />
+      <TextField fx:id="TxtComplementoFuncionario" layoutX="140.0" layoutY="282.0" prefHeight="27.0" prefWidth="328.0" />
+      <TextField fx:id="TxtBairroFuncionario" layoutX="541.0" layoutY="282.0" prefHeight="27.0" prefWidth="167.0" />
+      <TextField fx:id="TxtCidadeFuncionario" layoutX="778.0" layoutY="282.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="TxtCEPFuncionario" layoutX="836.0" layoutY="244.0" prefHeight="27.0" prefWidth="130.0" />
+      <Separator layoutX="165.0" layoutY="335.0" prefHeight="3.0" prefWidth="824.0" />
+      <Label layoutX="733.0" layoutY="178.0" text="Sexo" />
+      <RadioButton fx:id="RadioMasculinoFuncionario" layoutX="774.0" layoutY="177.0" mnemonicParsing="false" text="Masculino">
+         <toggleGroup>
+            <ToggleGroup fx:id="GrupoSexo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RadioFemininoFuncionario" layoutX="875.0" layoutY="177.0" mnemonicParsing="false" selected="true" text="Feminino" toggleGroup="$GrupoSexo" />
+      <TextField fx:id="TxtFoneCelularFuncionario" layoutX="778.0" layoutY="355.0" prefHeight="27.0" prefWidth="187.0" />
+      <Label layoutX="683.0" layoutY="360.0" text="Fone Celular:" />
+      <Label layoutX="45.0" layoutY="360.0" text="Fone Residencial:" />
+      <Label layoutX="381.0" layoutY="360.0" text="Fone Recado:" />
+      <TextField fx:id="TxtFoneResidencialFuncionario" layoutX="163.0" layoutY="355.0" prefHeight="27.0" prefWidth="190.0" />
+      <TextField fx:id="TxtFoneRecadoFuncionario" layoutX="476.0" layoutY="355.0" prefHeight="27.0" prefWidth="190.0" />
+      <Label layoutX="45.0" layoutY="401.0" text="Aptidões:" />
+      <TextArea fx:id="TxtAreaAptidoesFuncionario" layoutX="161.0" layoutY="401.0" prefHeight="76.0" prefWidth="804.0" />
+      <Label layoutX="693.0" layoutY="29.0" text="Função:" />
+      <ComboBox fx:id="ComboBoxFuncao" layoutX="752.0" layoutY="24.0" prefHeight="27.0" prefWidth="216.0" />
+      <Label layoutX="45.0" layoutY="495.0" text="Disponibilidade:" />
+      <CheckBox fx:id="CheckboxSegunda" layoutX="150.0" layoutY="495.0" mnemonicParsing="false" text="Segunda-Feira" />
+      <CheckBox fx:id="CheckboxTerca" layoutX="150.0" layoutY="525.0" mnemonicParsing="false" text="Terça-Feira" />
+      <CheckBox fx:id="CheckboxQuarta" layoutX="150.0" layoutY="555.0" mnemonicParsing="false" text="Quarta-Feira" />
+      <CheckBox fx:id="CheckboxQuinta" layoutX="150.0" layoutY="585.0" mnemonicParsing="false" text="Quinta-Feira" />
+      <CheckBox fx:id="CheckboxSexta" layoutX="150.0" layoutY="615.0" mnemonicParsing="false" text="Sexta-Feira" />
+      <Separator layoutX="26.0" layoutY="639.0" prefHeight="3.0" prefWidth="976.0" />
+      <CheckBox fx:id="CheckboxPrimeiroHorario" layoutX="370.0" layoutY="495.0" mnemonicParsing="false" text="07:30 - 08:00" />
+      <CheckBox fx:id="CheckboxQuartoHorario" layoutX="370.0" layoutY="585.0" mnemonicParsing="false" text="10:00 - 11:00" />
+      <CheckBox fx:id="CheckboxQuintoHorario" layoutX="370.0" layoutY="615.0" mnemonicParsing="false" text="11:00 - 12:00" />
+      <CheckBox fx:id="CheckboxSetimoHorario" layoutX="605.0" layoutY="525.0" mnemonicParsing="false" text="13:00 - 14:00" />
+      <CheckBox fx:id="CheckboxOitavoHorario" layoutX="605.0" layoutY="555.0" mnemonicParsing="false" text="14:00 - 15:00" />
+      <CheckBox fx:id="CheckboxNonoHorario" layoutX="605.0" layoutY="585.0" mnemonicParsing="false" text="15:00 - 16:00" />
+      <CheckBox fx:id="CheckboxDecimoHorario" layoutX="605.0" layoutY="615.0" mnemonicParsing="false" text="16:00 - 17:00" />
+      <CheckBox fx:id="CheckboxSabadoManha" layoutX="890.0" layoutY="495.0" mnemonicParsing="false" text="Manhã" />
+      <CheckBox fx:id="CheckboxSabadoTarde" layoutX="890.0" layoutY="525.0" mnemonicParsing="false" text="Tarde" />
+      <Label layoutX="835.0" layoutY="495.0" text="Sábado:" />
+      <Button fx:id="BtnSalvarFuncionario" layoutX="45.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="SALVAR" onAction="#BtnSalvarFuncionario"/>
+      <Button fx:id="BtnAtualizarFuncionario" layoutX="180.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="ATUALIZAR" />
+      <Button fx:id="BtnExcluirFuncionario" layoutX="314.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="EXCLUIR" />
+      <Button fx:id="BtnLimparCamposFuncionario" layoutX="446.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="LIMPAR" />
+      <CheckBox fx:id="CheckboxSegundoHorario" layoutX="370.0" layoutY="525.0" mnemonicParsing="false" text="08:00 - 09:00" />
+      <CheckBox fx:id="CheckboxTerceiroHorario2" layoutX="370.0" layoutY="555.0" mnemonicParsing="false" text="09:00 - 10:00" />
+      <CheckBox fx:id="CheckboxSextoHorario3" layoutX="605.0" layoutY="495.0" mnemonicParsing="false" text="12:00 - 13:00" />
+   </children>
+</AnchorPane>

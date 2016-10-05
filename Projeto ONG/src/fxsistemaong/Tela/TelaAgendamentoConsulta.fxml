@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fxsistemaong.Controle.TelaAgendamentoConsultaController">
+   <children>
+      <Label layoutX="50.0" layoutY="178.0" text="Nome do Paciente:" />
+      <Label layoutX="50.0" layoutY="127.0" text="Código:" />
+      <Label layoutX="416.0" layoutY="127.0" text="CPF:" />
+      <TextField fx:id="TxtFieldCodigo" layoutX="108.0" layoutY="122.0" prefHeight="27.0" prefWidth="292.0" />
+      <TextField fx:id="TxtFieldCPF" layoutX="459.0" layoutY="122.0" prefHeight="27.0" prefWidth="283.0" />
+      <Button fx:id="BtnBuscar" layoutX="765.0" layoutY="122.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Buscar" />
+      <TextField fx:id="TxtFieldNomePaciente" layoutX="178.0" layoutY="173.0" prefHeight="27.0" prefWidth="368.0" />
+      <Label layoutX="567.0" layoutY="178.0" text="Idade:" />
+      <TextField fx:id="TxtFieldIdade" layoutX="616.0" layoutY="173.0" />
+      <Label layoutX="391.0" layoutY="234.0" text="Em tratamento:" />
+      <Label layoutX="642.0" layoutY="235.0" text="Quantas consultas?" />
+      <TextField fx:id="TxtFieldQuantasConsultas" layoutX="770.0" layoutY="230.0" />
+      <RadioButton fx:id="RButtonSim" layoutX="495.0" layoutY="234.0" mnemonicParsing="false" text="Sim">
+         <toggleGroup>
+            <ToggleGroup fx:id="GrupoTratamento" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RbuttonNao" layoutX="557.0" layoutY="234.0" mnemonicParsing="false" selected="true" text="Não" toggleGroup="$GrupoTratamento" />
+      <Label layoutX="50.0" layoutY="234.0" text="Tipo de Consulta:" />
+      <ComboBox fx:id="ComboBoxTipoConsulta" layoutX="166.0" layoutY="229.0" prefHeight="27.0" prefWidth="201.0" />
+      <TableView layoutX="50.0" layoutY="364.0" prefHeight="287.0" prefWidth="896.0">
+        <columns>
+          <TableColumn fx:id="TcCodigo" prefWidth="75.0" text="Código" />
+          <TableColumn fx:id="TcNomePaciente" prefWidth="379.0" text="Nome Paciente" />
+            <TableColumn fx:id="TcIdade" prefWidth="104.0" text="Idade" />
+            <TableColumn fx:id="TcEmTratamento" prefWidth="151.0" text="Em tratamento?" />
+            <TableColumn fx:id="TcTipoConsulta" prefWidth="186.0" text="Tipo de consulta" />
+        </columns>
+      </TableView>
+      <Button fx:id="BtnAdicionar" layoutX="50.0" layoutY="297.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="167.0" text="Adicionar" />
+      <Button fx:id="BtnExcluir" layoutX="249.0" layoutY="297.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="167.0" text="Excluir" />
+      <Button fx:id="BtnLimpar" layoutX="445.0" layoutY="297.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="167.0" text="Limpar Campos" />
+   </children>
+</AnchorPane>

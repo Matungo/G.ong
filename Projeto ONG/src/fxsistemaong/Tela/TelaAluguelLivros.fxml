@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fxsistemaong.Controle.TelaAluguelLivrosController">
+   <children>
+      <Label layoutX="82.0" layoutY="37.0" text="EMPRESTIMO DE LIVROS" underline="true">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="139.0" text="Dados do Usuário" />
+      <Separator layoutX="148.0" layoutY="146.0" prefHeight="0.0" prefWidth="851.0" />
+      <Label layoutX="80.0" layoutY="182.0" text="Código:" />
+      <Label layoutX="324.0" layoutY="182.0" text="CPF:" />
+      <TextField fx:id="TxtCodigoUsuario" layoutX="135.0" layoutY="177.0" />
+      <TextField fx:id="TxtCPFUsuario" layoutX="360.0" layoutY="177.0" prefHeight="27.0" prefWidth="265.0" />
+      <Button fx:id="BtnConsultarUsuarioEmprestimo" layoutX="659.0" layoutY="177.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="CONSULTAR" />
+      <Label layoutX="80.0" layoutY="226.0" text="Nome:" />
+      <TextField fx:id="TxtNomeUsuario" layoutX="135.0" layoutY="221.0" prefHeight="27.0" prefWidth="677.0" />
+      <Label layoutX="35.0" layoutY="274.0" text="Dados do Livro" />
+      <Separator layoutX="142.0" layoutY="281.0" prefHeight="3.0" prefWidth="858.0" />
+      <Label layoutX="80.0" layoutY="314.0" text="ISBN:" />
+      <TextField fx:id="TxtISBNLivroEmprestimo" layoutX="123.0" layoutY="309.0" prefHeight="27.0" prefWidth="152.0" />
+      <Label layoutX="292.0" layoutY="314.0" text="Nome do Livro:" />
+      <TextField fx:id="TxtNomeLivroEmprestimo" layoutX="395.0" layoutY="309.0" prefHeight="27.0" prefWidth="339.0" />
+      <Button fx:id="BtnBuscarLivroEmprestimo" layoutX="741.0" layoutY="309.0" mnemonicParsing="false" text="BUSCAR" />
+      <Label layoutX="80.0" layoutY="368.0" text="Data de Publicação:" />
+      <Label layoutX="339.0" layoutY="368.0" text="Editora:" />
+      <Label layoutX="565.0" layoutY="368.0" text="Categoria:" />
+      <Label layoutX="80.0" layoutY="417.0" text="Qtd Disponivel:" />
+      <TextField fx:id="TxtDataPublicacaoLivroEmprestimo" layoutX="214.0" layoutY="363.0" prefHeight="27.0" prefWidth="110.0" />
+      <TextField fx:id="TxtEditoraLivroEmprestimo" layoutX="390.0" layoutY="363.0" />
+      <TextField fx:id="TxtCategoriaLivroEmprestimo" layoutX="638.0" layoutY="363.0" prefHeight="27.0" prefWidth="173.0" />
+      <TextField fx:id="TxtQtdDisponivelLivroEmprestimo" layoutX="180.0" layoutY="412.0" prefHeight="27.0" prefWidth="54.0" />
+      <Label layoutX="248.0" layoutY="417.0" text="Formato:" />
+      <TextField fx:id="TxtFormatoLivroEmprestimo" layoutX="312.0" layoutY="412.0" prefHeight="27.0" prefWidth="182.0" />
+      <TableView layoutX="80.0" layoutY="455.0" prefHeight="138.0" prefWidth="738.0">
+        <columns>
+          <TableColumn fx:id="TableviewISBNLivro" prefWidth="105.0" text="ISBN" />
+          <TableColumn fx:id="TableviewNomedoLivro" prefWidth="374.0" text="Nome do Livro" />
+            <TableColumn fx:id="TableViewDataRetirada" prefWidth="131.0" text="Data de Retirada" />
+            <TableColumn fx:id="TableviewDataDevolucao" prefWidth="127.0" text="Data de Entrega" />
+        </columns>
+      </TableView>
+      <Button fx:id="BtnEmprestarLivro" layoutX="35.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" text="EMPRESTAR" />
+      <Button fx:id="BtnDevolverLivro" layoutX="222.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" text="DEVOLVER" />
+      <Button fx:id="BtnLimparCampos" layoutX="406.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" text="LIMPAR" />
+      <Button fx:id="BtnDesbloquearCadastro" layoutX="589.0" layoutY="648.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" text="DESBLOQUEAR" />
+   </children>
+</AnchorPane>

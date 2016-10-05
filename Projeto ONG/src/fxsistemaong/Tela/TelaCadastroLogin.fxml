@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaCadastroLoginController">
+   <children>
+      <Label layoutX="31.0" layoutY="36.0" text="Código:" />
+      <Label layoutX="271.0" layoutY="36.0" text="CPF:" />
+      <Label layoutX="117.0" layoutY="124.0" text="Usuario:" />
+      <Label layoutX="117.0" layoutY="172.0" text="Senha:" />
+      <Label layoutX="115.0" layoutY="216.0" text="Confirmar Senha:" />
+      <TextField fx:id="TxtCodigoLogin" layoutX="83.0" layoutY="31.0" />
+      <TextField fx:id="TxtCodCPF" layoutX="307.0" layoutY="31.0" />
+      <TextField fx:id="TxtConfirmaSenha" layoutX="230.0" layoutY="211.0" prefHeight="27.0" prefWidth="201.0" />
+      <TextField fx:id="TxtSenha" layoutX="230.0" layoutY="167.0" prefHeight="27.0" prefWidth="201.0" />
+      <TextField fx:id="TxtUsuario" layoutX="230.0" layoutY="119.0" prefHeight="27.0" prefWidth="201.0" />
+      <Button layoutX="498.0" layoutY="31.0" mnemonicParsing="false" text="Buscar" />
+      <Button fx:id="BtnSalvarLogin" layoutX="116.0" layoutY="284.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="144.0" text="SALVAR" />
+      <Button fx:id="BtnVoltarLogin" layoutX="323.0" layoutY="284.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="144.0" text="VOLTAR" />
+      <Label layoutX="14.0" layoutY="77.0" text="Dados do login" />
+      <Separator layoutX="115.0" layoutY="84.0" prefHeight="0.0" prefWidth="450.0" />
+   </children>
+</AnchorPane>

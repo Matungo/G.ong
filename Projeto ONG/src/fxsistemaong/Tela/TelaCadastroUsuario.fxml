@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaCadastroUsuarioController">
+   <children>
+      <Button fx:id="BtnAtualizar" layoutX="159.0" layoutY="673.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="107.0" text="ATUALIZAR" />
+      <Button fx:id="BtnExcluir" layoutX="297.0" layoutY="673.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="EXCLUIR" />
+      <Button fx:id="BtnLimpar" layoutX="416.0" layoutY="673.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="LIMPAR" />
+      <Button fx:id="BtnSalvar" layoutX="45.0" layoutY="673.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="SALVAR" />
+      <TextField fx:id="TxtRenda" layoutX="799.0" layoutY="428.0" prefHeight="27.0" prefWidth="157.0" />
+      <TextField fx:id="TxtProfissao" layoutX="170.0" layoutY="428.0" prefHeight="27.0" prefWidth="520.0" />
+      <TextField fx:id="TxtFoneRecado" layoutX="476.0" layoutY="387.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="TxtFoneResidencial" layoutX="170.0" layoutY="387.0" prefHeight="27.0" prefWidth="187.0" />
+      <ComboBox fx:id="ComboEstadoCivil" layoutX="170.0" layoutY="346.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="TxtQuantos" layoutX="658.0" layoutY="346.0" prefHeight="27.0" prefWidth="91.0" />
+      <RadioButton fx:id="RadioFilhoNao" layoutX="507.0" layoutY="351.0" mnemonicParsing="false" selected="true" text="Não">
+         <toggleGroup>
+            <ToggleGroup fx:id="GrupoFilhos" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RadioFilhoSim" layoutX="428.0" layoutY="351.0" mnemonicParsing="false" text="Sim" toggleGroup="$GrupoFilhos" />
+      <Label layoutX="703.0" layoutY="433.0" text="Renda Familiar" />
+      <Label layoutX="45.0" layoutY="433.0" text="Profissão" />
+      <Label layoutX="381.0" layoutY="392.0" text="Fone Recado:" />
+      <Label layoutX="45.0" layoutY="392.0" text="Fone Residencial:" />
+      <Label layoutX="588.0" layoutY="351.0" text="Quantos?" />
+      <Label layoutX="373.0" layoutY="351.0" text="Filhos:" />
+      <Label layoutX="45.0" layoutY="351.0" text="Estado Civil" />
+      <RadioButton fx:id="RadioFeminino" layoutX="868.0" layoutY="167.0" mnemonicParsing="false" selected="true" text="Feminino">
+         <toggleGroup>
+            <ToggleGroup fx:id="GrupoSexo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RadioMasculino" layoutX="767.0" layoutY="167.0" mnemonicParsing="false" text="Masculino" toggleGroup="$GrupoSexo" />
+      <Label layoutX="726.0" layoutY="168.0" text="Sexo" />
+      <Separator layoutX="155.0" layoutY="325.0" prefHeight="3.0" prefWidth="824.0" />
+      <TextField fx:id="TxtCEP" layoutX="826.0" layoutY="234.0" prefHeight="27.0" prefWidth="130.0" />
+      <TextField fx:id="TxtCidade" layoutX="768.0" layoutY="272.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="TxtBairro" layoutX="531.0" layoutY="272.0" prefHeight="27.0" prefWidth="167.0" />
+      <TextField fx:id="TxtComplemento" layoutX="140.0" layoutY="272.0" prefHeight="27.0" prefWidth="328.0" />
+      <TextField fx:id="TxtNumero" layoutX="687.0" layoutY="234.0" prefHeight="27.0" prefWidth="83.0" />
+      <TextField fx:id="TxtEndereco" layoutX="140.0" layoutY="234.0" prefHeight="27.0" prefWidth="474.0" />
+      <Label layoutX="45.0" layoutY="277.0" text="Complemento" />
+      <Label layoutX="20.0" layoutY="318.0" text="Demais informações" />
+      <Label layoutX="783.0" layoutY="239.0" text="CEP" />
+      <Label layoutX="707.0" layoutY="277.0" text="Cidade" />
+      <Label layoutX="486.0" layoutY="277.0" text="Bairro" />
+      <Label layoutX="624.0" layoutY="239.0" text="Número" />
+      <Label layoutX="45.0" layoutY="239.0" text="Endereço" />
+      <Label layoutX="20.0" layoutY="206.0" text="Dados complementais" />
+      <Button fx:id="BtnConsultar" layoutX="829.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="CONSULTAR" />
+      <TextField fx:id="TxtNascimento" layoutX="780.0" layoutY="84.0" />
+      <TextField fx:id="TxtEmail" layoutX="95.0" layoutY="162.0" prefHeight="27.0" prefWidth="602.0" />
+      <TextField fx:id="TxtCPF" layoutX="601.0" layoutY="127.0" prefHeight="27.0" prefWidth="213.0" />
+      <TextField fx:id="TxtRG" layoutX="95.0" layoutY="127.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="TxtNome" layoutX="95.0" layoutY="83.0" prefHeight="27.0" prefWidth="526.0" />
+      <Separator layoutX="160.0" layoutY="213.0" prefHeight="3.0" prefWidth="824.0" />
+      <Label layoutX="637.0" layoutY="89.0" text="Data de Nascimento" />
+      <Label layoutX="45.0" layoutY="167.0" text="E-mail" />
+      <Label layoutX="565.0" layoutY="132.0" text="CPF" />
+      <Label layoutX="45.0" layoutY="132.0" text="RG" />
+      <Label layoutX="45.0" layoutY="88.0" prefHeight="18.0" prefWidth="40.0" text="Nome" />
+      <Button fx:id="BtnPesquisar" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" text="PESQUISAR" />
+      <TextField fx:id="TxtCodigoUsuario" layoutX="95.0" layoutY="14.0" />
+      <Label layoutX="45.0" layoutY="19.0" text="Código" />
+      <Separator layoutX="124.0" layoutY="65.0" prefHeight="3.0" prefWidth="843.0" />
+      <Label layoutX="20.0" layoutY="58.0" text="Dados Pessoais" />
+      <Label layoutX="396.0" layoutY="19.0" text="Data de Cadastro:" />
+      <TextField fx:id="TxtDataCadastro" layoutX="512.0" layoutY="14.0" />
+      <Label layoutX="765.0" layoutY="351.0" text="Idade(s):" />
+      <TextField fx:id="TxtIdadeFilhos" layoutX="822.0" layoutY="346.0" prefHeight="27.0" prefWidth="136.0" />
+      <Label layoutX="683.0" layoutY="392.0" text="Fone Celular:" />
+      <TextField fx:id="TxtFoneCelular" layoutX="778.0" layoutY="387.0" prefHeight="27.0" prefWidth="179.0" />
+      <Label layoutX="45.0" layoutY="473.0" text="Interesse em:" />
+      <CheckBox fx:id="CheckboxContacao" layoutX="170.0" layoutY="473.0" mnemonicParsing="false" text="Curso Contação de Histórias" />
+      <CheckBox fx:id="CheckboxEducacaoFinanceira" layoutX="170.0" layoutY="502.0" mnemonicParsing="false" text="Curso de Educação Financeira" />
+      <CheckBox fx:id="CheckboxDesenhoMecanico" layoutX="170.0" layoutY="532.0" mnemonicParsing="false" text="Desenho Mecânico e Industrial" />
+      <CheckBox fx:id="CheckboxInformatica" layoutX="400.0" layoutY="502.0" mnemonicParsing="false" text="Básico de Informática" />
+      <CheckBox fx:id="CheckboxAulaReforço" layoutX="400.0" layoutY="473.0" mnemonicParsing="false" text="Aula Reforço Escolar" />
+      <CheckBox fx:id="CheckboxIngles" layoutX="400.0" layoutY="532.0" mnemonicParsing="false" text="Aula de Inglês" />
+      <CheckBox fx:id="CheckboxEspanhol" layoutX="400.0" layoutY="560.0" mnemonicParsing="false" text="Aula de Espanhol" />
+      <CheckBox fx:id="CheckboxArtesanato" layoutX="400.0" layoutY="590.0" mnemonicParsing="false" text="Aula de Artesanato" />
+      <CheckBox fx:id="CheckboxTeclado" layoutX="570.0" layoutY="473.0" mnemonicParsing="false" text="Curso Teclado" />
+      <CheckBox fx:id="CheckboxViolao" layoutX="570.0" layoutY="502.0" mnemonicParsing="false" text="Curso Violão" />
+      <CheckBox fx:id="CheckboxDesignModa" layoutX="170.0" layoutY="589.0" mnemonicParsing="false" text="Curso de Design de Modas" />
+      <CheckBox fx:id="CheckboxCapoeira" layoutX="570.0" layoutY="531.0" mnemonicParsing="false" text="Capoeira" />
+      <CheckBox fx:id="CheckboxFraldasA" layoutX="570.0" layoutY="560.0" mnemonicParsing="false" text="Fraldas Adulto" />
+      <CheckBox fx:id="CheckboxFraldasI" layoutX="570.0" layoutY="589.0" mnemonicParsing="false" text="Fraldas Infatil" />
+      <CheckBox fx:id="CheckboxAcupuntura" layoutX="701.0" layoutY="473.0" mnemonicParsing="false" text="Acupuntura" />
+      <CheckBox fx:id="CheckboxEmprestimo" layoutX="170.0" layoutY="560.0" mnemonicParsing="false" text="Empréstimo de Livros e DVD's" />
+      <CheckBox fx:id="CheckboxLeite" layoutX="701.0" layoutY="531.0" mnemonicParsing="false" text="Leite" />
+      <CheckBox fx:id="CheckboxCestaBasica" layoutX="701.0" layoutY="502.0" mnemonicParsing="false" text="Cesta Básica" />
+      <CheckBox fx:id="CheckboxOutros" layoutX="701.0" layoutY="560.0" mnemonicParsing="false" text="Outros:" />
+      <Label layoutX="701.0" layoutY="590.0" text="Qual?" />
+      <TextField fx:id="TxtInteresseOutros" layoutX="764.0" layoutY="585.0" prefHeight="27.0" prefWidth="190.0" />
+      <Label layoutX="45.0" layoutY="620.0" text="Observações:" />
+      <TextArea fx:id="TxtAreaObservacoes" layoutX="170.0" layoutY="620.0" prefHeight="37.0" prefWidth="784.0" />
+      <Label layoutX="294.0" layoutY="132.0" text="NIS:" />
+      <TextField fx:id="TxtNISUsuario" layoutX="330.0" layoutY="127.0" prefHeight="27.0" prefWidth="223.0" />
+   </children>
+</AnchorPane>
