@@ -47,13 +47,11 @@
                         <TextField fx:id="TxtRendaFamiliar" layoutX="125.0" layoutY="300.0" prefHeight="27.0" prefWidth="136.0" />
                         <TextField fx:id="TxtCPFDependentes" layoutX="575.0" layoutY="300.0" prefHeight="27.0" prefWidth="213.0" />
                         <TextField fx:id="TxtCidadeDependente" layoutX="748.0" layoutY="447.0" prefHeight="27.0" prefWidth="193.0" />
-                        <TextField fx:id="TxtNascimentoMaeDependente" layoutX="775.0" layoutY="68.0" />
                         <Label layoutX="25.0" layoutY="452.0" text="Complemento:" />
                         <Label layoutX="640.0" layoutY="570.0" text="Período:" />
                         <Label layoutY="231.0" text="Dados da Criança" />
                         <TextField fx:id="TxtNomePaiDependente" layoutX="125.0" layoutY="145.0" prefHeight="27.0" prefWidth="474.0" />
                         <Label layoutX="547.0" layoutY="194.0" text="CPF:" />
-                        <TextField fx:id="TxtDataCadastroDependente" layoutX="518.0" />
                         <Label layoutX="506.0" layoutY="346.0" text="Território:" />
                         <TextField fx:id="TxtCEPDependente" layoutX="806.0" layoutY="409.0" prefHeight="27.0" prefWidth="136.0" />
                         <Button fx:id="BtnConsultarCPFMaeDependente" layoutX="811.0" layoutY="103.0" mnemonicParsing="false" onAction="#consultarMae" prefHeight="27.0" prefWidth="130.0" text="CONSULTAR" />
@@ -73,14 +71,13 @@
                         <Button fx:id="BtnConsultarCPFDependente" layoutX="823.0" layoutY="300.0" mnemonicParsing="false" onAction="#consultarCrianca" prefHeight="25.0" prefWidth="119.0" text="CONSULTAR" />
                         <TextField fx:id="TxtRGMaeDependente" layoutX="340.0" layoutY="103.0" prefHeight="27.0" prefWidth="187.0" />
                         <Separator layoutX="156.0" layoutY="48.0" prefHeight="3.0" prefWidth="806.0" />
-                        <TextArea fx:id="TxtComposicaoFamiliar" layoutX="191.0" layoutY="603.0" prefHeight="60.0" prefWidth="741.0" />
+                        <TextArea fx:id="TxtComposicaoFamiliar" layoutX="142.0" layoutY="600.0" prefHeight="60.0" prefWidth="397.0" />
                         <Label layoutX="22.0" layoutY="600.0" text="Composição Familiar:" />
-                        <TextField layoutX="192.0" layoutY="565.0" prefHeight="27.0" prefWidth="432.0" />
+                        <TextField fx:id="TxtNomeEscola" layoutX="192.0" layoutY="565.0" prefHeight="27.0" prefWidth="432.0" />
                         <TextField fx:id="TxtCPFMaeDependente" layoutX="583.0" layoutY="103.0" prefHeight="27.0" prefWidth="213.0" />
                         <Label layoutX="268.0" layoutY="305.0" text="NIS:" />
                         <TextField fx:id="TxtCPFPaiDependentes" layoutX="583.0" layoutY="189.0" prefHeight="27.0" prefWidth="213.0" />
                         <Label layoutX="355.0" layoutY="535.0" text="Fone Recado:" />
-                        <TextField fx:id="TxtNascimentoDependente" layoutX="798.0" layoutY="257.0" prefHeight="27.0" prefWidth="144.0" />
                         <Label layoutX="402.0" layoutY="5.0" text="Data de Cadastro:" />
                         <ComboBox fx:id="ComboboxCorDependente" layoutX="125.0" layoutY="341.0" prefWidth="150.0" />
                         <Label layoutX="766.0" layoutY="414.0" text="CEP:" />
@@ -95,7 +92,6 @@
                         <Label layoutX="290.0" layoutY="346.0" text="UBS:" />
                         <Label layoutX="630.0" layoutY="73.0" text="Data de Nascimento:" />
                         <TextField fx:id="TxtNISDependente" layoutX="304.0" layoutY="300.0" prefHeight="27.0" prefWidth="223.0" />
-                        <TextField fx:id="TxtNascimentoPaiDependentes" layoutX="775.0" layoutY="146.0" />
                         <Label layoutX="25.0" layoutY="72.0" prefHeight="18.0" prefWidth="91.0" text="Nome da Mãe:" />
                         <Label layoutX="477.0" layoutY="452.0" text="Bairro:" />
                         <TextField fx:id="TxtFoneRecadoDependente" layoutX="450.0" layoutY="530.0" prefHeight="27.0" prefWidth="187.0" />
@@ -104,6 +100,21 @@
                         <Label layoutX="663.0" layoutY="262.0" text="Data de Nascimento:" />
                         <TextField fx:id="TxtEnderecoDependente" layoutX="140.0" layoutY="409.0" prefHeight="27.0" prefWidth="474.0" />
                         <Label layoutX="25.0" layoutY="535.0" text="Fone Residencial:" />
+                        <DatePicker fx:id="TxtNascimentoMaeDependente" layoutX="763.0" layoutY="68.0" />
+                        <DatePicker fx:id="TxtNascimentoPaiDependentes" layoutX="763.0" layoutY="147.0" />
+                        <DatePicker fx:id="TxtNascimentoDependente" layoutX="785.0" layoutY="258.0" />
+                        <Label fx:id="TxtDataCadastroDependente" layoutX="509.0" prefHeight="25.0" prefWidth="148.0" />
+                        <Label layoutX="543.0" layoutY="622.0" text="Esta na escola atualmente?" />
+                        <RadioButton fx:id="RadioSimEstuda" layoutX="701.0" layoutY="609.0" mnemonicParsing="false" text="Sim">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="GrupoEscola" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Label layoutX="776.0" layoutY="609.0" text="Serie" />
+                        <Label layoutX="766.0" layoutY="636.0" text="Porque?" />
+                        <RadioButton fx:id="RadioNaoEstuda" layoutX="701.0" layoutY="636.0" mnemonicParsing="false" text="Não" toggleGroup="$GrupoEscola" />
+                        <TextField fx:id="TxtSerieDependente" layoutX="831.0" layoutY="605.0" prefHeight="25.0" prefWidth="167.0" />
+                        <TextField fx:id="TxtPorqueDependente" layoutX="831.0" layoutY="641.0" prefHeight="25.0" prefWidth="167.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -117,7 +128,7 @@
                         <TextField fx:id="TxtOutrosTratamentos" layoutX="585.0" layoutY="55.0" prefHeight="27.0" prefWidth="360.0" />
                         <Label layoutX="29.0" layoutY="464.0" text="Que outras atividades a criança / adolecente participa além da escola?" />
                         <Label layoutX="30.0" layoutY="407.0" text="B) Escola:" />
-                        <TextField layoutX="99.0" layoutY="127.0" prefHeight="27.0" prefWidth="845.0" />
+                        <TextField fx:id="TxtQual" layoutX="99.0" layoutY="127.0" prefHeight="27.0" prefWidth="845.0" />
                         <Label layoutX="30.0" layoutY="29.0" text="Já fez ou faz tratamento de saúde mental?" />
                         <Label layoutX="545.0" layoutY="95.0" text="Quando?" />
                         <TextArea fx:id="TxtRelacionamentoFamilia" layoutX="105.0" layoutY="352.0" prefHeight="44.0" prefWidth="835.0" />
@@ -182,6 +193,7 @@
                         <Button fx:id="btnAtualizar" layoutX="197.0" layoutY="601.0" mnemonicParsing="false" onAction="#atualizarDependentes" prefHeight="27.0" prefWidth="113.0" text="ATUALIZAR" />
                         <Button fx:id="btnLimpar" layoutX="341.0" layoutY="601.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="27.0" prefWidth="113.0" text="LIMPAR" />
                         <Button fx:id="btnExcluir" layoutX="485.0" layoutY="601.0" mnemonicParsing="false" onAction="#excluirDependente" prefHeight="27.0" prefWidth="113.0" text="EXCLUIR" />
+                        <Label layoutX="38.0" layoutY="237.0" text="Descreva a crise" />
                      </children>
                   </AnchorPane>
               </content>
