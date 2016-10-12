@@ -11,7 +11,10 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,9 +25,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
 public class TelaCadastroDependentesController implements Initializable {
 
@@ -32,11 +38,11 @@ public class TelaCadastroDependentesController implements Initializable {
     //private RadioButton RadioNaoAbrigo;
     private TextField TxtCodigoDependente;
     @FXML
-    private TextField TxtDataCadastroDependente;
+    private Label TxtDataCadastroDependente;
     @FXML
     private TextField TxtNomeMaeDependente;
     @FXML
-    private TextField TxtNascimentoMaeDependente;
+    private DatePicker TxtNascimentoMaeDependente;
     @FXML
     private TextField TxtProfissaoMaeDependente;
     @FXML
@@ -46,7 +52,7 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     private TextField TxtNomePaiDependente;
     @FXML
-    private TextField TxtNascimentoPaiDependentes;
+    private DatePicker TxtNascimentoPaiDependentes;
     @FXML
     private TextField TxtProfissaoPaiDependentes;
     @FXML
@@ -56,7 +62,7 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     private TextField TxtNomeDependente;
     @FXML
-    private TextField TxtNascimentoDependente;
+    private DatePicker TxtNascimentoDependente;
     @FXML
     private TextField TxtRendaFamiliar;
     @FXML
@@ -181,9 +187,12 @@ public class TelaCadastroDependentesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> listaCores //combobox trabalha com lista por isso é necessario criar ela
-                = FXCollections.observableArrayList("Asiatico", "Branco(a)", "Indio(a)", "Negro(a)", "Pardo(a)");
+                = FXCollections.observableArrayList("Asiatico(a)", "Branco(a)", "Indio(a)", "Negro(a)", "Pardo(a)");
         ComboboxCorDependente.setItems(listaCores);
         //coloca a lista aqui
+
+        //coloca a data atual para a data do cadastro no padrao brasileiro//
+    TxtDataCadastroDependente.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()).toString());
     }
 
     /**
@@ -195,34 +204,35 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     public void pesquisarDependente(ActionEvent event) {
         Dependentes depe = new Dependentes();
+        depe.setCodigo(Integer.parseInt(TxtCodigoDependente.getText()));
         try {
             DependentesDAO dao = new DependentesDAO();
-            depe = dao.pesquisarDependentes(Integer.valueOf(TxtCodigoDependente.getText()));
+            depe = dao.pesquisarDependentes(depe);
         } catch (RuntimeException E) {
             System.out.println(E.getMessage());
         }
-        TxtDataCadastroDependente.setText(depe.getDataCadastro().toString());
+        TxtDataCadastroDependente.setText(depe.getDataCadastro());
         TxtNomeMaeDependente.setText(depe.getNomeMae());
-        TxtNascimentoMaeDependente.setText(depe.getDataMae().toString());
+        TxtNascimentoMaeDependente.getEditor().setText(depe.getDataMae());
         TxtProfissaoMaeDependente.setText(depe.getProfissaoMae());
         TxtRGMaeDependente.setText(depe.getRgMae());
         TxtCPFMaeDependente.setText(depe.getCpfMae());
-        TxtNomePaiDependente.setText(depe.getNomeMae());
-        TxtNascimentoPaiDependentes.setText(depe.getDataPai().toString());
+        TxtNomePaiDependente.setText(depe.getNomePai());
+        
+        TxtNascimentoPaiDependentes.getEditor().setText(depe.getDataPai());
+        
         TxtProfissaoPaiDependentes.setText(depe.getProfissaoPai());
         TxtRGPaiDependentes.setText(depe.getRgPai());
         TxtCPFPaiDependentes.setText(depe.getCpfPai());
         TxtNomeDependente.setText(depe.getNomeCrianca());
-        TxtNascimentoDependente.setText(depe.getNomeCrianca());
+        TxtNascimentoDependente.getEditor().setText(depe.getDataCrianca());
         TxtRendaFamiliar.setText(String.valueOf(depe.getRendaFamiliar()));
         TxtNISDependente.setText(depe.getNis());
         TxtCPFDependentes.setText(depe.getCpfCrianca());
-        ObservableList<String> listaCorPelePesquisa //vou colocar a lista a cor que foi pesquisado no banco
-                = FXCollections.observableArrayList(depe.getCorPele());
-        ComboboxCorDependente.setItems(listaCorPelePesquisa);
+        ComboboxCorDependente.getSelectionModel().select(depe.getCorPele());//vou colocar a lista a cor que foi pesquisado no banco
         TxtUBSDependente.setText(depe.getUbs());
         TxtTerritorioDependente.setText(depe.getTerritorio());
-        if (depe.getSexo() == "M") {
+        if (depe.getSexo().equals("M")) {
             RadioMasculino.setSelected(true);
         } else {
             RadioFeminino.setSelected(true);
@@ -238,15 +248,8 @@ public class TelaCadastroDependentesController implements Initializable {
         TxtFoneResidencialDependente.setText(depe.getTelRes());
         TxtFoneRecadoDependente.setText(depe.getTelRec());
         TxtFoneCelularDependente.setText(depe.getTelCel());
-        if (depe.getEstuda() == "S") {
-            RadioSimEstuda.setSelected(true);
-            TxtSerieDependente.setText(depe.getSerie());
-        } else {
-            RadioNaoEstuda.setSelected(true);
-            TxtPorqueDependente.setText(depe.getMotivoEstudo());
-        }
         TxtNomeEscola.setText(depe.getNomeEscola());
-        switch (depe.getPeriodoEscolar()) {
+         switch (depe.getPeriodoEscolar()) {
             case "M":
                 RadioManha.setSelected(true);
                 break;
@@ -257,9 +260,15 @@ public class TelaCadastroDependentesController implements Initializable {
                 RadioNoite.setSelected(true);
                 break;
         };
-        TxtComposicaoFamiliar.setText(depe.getComposicao());
-
-        if (depe.getSaudeMental() == "S") {
+         TxtComposicaoFamiliar.setText(depe.getComposicao());
+        if (depe.getEstuda().equals("S")) {
+            RadioSimEstuda.setSelected(true);
+            TxtSerieDependente.setText(depe.getSerie());
+        } else {
+            RadioNaoEstuda.setSelected(true);
+            TxtPorqueDependente.setText(depe.getMotivoEstudo());
+        }
+        if (depe.getSaudeMental().equals("S")) {
             RadioSimMedicacao.setSelected(true);
             switch (depe.getQualSaude()) {
                 case 1:
@@ -278,27 +287,27 @@ public class TelaCadastroDependentesController implements Initializable {
         } else {
             RadioNaoMedicacao.setSelected(true);
         }
-        if (depe.getInternado() == "S") {
+        if (depe.getInternado().equals("S")) {
             RadioSimAbrigo.setSelected(true);
             TxtAbrigoDependente.setText(depe.getQuando());
             TxtQual.setText(depe.getQualInternado());
         } else {
             RadioNaoAbrigo.setSelected(true);
         }
-        if (depe.getMedicamento() == "S") {
+        if (depe.getMedicamento().equals("S")) {
             RadioSimMedicacaoDependete.setSelected(true);
             TxtQualMedicacao.setText(depe.getQualMedica());
         } else {
             RadioNaoMedicacaoDependete.setSelected(true);
         }
-        if (depe.getConvulsao() == "S") {
+        if (depe.getConvulsao().equals("S")) {
             RadioSimConvulsoes.setSelected(true);
             TxtQuandoConvulsao.setText(depe.getQuandoConvulsao());
             TxtDescreverCrise.setText(depe.getDescricao());
         } else {
             RadioNaoConvulsoes.setSelected(true);
         }
-        if (depe.getAlergia() == "S") {
+        if (depe.getAlergia().equals("S")) {
             RadioSimToleranciaAlimentacao.setSelected(true);
             TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
         } else {
@@ -330,7 +339,6 @@ public class TelaCadastroDependentesController implements Initializable {
         alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
         alert.setContentText("Pesquisado com sucesso");
         alert.showAndWait();
-        limparCampos(event);
     }
 
     /**
@@ -341,23 +349,19 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     public void limparCampos(ActionEvent event) {
 
-        ObservableList<String> listaCores //combobox trabalha com lista por isso é necessario criar ela
-                = FXCollections.observableArrayList("Asiatico", "Branco(a)", "Indio(a)", "Negro(a)", "Pardo(a)");
-        ComboboxCorDependente.setItems(listaCores);
         TxtCodigoDependente.clear();
-        TxtDataCadastroDependente.clear();
         TxtNomeMaeDependente.clear();
-        TxtNascimentoMaeDependente.clear();
+        TxtNascimentoMaeDependente.getEditor().clear();
         TxtProfissaoMaeDependente.clear();
         TxtRGMaeDependente.clear();
         TxtCPFMaeDependente.clear();
         TxtNomePaiDependente.clear();
-        TxtNascimentoPaiDependentes.clear();
+        TxtNascimentoPaiDependentes.getEditor().clear();
         TxtProfissaoPaiDependentes.clear();
         TxtRGPaiDependentes.clear();
         TxtCPFPaiDependentes.clear();
         TxtNomeDependente.clear();
-        TxtNascimentoDependente.clear();
+        TxtNascimentoDependente.getEditor().clear();
         TxtRendaFamiliar.clear();
         TxtNISDependente.clear();
         TxtCPFDependentes.clear();
@@ -389,6 +393,8 @@ public class TelaCadastroDependentesController implements Initializable {
         TxtPorqueDependente.clear();
         TxtNomeEscola.clear();
         TxtComposicaoFamiliar.clear();
+        RadioNaoMedicacao.setSelected(false);
+        RadioSimMedicacao.setSelected(false);
         CheckboxNeurologia.setSelected(false);
         CheckboxPsicologia.setSelected(false);
         CheckboxPsiquiatria.setSelected(false);
@@ -429,7 +435,7 @@ public class TelaCadastroDependentesController implements Initializable {
     public void excluirDependente(ActionEvent event) {
         Dependentes depe = new Dependentes();
         DependentesDAO dao = new DependentesDAO();
-        depe.setCodigo(Integer.parseInt(TxtCodigoDependente.getText()));
+        depe.setCodigo(Integer.valueOf(TxtCodigoDependente.getText()));
         if (dao.excluirDependentes(depe)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
@@ -451,119 +457,137 @@ public class TelaCadastroDependentesController implements Initializable {
     public void atualizarDependentes(ActionEvent event) throws ParseException {
         Dependentes depe = new Dependentes();
         DependentesDAO dao = new DependentesDAO();
-        depe.setCodigo(Integer.parseInt(TxtCodigoDependente.getText()));
-        depe.setDataCadastro(DateFormat.getInstance().parse(TxtDataCadastroDependente.getText()));//transformar o texto do campo em date
-        depe.setNomeMae(TxtNomeMaeDependente.getText());
-        depe.setDataMae(DateFormat.getInstance().parse(TxtNascimentoMaeDependente.getText()));
-        depe.setProfissaoMae(TxtProfissaoMaeDependente.getText());
-        depe.setRgMae(TxtRGMaeDependente.getText());
-        depe.setCpfMae(TxtCPFMaeDependente.getText());
-        depe.setNomeMae(TxtNomePaiDependente.getText());
-        depe.setDataPai(DateFormat.getInstance().parse(TxtNascimentoPaiDependentes.getText()));
-        depe.setProfissaoPai(TxtProfissaoPaiDependentes.getText());
-        depe.setRgPai(TxtRGPaiDependentes.getText());
-        depe.setCpfPai(TxtCPFPaiDependentes.getText());
-        depe.setNomeCrianca(TxtNomeDependente.getText());
-        depe.setNomeCrianca(TxtNascimentoDependente.getText());
-        depe.setRendaFamiliar(Float.valueOf(TxtRendaFamiliar.getText()));
-        depe.setNis(TxtNISDependente.getText());
-        depe.setCpfCrianca(TxtCPFDependentes.getText());
-        depe.setCorPele(ComboboxCorDependente.getValue().toString());//pegar valor da combo 
-        depe.setUbs(TxtUBSDependente.getText());
-        depe.setTerritorio(TxtTerritorioDependente.getText());
-        if (RadioMasculino.isSelected()) {
-            depe.setSexo("M");
-        } else {
-            depe.setSexo("F");
-        }
-        depe.setEndereco(TxtEnderecoDependente.getText());
-        depe.setNumero(TxtNumeroDependente.getText());
-        depe.setCep(TxtCEPDependente.getText());
-        depe.setComplemento(TxtComplementoDependente.getText());
-        depe.setBairro(TxtBairroDependente.getText());
-        depe.setCidade(TxtCidadeDependente.getText());
-        depe.setResponsavel(TxtResponsavelDependente.getText());
-        depe.setGrauParentesco(TxtParentescoDependente.getText());
-        depe.setTelRes(TxtFoneResidencialDependente.getText());
-        depe.setTelRec(TxtFoneRecadoDependente.getText());
-        depe.setTelCel(TxtFoneCelularDependente.getText());
-        if (RadioSimEstuda.isSelected()) {
-            depe.setEstuda("S");
-            depe.setSerie(TxtSerieDependente.getText());
-        } else {
-            depe.setEstuda("N");
-            depe.setMotivoEstudo(TxtPorqueDependente.getText());
-        }
-        depe.setNomeEscola(TxtNomeEscola.getText());
-        if (RadioManha.isSelected()) {
-            depe.setPeriodoEscolar("M");
-        } else if (RadioTarde.isSelected()) {
-            depe.setPeriodoEscolar("T");
-        } else {
-            depe.setPeriodoEscolar("N");
-        }
-        depe.setComposicao(TxtComposicaoFamiliar.getText());
-        if (RadioSimMedicacao.isSelected()) {
-            depe.setSaudeMental("S");
-            if (CheckboxNeurologia.isSelected()) {
-                depe.setQualSaude(1);
-            } else if (CheckboxPsicologia.isSelected()) {
-                depe.setQualSaude(2);
-            } else if (CheckboxPsiquiatria.isSelected()) {
-                depe.setQualSaude(3);
+        //
+        //SimpleDateFormat dataBanco = new SimpleDateFormat("yyyy-MM-dd");
+        //                 
+        try {
+            depe.setCodigo(Integer.parseInt(TxtCodigoDependente.getText()));
+            depe.setDataCadastro((TxtDataCadastroDependente.getText()));
+            depe.setNomeMae(TxtNomeMaeDependente.getText());
+            depe.setDataMae((TxtNascimentoMaeDependente.getEditor().getText()));
+            depe.setProfissaoMae(TxtProfissaoMaeDependente.getText());
+            depe.setRgMae(TxtRGMaeDependente.getText());
+            depe.setCpfMae(TxtCPFMaeDependente.getText());
+            depe.setNomePai(TxtNomePaiDependente.getText());
+            depe.setDataPai((TxtNascimentoPaiDependentes.getEditor().getText()));
+            depe.setProfissaoPai(TxtProfissaoPaiDependentes.getText());
+            depe.setRgPai(TxtRGPaiDependentes.getText());
+            depe.setCpfPai(TxtCPFPaiDependentes.getText());
+            depe.setNomeCrianca(TxtNomeDependente.getText());
+            depe.setDataCrianca((TxtNascimentoDependente.getEditor().getText()));
+            depe.setRendaFamiliar(Float.valueOf(TxtRendaFamiliar.getText()));
+            depe.setNis(TxtNISDependente.getText());
+            depe.setCpfCrianca(TxtCPFDependentes.getText());
+            depe.setCorPele(ComboboxCorDependente.getValue().toString());//pegar valor da combo 
+            depe.setUbs(TxtUBSDependente.getText());
+            depe.setTerritorio(TxtTerritorioDependente.getText());
+            if (RadioMasculino.isSelected()) {
+                depe.setSexo("M");
             } else {
-                depe.setQualSaude(4);
-                depe.setOutrasSaude(TxtOutrosTratamentos.getText());
+                depe.setSexo("F");
             }
-            depe.setQualSaude(0);
-        } else {
-            depe.setSaudeMental("N");
-        }
-        if (RadioSimAbrigo.isSelected()) {
-            depe.setInternado("S");
-            depe.setQuando(TxtAbrigoDependente.getText());
-            depe.setQualInternado(TxtQual.getText());
-        } else {
-            depe.setInternado("N");
-        }
-        if (RadioSimMedicacaoDependete.isSelected()) {
-            depe.setMedicamento("S");
-            depe.setQualMedica(TxtQualMedicacao.getText());
-        } else {
-            depe.setMedicamento("N");
-        }
-        if (RadioSimConvulsoes.isSelected()) {
-            depe.setConvulsao("S");
-            depe.setQuandoConvulsao(TxtQuandoConvulsao.getText());
-            depe.setDescricao(TxtDescreverCrise.getText());
-        } else {
-            depe.setConvulsao("N");
-        }
-        if (RadioSimToleranciaAlimentacao.isSelected()) {
-            depe.setAlergia("S");
-            TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
-        } else {
-            RadioNaoToleranciaAlimentacao.setSelected(true);
-        }
-        depe.setRelFamilia(TxtRelacionamentoFamilia.getText());
-        depe.setRelEscola(TxtRelacionamentoEscola.getText());
-        if (CheckboxAtividadeEsportiva.isSelected()) {
-            depe.setAtividades("E");
-        } else if (CheckboxAtividadeLazer.isSelected()) {
-            depe.setAtividades("L");
-        } else if (CheckboxAtividadeCultural.isSelected()) {
-            depe.setAtividades("C");
-        } else if (CheckboxAtividadeSocial.isSelected()) {
-            depe.setAtividades("S");
-        } else {
-            depe.setAtividades("O");
-            depe.setOutrasAti(TxtAtividadeOutras.getText());
+            depe.setEndereco(TxtEnderecoDependente.getText());
+            depe.setNumero(TxtNumeroDependente.getText());
+            depe.setCep(TxtCEPDependente.getText());
+            depe.setComplemento(TxtComplementoDependente.getText());
+            depe.setBairro(TxtBairroDependente.getText());
+            depe.setCidade(TxtCidadeDependente.getText());
+            depe.setResponsavel(TxtResponsavelDependente.getText());
+            depe.setGrauParentesco(TxtParentescoDependente.getText());
+            depe.setTelRes(TxtFoneResidencialDependente.getText());
+            depe.setTelRec(TxtFoneRecadoDependente.getText());
+            depe.setTelCel(TxtFoneCelularDependente.getText());
+            if (RadioSimEstuda.isSelected()) {
+                depe.setEstuda("S");
+                depe.setSerie(TxtSerieDependente.getText());
+            } else {
+                depe.setEstuda("N");
+                depe.setMotivoEstudo(TxtPorqueDependente.getText());
+            }
+            depe.setNomeEscola(TxtNomeEscola.getText());
+            if (RadioManha.isSelected()) {
+                depe.setPeriodoEscolar("M");
+            } else if (RadioTarde.isSelected()) {
+                depe.setPeriodoEscolar("T");
+            } else {
+                depe.setPeriodoEscolar("N");
+            }
+            depe.setComposicao(TxtComposicaoFamiliar.getText());
+            if (RadioSimMedicacao.isSelected()) {
+                depe.setSaudeMental("S");
+                if (CheckboxNeurologia.isSelected()) {
+                    depe.setQualSaude(1);
+                } else if (CheckboxPsicologia.isSelected()) {
+                    depe.setQualSaude(2);
+                } else if (CheckboxPsiquiatria.isSelected()) {
+                    depe.setQualSaude(3);
+                } else {
+                    depe.setQualSaude(4);
+                    depe.setOutrasSaude(TxtOutrosTratamentos.getText());
+                }
+                depe.setQualSaude(0);
+            } else {
+                depe.setSaudeMental("N");
+            }
+            if (RadioSimAbrigo.isSelected()) {
+                depe.setInternado("S");
+                depe.setQuando(TxtAbrigoDependente.getText());
+                depe.setQualInternado(TxtQual.getText());
+            } else {
+                depe.setInternado("N");
+            }
+            if (RadioSimMedicacaoDependete.isSelected()) {
+                depe.setMedicamento("S");
+                depe.setQualMedica(TxtQualMedicacao.getText());
+            } else {
+                depe.setMedicamento("N");
+            }
+            if (RadioSimConvulsoes.isSelected()) {
+                depe.setConvulsao("S");
+                depe.setQuandoConvulsao(TxtQuandoConvulsao.getText());
+                depe.setDescricao(TxtDescreverCrise.getText());
+            } else {
+                depe.setConvulsao("N");
+            }
+            if (RadioSimToleranciaAlimentacao.isSelected()) {
+                depe.setAlergia("S");
+                TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
+            } else {
+                RadioNaoToleranciaAlimentacao.setSelected(true);
+            }
+            depe.setRelFamilia(TxtRelacionamentoFamilia.getText());
+            depe.setRelEscola(TxtRelacionamentoEscola.getText());
+            if (CheckboxAtividadeEsportiva.isSelected()) {
+                depe.setAtividades("E");
+            } else if (CheckboxAtividadeLazer.isSelected()) {
+                depe.setAtividades("L");
+            } else if (CheckboxAtividadeCultural.isSelected()) {
+                depe.setAtividades("C");
+            } else if (CheckboxAtividadeSocial.isSelected()) {
+                depe.setAtividades("S");
+            } else {
+                depe.setAtividades("O");
+                depe.setOutrasAti(TxtAtividadeOutras.getText());
+            }
+            depe.setOutrasInfo(TxtInformacoesImportantes.getText());
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+
         }
         depe.setOutrasInfo(TxtInformacoesImportantes.getText());
         if (dao.atualizarDependentes(depe)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
             alert.setContentText("Atualizado com sucesso");
+            alert.showAndWait();
+            limparCampos(event);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText("Erro ao atualizar");
             alert.showAndWait();
             limparCampos(event);
         }
@@ -581,115 +605,123 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     public void salvarDependentes(ActionEvent event) throws ParseException {
         Dependentes depe = new Dependentes();
-        //
-        depe.setDataCadastro(DateFormat.getInstance().parse(TxtDataCadastroDependente.getText()));//transformar o texto do campo em date
-        depe.setNomeMae(TxtNomeMaeDependente.getText());
-        depe.setDataMae(DateFormat.getInstance().parse(TxtNascimentoMaeDependente.getText()));
-        depe.setProfissaoMae(TxtProfissaoMaeDependente.getText());
-        depe.setRgMae(TxtRGMaeDependente.getText());
-        depe.setCpfMae(TxtCPFMaeDependente.getText());
-        depe.setNomeMae(TxtNomePaiDependente.getText());
-        depe.setDataPai(DateFormat.getInstance().parse(TxtNascimentoPaiDependentes.getText()));
-        depe.setProfissaoPai(TxtProfissaoPaiDependentes.getText());
-        depe.setRgPai(TxtRGPaiDependentes.getText());
-        depe.setCpfPai(TxtCPFPaiDependentes.getText());
-        depe.setNomeCrianca(TxtNomeDependente.getText());
-        depe.setNomeCrianca(TxtNascimentoDependente.getText());
-        depe.setRendaFamiliar(Float.valueOf(TxtRendaFamiliar.getText()));
-        depe.setNis(TxtNISDependente.getText());
-        depe.setCpfCrianca(TxtCPFDependentes.getText());
-        depe.setCorPele(ComboboxCorDependente.getValue().toString());//pegar valor da combo 
-        depe.setUbs(TxtUBSDependente.getText());
-        depe.setTerritorio(TxtTerritorioDependente.getText());
-        if (RadioMasculino.isSelected()) {
-            depe.setSexo("M");
-        } else {
-            depe.setSexo("F");
-        }
-        depe.setEndereco(TxtEnderecoDependente.getText());
-        depe.setNumero(TxtNumeroDependente.getText());
-        depe.setCep(TxtCEPDependente.getText());
-        depe.setComplemento(TxtComplementoDependente.getText());
-        depe.setBairro(TxtBairroDependente.getText());
-        depe.setCidade(TxtCidadeDependente.getText());
-        depe.setResponsavel(TxtResponsavelDependente.getText());
-        depe.setGrauParentesco(TxtParentescoDependente.getText());
-        depe.setTelRes(TxtFoneResidencialDependente.getText());
-        depe.setTelRec(TxtFoneRecadoDependente.getText());
-        depe.setTelCel(TxtFoneCelularDependente.getText());
-        if (RadioSimEstuda.isSelected()) {
-            depe.setEstuda("S");
-            depe.setSerie(TxtSerieDependente.getText());
-        } else {
-            depe.setEstuda("N");
-            depe.setMotivoEstudo(TxtPorqueDependente.getText());
-        }
-        depe.setNomeEscola(TxtNomeEscola.getText());
-        if (RadioManha.isSelected()) {
-            depe.setPeriodoEscolar("M");
-        } else if (RadioTarde.isSelected()) {
-            depe.setPeriodoEscolar("T");
-        } else {
-            depe.setPeriodoEscolar("N");
-        }
-        depe.setComposicao(TxtComposicaoFamiliar.getText());
-        if (RadioSimMedicacao.isSelected()) {
-            depe.setSaudeMental("S");
-            if (CheckboxNeurologia.isSelected()) {
-                depe.setQualSaude(1);
-            } else if (CheckboxPsicologia.isSelected()) {
-                depe.setQualSaude(2);
-            } else if (CheckboxPsiquiatria.isSelected()) {
-                depe.setQualSaude(3);
+        //formatar a data atual exibida no textfield em padrao date amricano para colocar no banco
+
+        //SimpleDateFormat dataBanco = new SimpleDateFormat("yyyy/mm/dd", Locale.US);
+        //    
+        try {
+            depe.setDataCadastro((TxtDataCadastroDependente.getText()));
+            depe.setNomeMae(TxtNomeMaeDependente.getText());
+            depe.setDataMae((TxtNascimentoMaeDependente.getEditor().getText()));
+            depe.setProfissaoMae(TxtProfissaoMaeDependente.getText());
+            depe.setRgMae(TxtRGMaeDependente.getText());
+            depe.setCpfMae(TxtCPFMaeDependente.getText());
+            depe.setNomePai(TxtNomePaiDependente.getText());
+            depe.setDataPai((TxtNascimentoPaiDependentes.getEditor().getText()));
+            depe.setProfissaoPai(TxtProfissaoPaiDependentes.getText());
+            depe.setRgPai(TxtRGPaiDependentes.getText());
+            depe.setCpfPai(TxtCPFPaiDependentes.getText());
+            depe.setNomeCrianca(TxtNomeDependente.getText());
+            depe.setDataCrianca((TxtNascimentoDependente.getEditor().getText()));
+            depe.setRendaFamiliar(Float.valueOf(TxtRendaFamiliar.getText()));
+            depe.setNis(TxtNISDependente.getText());
+            depe.setCpfCrianca(TxtCPFDependentes.getText());
+            depe.setCorPele(ComboboxCorDependente.getValue().toString());//pegar valor da combo 
+            depe.setUbs(TxtUBSDependente.getText());
+            depe.setTerritorio(TxtTerritorioDependente.getText());
+            if (RadioMasculino.isSelected()) {
+                depe.setSexo("M");
             } else {
-                depe.setQualSaude(4);
-                depe.setOutrasSaude(TxtOutrosTratamentos.getText());
+                depe.setSexo("F");
             }
-            depe.setQualSaude(0);
-        } else {
-            depe.setSaudeMental("N");
+            depe.setEndereco(TxtEnderecoDependente.getText());
+            depe.setNumero(TxtNumeroDependente.getText());
+            depe.setCep(TxtCEPDependente.getText());
+            depe.setComplemento(TxtComplementoDependente.getText());
+            depe.setBairro(TxtBairroDependente.getText());
+            depe.setCidade(TxtCidadeDependente.getText());
+            depe.setResponsavel(TxtResponsavelDependente.getText());
+            depe.setGrauParentesco(TxtParentescoDependente.getText());
+            depe.setTelRes(TxtFoneResidencialDependente.getText());
+            depe.setTelRec(TxtFoneRecadoDependente.getText());
+            depe.setTelCel(TxtFoneCelularDependente.getText());
+            if (RadioSimEstuda.isSelected()) {
+                depe.setEstuda("S");
+                depe.setSerie(TxtSerieDependente.getText());
+            } else {
+                depe.setEstuda("N");
+                depe.setMotivoEstudo(TxtPorqueDependente.getText());
+            }
+            depe.setNomeEscola(TxtNomeEscola.getText());
+            if (RadioManha.isSelected()) {
+                depe.setPeriodoEscolar("M");
+            } else if (RadioTarde.isSelected()) {
+                depe.setPeriodoEscolar("T");
+            } else {
+                depe.setPeriodoEscolar("N");
+            }
+            depe.setComposicao(TxtComposicaoFamiliar.getText());
+            if (RadioSimMedicacao.isSelected()) {
+                depe.setSaudeMental("S");
+                if (CheckboxNeurologia.isSelected()) {
+                    depe.setQualSaude(1);
+                } else if (CheckboxPsicologia.isSelected()) {
+                    depe.setQualSaude(2);
+                } else if (CheckboxPsiquiatria.isSelected()) {  
+                    depe.setQualSaude(3);
+                } else {
+                    depe.setQualSaude(4);
+                    depe.setOutrasSaude(TxtOutrosTratamentos.getText());
+                }
+                depe.setQualSaude(0);
+            } else {
+                depe.setSaudeMental("N");
+            }
+            if (RadioSimAbrigo.isSelected()) {
+                depe.setInternado("S");
+                depe.setQuando(TxtAbrigoDependente.getText());
+                depe.setQualInternado(TxtQual.getText());
+            } else {
+                depe.setInternado("N");
+            }
+            if (RadioSimMedicacaoDependete.isSelected()) {
+                depe.setMedicamento("S");
+                depe.setQualMedica(TxtQualMedicacao.getText());
+            } else {
+                depe.setMedicamento("N");
+            }
+            if (RadioSimConvulsoes.isSelected()) {
+                depe.setConvulsao("S");
+                depe.setQuandoConvulsao(TxtQuandoConvulsao.getText());
+                depe.setDescricao(TxtDescreverCrise.getText());
+            } else {
+                depe.setConvulsao("N");
+            }
+            if (RadioSimToleranciaAlimentacao.isSelected()) {
+                depe.setAlergia("S");
+                TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
+            } else {
+                RadioNaoToleranciaAlimentacao.setSelected(true);
+            }
+            depe.setRelFamilia(TxtRelacionamentoFamilia.getText());
+            depe.setRelEscola(TxtRelacionamentoEscola.getText());
+            if (CheckboxAtividadeEsportiva.isSelected()) {
+                depe.setAtividades("E");
+            } else if (CheckboxAtividadeLazer.isSelected()) {
+                depe.setAtividades("L");
+            } else if (CheckboxAtividadeCultural.isSelected()) {
+                depe.setAtividades("C");
+            } else if (CheckboxAtividadeSocial.isSelected()) {
+                depe.setAtividades("S");
+            } else {
+                depe.setAtividades("O");
+                depe.setOutrasAti(TxtAtividadeOutras.getText());
+            }
+            depe.setOutrasInfo(TxtInformacoesImportantes.getText());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        if (RadioSimAbrigo.isSelected()) {
-            depe.setInternado("S");
-            depe.setQuando(TxtAbrigoDependente.getText());
-            depe.setQualInternado(TxtQual.getText());
-        } else {
-            depe.setInternado("N");
-        }
-        if (RadioSimMedicacaoDependete.isSelected()) {
-            depe.setMedicamento("S");
-            depe.setQualMedica(TxtQualMedicacao.getText());
-        } else {
-            depe.setMedicamento("N");
-        }
-        if (RadioSimConvulsoes.isSelected()) {
-            depe.setConvulsao("S");
-            depe.setQuandoConvulsao(TxtQuandoConvulsao.getText());
-            depe.setDescricao(TxtDescreverCrise.getText());
-        } else {
-            depe.setConvulsao("N");
-        }
-        if (RadioSimToleranciaAlimentacao.isSelected()) {
-            depe.setAlergia("S");
-            TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
-        } else {
-            RadioNaoToleranciaAlimentacao.setSelected(true);
-        }
-        depe.setRelFamilia(TxtRelacionamentoFamilia.getText());
-        depe.setRelEscola(TxtRelacionamentoEscola.getText());
-        if (CheckboxAtividadeEsportiva.isSelected()) {
-            depe.setAtividades("E");
-        } else if (CheckboxAtividadeLazer.isSelected()) {
-            depe.setAtividades("L");
-        } else if (CheckboxAtividadeCultural.isSelected()) {
-            depe.setAtividades("C");
-        } else if (CheckboxAtividadeSocial.isSelected()) {
-            depe.setAtividades("S");
-        } else {
-            depe.setAtividades("O");
-            depe.setOutrasAti(TxtAtividadeOutras.getText());
-        }
-        depe.setOutrasInfo(TxtInformacoesImportantes.getText());
+
         DependentesDAO dao = new DependentesDAO();
         if (dao.salvarDependentes(depe)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -698,6 +730,7 @@ public class TelaCadastroDependentesController implements Initializable {
             alert.showAndWait();
             limparCampos(event);
         }
+
     }
 
     /**
@@ -708,19 +741,27 @@ public class TelaCadastroDependentesController implements Initializable {
      */
     @FXML
     public void consultarMae(ActionEvent event) {
-        Dependentes depe = new Dependentes();
+        Dependentes depe = new Dependentes();//objeto para armazenar o objeto que sera exibido ao usuario
+        depe.setCpfMae(TxtCPFMaeDependente.getText());
         try {
             DependentesDAO dao = new DependentesDAO();
-            depe = dao.consultarMae(Integer.parseInt(TxtCPFMaeDependente.getText()));
+            depe = dao.consultarMae(depe);
+            if (depe == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+                alert.setContentText("Valor nao encontrado");
+                alert.showAndWait();
+            }
         } catch (RuntimeException E) {
             System.out.println(E.getMessage());
         }
         //
         TxtNomeMaeDependente.setText(depe.getNomeMae());
-        TxtNascimentoMaeDependente.setText(depe.getDataMae().toString());
+        TxtNascimentoMaeDependente.getEditor().setText(depe.getDataMae());
         TxtProfissaoMaeDependente.setText(depe.getProfissaoMae());
         TxtRGMaeDependente.setText(depe.getRgMae());
         TxtCPFMaeDependente.setText(depe.getCpfMae());
+        System.out.println(TxtNascimentoMaeDependente.getEditor().getText());
         //
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
@@ -737,15 +778,22 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     public void consultarPai(ActionEvent event) {
         Dependentes depe = new Dependentes();
+        depe.setCpfPai(TxtCPFPaiDependentes.getText());
         try {
             DependentesDAO dao = new DependentesDAO();
-            depe = dao.consultarPai(Integer.parseInt(TxtCPFPaiDependentes.getText()));
+            depe = dao.consultarPai(depe);
+            if (depe == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+                alert.setContentText("Valor nao encontrado");
+                alert.showAndWait();
+            }
         } catch (RuntimeException E) {
             System.out.println(E.getMessage());
         }
         //
         TxtNomePaiDependente.setText(depe.getNomePai());
-        TxtNascimentoPaiDependentes.setText(depe.getDataPai().toString());
+        TxtNascimentoPaiDependentes.getEditor().setText(depe.getDataPai());
         TxtProfissaoPaiDependentes.setText(depe.getProfissaoPai());
         TxtRGPaiDependentes.setText(depe.getRgPai());
         TxtCPFPaiDependentes.setText(depe.getCpfPai());
@@ -765,21 +813,30 @@ public class TelaCadastroDependentesController implements Initializable {
     @FXML
     public void consultarCrianca(ActionEvent event) {
         Dependentes depe = new Dependentes();
+        depe.setCpfCrianca(TxtCPFDependentes.getText());
+        System.out.println(depe.getCpfCrianca());
         try {
             DependentesDAO dao = new DependentesDAO();
-            depe = dao.consultarCrianca(Integer.parseInt(TxtCPFDependentes.getText()));
+            depe = dao.consultarCrianca(depe);
+            if (depe == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+                alert.setContentText("Valor nao encontrado");
+                alert.showAndWait();
+            }
         } catch (RuntimeException E) {
             System.out.println(E.getMessage());
         }
         //
         TxtNomeDependente.setText(depe.getNomeCrianca());
-        TxtNascimentoDependente.setText(depe.getNomeCrianca());
+        TxtNascimentoDependente.getEditor().setText(depe.getDataCrianca());
         TxtRendaFamiliar.setText(String.valueOf(depe.getRendaFamiliar()));
         TxtNISDependente.setText(depe.getNis());
         TxtCPFDependentes.setText(depe.getCpfCrianca());
+        ComboboxCorDependente.getSelectionModel().select(depe.getCorPele());
         TxtUBSDependente.setText(depe.getUbs());
         TxtTerritorioDependente.setText(depe.getTerritorio());
-        if (depe.getSexo() == "M") {
+        if (depe.getSexo().equals("M")) {
             RadioMasculino.setSelected(true);
         } else {
             RadioFeminino.setSelected(true);
