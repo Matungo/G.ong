@@ -14,20 +14,20 @@ import java.util.Date;
 public class Dependentes {
     
     private int codigo;
-    private String dataCadastro;
+    private Date dataCadastro;
     
     //Dados dos responsaveis
     //Mae   
     private String nomeMae,profissaoMae,rgMae,cpfMae;;
-    private String dataMae; 
+    private Date dataMae; 
     
     //Pai   
     private String nomePai,profissaoPai,rgPai,cpfPai;
-    private String dataPai; 
+    private Date dataPai; 
    
     //Dados da crianca
     private String nomeCrianca,corPele,nis,ubs,territorio,cpfCrianca,sexo;
-    private String dataCrianca;
+    private Date dataCrianca;
     private float rendaFamiliar;
     
     //Dados complementais
@@ -45,11 +45,11 @@ public class Dependentes {
         this.codigo = codigo;
     }
 
-    public String getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(String dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
@@ -69,11 +69,11 @@ public class Dependentes {
         this.profissaoMae = profissaoMae;
     }
 
-    public String getDataMae() {
+    public Date getDataMae() {
         return dataMae;
     }
 
-    public void setDataMae(String dataMae) {
+    public void setDataMae(Date dataMae) {
         this.dataMae = dataMae;
     }
 
@@ -109,11 +109,11 @@ public class Dependentes {
         this.profissaoPai = profissaoPai;
     }
 
-    public String getDataPai() {
+    public Date getDataPai() {
         return dataPai;
     }
 
-    public void setDataPai(String dataPai) {
+    public void setDataPai(Date dataPai) {
         this.dataPai = dataPai;
     }
 
@@ -181,11 +181,11 @@ public class Dependentes {
         this.sexo = sexo;
     }
 
-    public String getDataCrianca() {
+    public Date getDataCrianca() {
         return dataCrianca;
     }
 
-    public void setDataCrianca(String dataCrianca) {
+    public void setDataCrianca(Date dataCrianca) {
         this.dataCrianca = dataCrianca;
     }
 

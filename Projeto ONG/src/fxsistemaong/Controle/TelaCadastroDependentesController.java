@@ -31,6 +31,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
+import java.text.DateFormat;
 
 public class TelaCadastroDependentesController implements Initializable {
 
@@ -208,24 +209,28 @@ public class TelaCadastroDependentesController implements Initializable {
         try {
             DependentesDAO dao = new DependentesDAO();
             depe = dao.pesquisarDependentes(depe);
+            
         } catch (RuntimeException E) {
             System.out.println(E.getMessage());
         }
-        TxtDataCadastroDependente.setText(depe.getDataCadastro());
+        //formato medio para padrao brasileiro//
+        DateFormat dataBr =  DateFormat.getDateInstance(DateFormat.MEDIUM);
+        //
+        TxtDataCadastroDependente.setText(dataBr.format(depe.getDataCadastro()));//transformar date americano do banco em date br 
         TxtNomeMaeDependente.setText(depe.getNomeMae());
-        TxtNascimentoMaeDependente.getEditor().setText(depe.getDataMae());
+        TxtNascimentoMaeDependente.getEditor().setText(dataBr.format(depe.getDataMae()));
         TxtProfissaoMaeDependente.setText(depe.getProfissaoMae());
         TxtRGMaeDependente.setText(depe.getRgMae());
         TxtCPFMaeDependente.setText(depe.getCpfMae());
         TxtNomePaiDependente.setText(depe.getNomePai());
         
-        TxtNascimentoPaiDependentes.getEditor().setText(depe.getDataPai());
+        TxtNascimentoPaiDependentes.getEditor().setText(dataBr.format(depe.getDataPai()));
         
         TxtProfissaoPaiDependentes.setText(depe.getProfissaoPai());
         TxtRGPaiDependentes.setText(depe.getRgPai());
         TxtCPFPaiDependentes.setText(depe.getCpfPai());
         TxtNomeDependente.setText(depe.getNomeCrianca());
-        TxtNascimentoDependente.getEditor().setText(depe.getDataCrianca());
+        TxtNascimentoDependente.getEditor().setText(dataBr.format(depe.getDataCrianca()));
         TxtRendaFamiliar.setText(String.valueOf(depe.getRendaFamiliar()));
         TxtNISDependente.setText(depe.getNis());
         TxtCPFDependentes.setText(depe.getCpfCrianca());
@@ -249,7 +254,7 @@ public class TelaCadastroDependentesController implements Initializable {
         TxtFoneRecadoDependente.setText(depe.getTelRec());
         TxtFoneCelularDependente.setText(depe.getTelCel());
         TxtNomeEscola.setText(depe.getNomeEscola());
-         switch (depe.getPeriodoEscolar()) {
+        switch (depe.getPeriodoEscolar()) {
             case "M":
                 RadioManha.setSelected(true);
                 break;
@@ -283,7 +288,7 @@ public class TelaCadastroDependentesController implements Initializable {
                 case 4:
                     CheckboxOutros.setSelected(true);
                     TxtOutrosTratamentos.setText(depe.getOutrasSaude());
-            };
+            }
         } else {
             RadioNaoMedicacao.setSelected(true);
         }
@@ -457,24 +462,26 @@ public class TelaCadastroDependentesController implements Initializable {
     public void atualizarDependentes(ActionEvent event) throws ParseException {
         Dependentes depe = new Dependentes();
         DependentesDAO dao = new DependentesDAO();
-        //
-        //SimpleDateFormat dataBanco = new SimpleDateFormat("yyyy-MM-dd");
-        //                 
         try {
-            depe.setCodigo(Integer.parseInt(TxtCodigoDependente.getText()));
-            depe.setDataCadastro((TxtDataCadastroDependente.getText()));
+            //formatar a data atual exibida no textfield em padrao date amricano para colocar no banco
+             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            //
+            depe.setCodigo(Integer.valueOf(TxtCodigoDependente.getText()));
             depe.setNomeMae(TxtNomeMaeDependente.getText());
-            depe.setDataMae((TxtNascimentoMaeDependente.getEditor().getText()));
+            depe.setDataMae(formato.parse((TxtNascimentoMaeDependente.getEditor().getText())));
+            
             depe.setProfissaoMae(TxtProfissaoMaeDependente.getText());
             depe.setRgMae(TxtRGMaeDependente.getText());
             depe.setCpfMae(TxtCPFMaeDependente.getText());
             depe.setNomePai(TxtNomePaiDependente.getText());
-            depe.setDataPai((TxtNascimentoPaiDependentes.getEditor().getText()));
+            depe.setDataPai(formato.parse((TxtNascimentoPaiDependentes.getEditor().getText())));
+            
             depe.setProfissaoPai(TxtProfissaoPaiDependentes.getText());
             depe.setRgPai(TxtRGPaiDependentes.getText());
             depe.setCpfPai(TxtCPFPaiDependentes.getText());
             depe.setNomeCrianca(TxtNomeDependente.getText());
-            depe.setDataCrianca((TxtNascimentoDependente.getEditor().getText()));
+            depe.setDataCrianca(formato.parse((TxtNascimentoDependente.getEditor().getText())));
+           
             depe.setRendaFamiliar(Float.valueOf(TxtRendaFamiliar.getText()));
             depe.setNis(TxtNISDependente.getText());
             depe.setCpfCrianca(TxtCPFDependentes.getText());
@@ -497,13 +504,6 @@ public class TelaCadastroDependentesController implements Initializable {
             depe.setTelRes(TxtFoneResidencialDependente.getText());
             depe.setTelRec(TxtFoneRecadoDependente.getText());
             depe.setTelCel(TxtFoneCelularDependente.getText());
-            if (RadioSimEstuda.isSelected()) {
-                depe.setEstuda("S");
-                depe.setSerie(TxtSerieDependente.getText());
-            } else {
-                depe.setEstuda("N");
-                depe.setMotivoEstudo(TxtPorqueDependente.getText());
-            }
             depe.setNomeEscola(TxtNomeEscola.getText());
             if (RadioManha.isSelected()) {
                 depe.setPeriodoEscolar("M");
@@ -513,8 +513,17 @@ public class TelaCadastroDependentesController implements Initializable {
                 depe.setPeriodoEscolar("N");
             }
             depe.setComposicao(TxtComposicaoFamiliar.getText());
+            if (RadioSimEstuda.isSelected()) {
+                depe.setEstuda("S");
+                depe.setSerie(TxtSerieDependente.getText());
+            } else {
+                depe.setEstuda("N");
+                depe.setMotivoEstudo(TxtPorqueDependente.getText());
+            }
+            
             if (RadioSimMedicacao.isSelected()) {
                 depe.setSaudeMental("S");
+                System.out.println(depe.getSaudeMental());
                 if (CheckboxNeurologia.isSelected()) {
                     depe.setQualSaude(1);
                 } else if (CheckboxPsicologia.isSelected()) {
@@ -523,11 +532,12 @@ public class TelaCadastroDependentesController implements Initializable {
                     depe.setQualSaude(3);
                 } else {
                     depe.setQualSaude(4);
-                    depe.setOutrasSaude(TxtOutrosTratamentos.getText());
+                    depe.setOutrasSaude(TxtOutrosTratamentos.getText()); 
                 }
-                depe.setQualSaude(0);
             } else {
                 depe.setSaudeMental("N");
+                depe.setQualSaude(0);
+                depe.setOutrasSaude(TxtOutrosTratamentos.getText());
             }
             if (RadioSimAbrigo.isSelected()) {
                 depe.setInternado("S");
@@ -551,7 +561,7 @@ public class TelaCadastroDependentesController implements Initializable {
             }
             if (RadioSimToleranciaAlimentacao.isSelected()) {
                 depe.setAlergia("S");
-                TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
+                depe.setQualAlergia(TxtQualIntoleranciaAlimentar.getText());
             } else {
                 RadioNaoToleranciaAlimentacao.setSelected(true);
             }
@@ -591,7 +601,6 @@ public class TelaCadastroDependentesController implements Initializable {
             alert.showAndWait();
             limparCampos(event);
         }
-        //System.out.println("ola");
     }
 
     /**
@@ -607,22 +616,23 @@ public class TelaCadastroDependentesController implements Initializable {
         Dependentes depe = new Dependentes();
         //formatar a data atual exibida no textfield em padrao date amricano para colocar no banco
 
-        //SimpleDateFormat dataBanco = new SimpleDateFormat("yyyy/mm/dd", Locale.US);
+       SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         //    
         try {
-            depe.setDataCadastro((TxtDataCadastroDependente.getText()));
+     
+            depe.setDataCadastro(formato.parse(TxtDataCadastroDependente.getText()));
             depe.setNomeMae(TxtNomeMaeDependente.getText());
-            depe.setDataMae((TxtNascimentoMaeDependente.getEditor().getText()));
+           depe.setDataMae(formato.parse(TxtNascimentoMaeDependente.getEditor().getText()));
             depe.setProfissaoMae(TxtProfissaoMaeDependente.getText());
             depe.setRgMae(TxtRGMaeDependente.getText());
             depe.setCpfMae(TxtCPFMaeDependente.getText());
             depe.setNomePai(TxtNomePaiDependente.getText());
-            depe.setDataPai((TxtNascimentoPaiDependentes.getEditor().getText()));
+          depe.setDataPai(formato.parse(TxtNascimentoPaiDependentes.getEditor().getText()));
             depe.setProfissaoPai(TxtProfissaoPaiDependentes.getText());
             depe.setRgPai(TxtRGPaiDependentes.getText());
             depe.setCpfPai(TxtCPFPaiDependentes.getText());
             depe.setNomeCrianca(TxtNomeDependente.getText());
-            depe.setDataCrianca((TxtNascimentoDependente.getEditor().getText()));
+          depe.setDataCrianca(formato.parse(TxtNascimentoDependente.getEditor().getText()));
             depe.setRendaFamiliar(Float.valueOf(TxtRendaFamiliar.getText()));
             depe.setNis(TxtNISDependente.getText());
             depe.setCpfCrianca(TxtCPFDependentes.getText());
@@ -672,10 +682,10 @@ public class TelaCadastroDependentesController implements Initializable {
                 } else {
                     depe.setQualSaude(4);
                     depe.setOutrasSaude(TxtOutrosTratamentos.getText());
-                }
-                depe.setQualSaude(0);
+                }            
             } else {
                 depe.setSaudeMental("N");
+                depe.setQualSaude(0);
             }
             if (RadioSimAbrigo.isSelected()) {
                 depe.setInternado("S");
@@ -699,9 +709,9 @@ public class TelaCadastroDependentesController implements Initializable {
             }
             if (RadioSimToleranciaAlimentacao.isSelected()) {
                 depe.setAlergia("S");
-                TxtQualIntoleranciaAlimentar.setText(depe.getQualAlergia());
+                depe.setQualAlergia(TxtQualIntoleranciaAlimentar.getText());
             } else {
-                RadioNaoToleranciaAlimentacao.setSelected(true);
+                depe.setAlergia("N");
             }
             depe.setRelFamilia(TxtRelacionamentoFamilia.getText());
             depe.setRelEscola(TxtRelacionamentoEscola.getText());
@@ -743,6 +753,8 @@ public class TelaCadastroDependentesController implements Initializable {
     public void consultarMae(ActionEvent event) {
         Dependentes depe = new Dependentes();//objeto para armazenar o objeto que sera exibido ao usuario
         depe.setCpfMae(TxtCPFMaeDependente.getText());
+        //formato medio para padrao brasileiro//
+        DateFormat dataBr =  DateFormat.getDateInstance(DateFormat.MEDIUM);
         try {
             DependentesDAO dao = new DependentesDAO();
             depe = dao.consultarMae(depe);
@@ -757,11 +769,10 @@ public class TelaCadastroDependentesController implements Initializable {
         }
         //
         TxtNomeMaeDependente.setText(depe.getNomeMae());
-        TxtNascimentoMaeDependente.getEditor().setText(depe.getDataMae());
+        TxtNascimentoMaeDependente.getEditor().setText(dataBr.format(depe.getDataMae()));
         TxtProfissaoMaeDependente.setText(depe.getProfissaoMae());
         TxtRGMaeDependente.setText(depe.getRgMae());
         TxtCPFMaeDependente.setText(depe.getCpfMae());
-        System.out.println(TxtNascimentoMaeDependente.getEditor().getText());
         //
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
@@ -779,6 +790,8 @@ public class TelaCadastroDependentesController implements Initializable {
     public void consultarPai(ActionEvent event) {
         Dependentes depe = new Dependentes();
         depe.setCpfPai(TxtCPFPaiDependentes.getText());
+        //formato medio para padrao brasileiro//
+        DateFormat dataBr =  DateFormat.getDateInstance(DateFormat.MEDIUM);
         try {
             DependentesDAO dao = new DependentesDAO();
             depe = dao.consultarPai(depe);
@@ -793,7 +806,7 @@ public class TelaCadastroDependentesController implements Initializable {
         }
         //
         TxtNomePaiDependente.setText(depe.getNomePai());
-        TxtNascimentoPaiDependentes.getEditor().setText(depe.getDataPai());
+        TxtNascimentoPaiDependentes.getEditor().setText(dataBr.format(depe.getDataPai()));
         TxtProfissaoPaiDependentes.setText(depe.getProfissaoPai());
         TxtRGPaiDependentes.setText(depe.getRgPai());
         TxtCPFPaiDependentes.setText(depe.getCpfPai());
@@ -815,6 +828,8 @@ public class TelaCadastroDependentesController implements Initializable {
         Dependentes depe = new Dependentes();
         depe.setCpfCrianca(TxtCPFDependentes.getText());
         System.out.println(depe.getCpfCrianca());
+        //formato medio para padrao brasileiro//
+        DateFormat dataBr =  DateFormat.getDateInstance(DateFormat.MEDIUM);
         try {
             DependentesDAO dao = new DependentesDAO();
             depe = dao.consultarCrianca(depe);
@@ -829,7 +844,7 @@ public class TelaCadastroDependentesController implements Initializable {
         }
         //
         TxtNomeDependente.setText(depe.getNomeCrianca());
-        TxtNascimentoDependente.getEditor().setText(depe.getDataCrianca());
+        TxtNascimentoDependente.getEditor().setText(dataBr.format(depe.getDataCrianca()));
         TxtRendaFamiliar.setText(String.valueOf(depe.getRendaFamiliar()));
         TxtNISDependente.setText(depe.getNis());
         TxtCPFDependentes.setText(depe.getCpfCrianca());

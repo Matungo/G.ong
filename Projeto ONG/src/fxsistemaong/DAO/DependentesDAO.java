@@ -46,19 +46,19 @@ public class DependentesDAO {
             std.setInt(1, dependentes.getCodigo());
             ResultSet rs = std.executeQuery();
             while (rs.next()) {
-                dependentes.setDataCadastro(rs.getString("DATA_CADASTRO"));
+                dependentes.setDataCadastro(rs.getDate("DATA_CADASTRO"));
                 dependentes.setNomeMae(rs.getString("NOME_MAE"));
-                dependentes.setDataMae(rs.getString("DATA_NASC_MAE"));
+                dependentes.setDataMae(rs.getDate("DATA_NASC_MAE"));
                 dependentes.setProfissaoMae(rs.getString("PROFISSAO_MAE"));
                 dependentes.setRgMae(rs.getString("RG_MAE"));
                 dependentes.setCpfMae(rs.getString("CPF_MAE"));
                 dependentes.setNomePai(rs.getString("NOME_PAI"));
-                dependentes.setDataPai(rs.getString("DATA_NASC_PAI"));
+                dependentes.setDataPai(rs.getDate("DATA_NASC_PAI"));
                 dependentes.setProfissaoPai(rs.getString("PROFISSAO_PAI"));
                 dependentes.setRgPai(rs.getString("RG_PAI"));
                 dependentes.setCpfPai(rs.getString("CPF_PAI"));
                 dependentes.setNomeCrianca(rs.getString("NOME"));
-                dependentes.setDataCrianca(rs.getString("DATA_NASC"));
+                dependentes.setDataCrianca(rs.getDate("DATA_NASC"));
                 dependentes.setRendaFamiliar(rs.getFloat("RENDA_FAMILIAR"));
                 dependentes.setNis(rs.getString("NIS"));
                 dependentes.setCpfCrianca(rs.getString("CPF"));
@@ -143,19 +143,19 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             std = conexao.prepareStatement(sql);
            
             //
-            std.setString(1, dependentes.getDataCadastro());  
+            std.setDate(1, new Date(dependentes.getDataCadastro().getTime()));  //transformar date java em date sql
             std.setString(2, dependentes.getNomeMae());
-            std.setString(3, dependentes.getDataMae()); 
+            std.setDate(3, new Date(dependentes.getDataMae().getTime())); 
             std.setString(4, dependentes.getProfissaoMae());
             std.setString(5, dependentes.getRgMae());
             std.setString(6, dependentes.getCpfMae());
             std.setString(7, dependentes.getNomePai());
-            std.setString(8,dependentes.getDataPai());  
+            std.setDate(8, new Date(dependentes.getDataPai().getTime()));  
             std.setString(9, dependentes.getProfissaoPai());
             std.setString(10, dependentes.getRgPai());
             std.setString(11, dependentes.getCpfPai());
             std.setString(12, dependentes.getNomeCrianca());
-            std.setString(13, dependentes.getDataCrianca()); 
+            std.setDate(13, new Date(dependentes.getDataCrianca().getTime())); 
             std.setFloat(14, dependentes.getRendaFamiliar());
             std.setString(15, dependentes.getNis());
             std.setString(16, dependentes.getCpfCrianca());
@@ -243,17 +243,17 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             std = conexao.prepareStatement(sql);
             
             std.setString(1, dependentes.getNomeMae());
-            std.setString(2, dependentes.getDataMae()); 
+            std.setDate(2, new Date(dependentes.getDataMae().getTime()));  //transformar date java em date sql
             std.setString(3, dependentes.getProfissaoMae());
             std.setString(4, dependentes.getRgMae());
             std.setString(5, dependentes.getCpfMae());
             std.setString(6, dependentes.getNomePai());
-            std.setString(7,dependentes.getDataPai());  
+            std.setDate(7, new Date(dependentes.getDataPai().getTime())); 
             std.setString(8, dependentes.getProfissaoPai());
             std.setString(9, dependentes.getRgPai());
             std.setString(10, dependentes.getCpfPai());
             std.setString(11, dependentes.getNomeCrianca());
-            std.setString(12, dependentes.getDataCrianca()); 
+            std.setDate(12, new Date(dependentes.getDataCrianca().getTime())); 
             std.setFloat(13, dependentes.getRendaFamiliar());
             std.setString(14, dependentes.getNis());
             std.setString(15, dependentes.getCpfCrianca());
@@ -283,6 +283,7 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             std.setString(39, dependentes.getOutrasSaude());
             std.setString(40, dependentes.getInternado());
             std.setString(41, dependentes.getQuando());
+            System.out.println(dependentes.getQuando());
             std.setString(42, dependentes.getQualInternado());
             std.setString(43, dependentes.getMedicamento());
             std.setString(44, dependentes.getQualMedica());
@@ -300,9 +301,8 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             
             atualizado = std.executeUpdate();
             banco.fechar(conexao);
-            System.out.println("atualizado com sucesso");
 
-        } catch (SQLException sql) {
+        } catch (SQLException | NullPointerException sql) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
             alert.setContentText(sql.getMessage());
@@ -373,7 +373,7 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             ResultSet rs = std.executeQuery();
             while (rs.next()) {
                 dependentes.setNomeMae(rs.getString("NOME_MAE"));
-                dependentes.setDataMae(rs.getString("DATA_NASC_MAE"));
+                dependentes.setDataMae(rs.getDate("DATA_NASC_MAE"));
                 dependentes.setProfissaoMae(rs.getString("PROFISSAO_MAE"));
                 dependentes.setRgMae(rs.getString("RG_MAE"));
                 dependentes.setCpfMae(rs.getString("CPF_MAE"));
@@ -411,7 +411,7 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             ResultSet rs = std.executeQuery();
             while (rs.next()) {
                 dependentes.setNomePai(rs.getString("NOME_PAI"));
-                dependentes.setDataPai(rs.getString("DATA_NASC_PAI"));
+                dependentes.setDataPai(rs.getDate("DATA_NASC_PAI"));
                 dependentes.setProfissaoPai(rs.getString("PROFISSAO_PAI"));
                 dependentes.setRgPai(rs.getString("RG_PAI"));
                 dependentes.setCpfPai(rs.getString("CPF_PAI"));
@@ -447,7 +447,7 @@ public boolean salvarDependentes(Dependentes dependentes)  {
             ResultSet rs = std.executeQuery();
             while (rs.next()) {
                 dependentes.setNomeCrianca(rs.getString("NOME"));
-                dependentes.setDataCrianca(rs.getString("DATA_NASC"));
+                dependentes.setDataCrianca(rs.getDate("DATA_NASC"));
                 dependentes.setRendaFamiliar(rs.getFloat("RENDA_FAMILIAR"));
                 dependentes.setNis(rs.getString("NIS"));
                 dependentes.setCorPele(rs.getString("COR"));
