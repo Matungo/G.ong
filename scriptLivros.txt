@@ -1,0 +1,5 @@
+ALTER TABLE LIVRO CHANGE ISBN ISBN INT(15) UNSIGNED NOT NULL
+ALTER TABLE LIVRO DROP primary key;
+alter table livro add CODLIVRO int(10) not null primary key auto_increment;
+alter table livro modify isbn bigint unsigned;
+
