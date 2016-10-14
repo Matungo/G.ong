@@ -29,7 +29,7 @@ public class TelaCadastroLivrosController implements Initializable {
      * Initializes the controller class.
      */
     
-    
+    //declarando os campos do formulário para serem utilizados como variáveis
     @FXML
     private TextField TxtISBNLivro;
     @FXML
@@ -62,18 +62,20 @@ public class TelaCadastroLivrosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Inicialização das comboboxs
+        
         ObservableList<String> listaFormatos //combobox trabalha com lista por isso é necessario criar ela
                 = FXCollections.observableArrayList("Brochura", "Grampo", "Capa Dura", "Espiral");
         ComboboxFormatoLivro.setItems(listaFormatos);
-        //coloca a lista aqui
+        //atribui a lista
         
-        ObservableList<String> listaCategorias //combobox trabalha com lista por isso é necessario criar ela
+        ObservableList<String> listaCategorias 
                 = FXCollections.observableArrayList("Autoajuda", "Literatura Nacional", "Literatura Estrangeira", 
                         "Biografia", "Ciências Exatas", "Ciências Biológicas", "Ciências Humanas", "Outros");
         ComboboxCategoriaLivro.setItems(listaCategorias);
-        //coloca a lista aqui
     }
     
+    //método que limpa todos os campos do formulário
     public void limparCampos(){
         TxtISBNLivro.clear();
         TxtTituloLivro.clear();
@@ -90,7 +92,8 @@ public class TelaCadastroLivrosController implements Initializable {
         ComboboxFormatoLivro.setValue(null);
         ComboboxCategoriaLivro.setValue(null);
     }
-
+    
+    //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a gravação no banco
     public void cadastrarControle(){
         Livro livroControle = new Livro();
         
@@ -99,7 +102,7 @@ public class TelaCadastroLivrosController implements Initializable {
         livroControle.setSubtitulo(TxtSubtituloLivro.getText());
         livroControle.setAutor1(TxtPrimeiroAutor.getText());
         livroControle.setAutor2(TxtSegundoAutor.getText());
-        //livroControle.setPublicacao(TxtDataPublicacaoLivro.getText());
+        //livroControle.setPublicacao(TxtDataPublicacaoLivro.getText()); ***A TRATAR***
         livroControle.setEditora(TxtEditoraLivro.getText());
         livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
         livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
@@ -116,6 +119,8 @@ public class TelaCadastroLivrosController implements Initializable {
             alert.showAndWait();
         }
     }
+    
+    //método que pega o ISBN do formulário e o envia a classe LivroDAO para que o registro seja excluído
     public void excluirControle(){
         Livro livroControle = new Livro();
         LivroDAO livroDAO = new LivroDAO();
@@ -129,6 +134,7 @@ public class TelaCadastroLivrosController implements Initializable {
         limparCampos();
     }
     
+    //método que pega o ISBN do formulário e o envia para a classe LivroDAO efetuar a pesquisa no banco
     public void pesquisarLivro(){
         Livro livro = new Livro();
         livro.setIsbn(Double.parseDouble(TxtISBNLivro.getText()));
@@ -155,5 +161,32 @@ public class TelaCadastroLivrosController implements Initializable {
             alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
             alert.setContentText("Pesquisado com sucesso");
             alert.showAndWait();
+    }
+    
+    //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a atualização no banco
+    public void alterarLivro(){
+        Livro livroControle = new Livro();
+        
+        livroControle.setIsbn(Double.parseDouble((TxtISBNLivro.getText())));
+        livroControle.setTitulo(TxtTituloLivro.getText());
+        livroControle.setSubtitulo(TxtSubtituloLivro.getText());
+        livroControle.setAutor1(TxtPrimeiroAutor.getText());
+        livroControle.setAutor2(TxtSegundoAutor.getText());
+        //livroControle.setPublicacao(TxtDataPublicacaoLivro.getText()); ***A TRATAR***
+        livroControle.setEditora(TxtEditoraLivro.getText());
+        livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
+        livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
+        livroControle.setResumo(TxtAreaResumoLivro.getText());
+        livroControle.setSumario(TxtareaSumarioLivro.getText());
+        livroControle.setFormato(String.valueOf(ComboboxFormatoLivro.getValue())); // pegar valor da combobox
+        livroControle.setCategoria(String.valueOf(ComboboxCategoriaLivro.getValue())); // pegar valor da combobox
+        
+        LivroDAO livroDAO = new LivroDAO();
+        if(livroDAO.alterarDAO(livroControle)){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText("Atualizado com sucesso");
+            alert.showAndWait();
+        }
     }
 }

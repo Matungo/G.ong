@@ -13,8 +13,8 @@ public class Livro {
     private String titulo, subtitulo, autor1, autor2, publicacao, 
             editora, formato, categoria, resumo, sumario; 
 
-    private int qtd, numPags, codlivro;
-    private double isbn;
+    private int qtd, numPags, codlivro;    //codlivro é utilizado no banco como PK auto increment
+    private double isbn;                   //isbn não está como PK no banco, porém por ser único, é utilizado nas principais operações (insert, update, delete, select)
     
     public int getCodlivro() {
         return codlivro;
