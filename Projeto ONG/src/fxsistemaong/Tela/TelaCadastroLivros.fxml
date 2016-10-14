@@ -17,9 +17,9 @@
       <TextField fx:id="TxtTituloLivro" layoutX="359.0" layoutY="169.0" prefHeight="27.0" prefWidth="392.0" />
       <TextField fx:id="TxtSubtituloLivro" layoutX="136.0" layoutY="207.0" prefHeight="27.0" prefWidth="614.0" />
       <Button fx:id="BtnConsultarLivro" layoutX="767.0" layoutY="164.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="64.0" prefWidth="114.0" text="CONSULTAR" />
-      <Label layoutX="76.0" layoutY="53.0" text="CADASTRO DE LIVROS" textAlignment="CENTER" textFill="#2d09e1" underline="true" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="147.96875" AnchorPane.topAnchor="53.0">
+      <Label layoutX="76.0" layoutY="53.0" text="CADASTRO DE LIVROS" textAlignment="CENTER" textFill="#000000" underline="true" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="147.96875" AnchorPane.topAnchor="53.0">
          <font>
-            <Font name="Arial Black" size="64.0" />
+            <Font name="Arial" size="64.0" />
          </font>
       </Label>
       <Label layoutX="60.0" layoutY="249.0" text="Autor 1:" />
@@ -45,7 +45,7 @@
       <TextArea fx:id="TxtAreaResumoLivro" layoutX="134.0" layoutY="416.0" prefHeight="64.0" prefWidth="744.0" />
       <TextArea fx:id="TxtareaSumarioLivro" layoutX="134.0" layoutY="493.0" prefHeight="64.0" prefWidth="744.0" />
       <Button fx:id="BtnCadastrarLivro" layoutX="65.0" layoutY="612.0" mnemonicParsing="false" onAction="#cadastrarControle" prefHeight="57.0" prefWidth="161.0" text="Cadastrar" />
-      <Button fx:id="BtnAlterarLivro" layoutX="268.0" layoutY="612.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="161.0" text="Alterar" />
+      <Button fx:id="BtnAlterarLivro" layoutX="268.0" layoutY="612.0" mnemonicParsing="false" onAction="#alterarLivro" prefHeight="57.0" prefWidth="161.0" text="Alterar" />
       <Button fx:id="BtnExcluirLivro" layoutX="465.0" layoutY="612.0" mnemonicParsing="false" onAction="#excluirControle" prefHeight="57.0" prefWidth="161.0" text="Excluir" />
       <Button fx:id="BtnLimparCamposLivro" layoutX="657.0" layoutY="612.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="57.0" prefWidth="161.0" text="Limpar" />
    </children>
