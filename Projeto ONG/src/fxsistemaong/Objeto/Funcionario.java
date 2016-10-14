@@ -10,9 +10,10 @@ package fxsistemaong.Objeto;
  * @author giovanni.sanches
  */
 public class Funcionario {
-    int cod,disp_dia, disp_hora, disp_sab;
-    String nome, rg, cpf, datacadastro, email, sexo, endereço, numero, cep,
-            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes;
+    private int cod, disp_hora;
+    private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
+            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
+            disp_sab;
 
     public int getCod() {
         return cod;
@@ -22,28 +23,12 @@ public class Funcionario {
         this.cod = cod;
     }
 
-    public int getDisp_dia() {
-        return disp_dia;
-    }
-
-    public void setDisp_dia(int disp_dia) {
-        this.disp_dia = disp_dia;
-    }
-
     public int getDisp_hora() {
         return disp_hora;
     }
 
     public void setDisp_hora(int disp_hora) {
         this.disp_hora = disp_hora;
-    }
-
-    public int getDisp_sab() {
-        return disp_sab;
-    }
-
-    public void setDisp_sab(int disp_sab) {
-        this.disp_sab = disp_sab;
     }
 
     public String getNome() {
@@ -78,6 +63,14 @@ public class Funcionario {
         this.datacadastro = datacadastro;
     }
 
+    public String getDatanasc() {
+        return datanasc;
+    }
+
+    public void setDatanasc(String datanasc) {
+        this.datanasc = datanasc;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -94,12 +87,12 @@ public class Funcionario {
         this.sexo = sexo;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getNumero() {
@@ -172,5 +165,39 @@ public class Funcionario {
 
     public void setAptidoes(String aptidoes) {
         this.aptidoes = aptidoes;
-    }    
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
+
+    public String getDisp_dia() {
+        return disp_dia;
+    }
+
+    public void setDisp_dia(String disp_dia) {
+        this.disp_dia = disp_dia;
+    }
+
+    public String getDisp_sab() {
+        return disp_sab;
+    }
+
+    public void setDisp_sab(String disp_sab) {
+        this.disp_sab = disp_sab;
+    }
+
+
 }

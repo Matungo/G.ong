@@ -77,9 +77,9 @@
       <CheckBox fx:id="CheckboxSabadoTarde" layoutX="890.0" layoutY="525.0" mnemonicParsing="false" text="Tarde" />
       <Label layoutX="835.0" layoutY="495.0" text="Sábado:" />
       <Button fx:id="BtnSalvarFuncionario" layoutX="45.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="SALVAR" onAction="#BtnSalvarFuncionario"/>
-      <Button fx:id="BtnAtualizarFuncionario" layoutX="180.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="ATUALIZAR" />
-      <Button fx:id="BtnExcluirFuncionario" layoutX="314.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="EXCLUIR" />
-      <Button fx:id="BtnLimparCamposFuncionario" layoutX="446.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="LIMPAR" />
+      <Button fx:id="BtnAtualizarFuncionario" layoutX="180.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="ATUALIZAR" onAction="#BtnAtualizarFuncionario"/>
+      <Button fx:id="BtnExcluirFuncionario" layoutX="314.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="EXCLUIR" onAction="#BtnExcluir" />
+      <Button fx:id="BtnLimparCamposFuncionario" layoutX="446.0" layoutY="651.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="LIMPAR" onAction="#BtnLimpar"  />
       <CheckBox fx:id="CheckboxSegundoHorario" layoutX="370.0" layoutY="525.0" mnemonicParsing="false" text="08:00 - 09:00" />
       <CheckBox fx:id="CheckboxTerceiroHorario2" layoutX="370.0" layoutY="555.0" mnemonicParsing="false" text="09:00 - 10:00" />
       <CheckBox fx:id="CheckboxSextoHorario3" layoutX="605.0" layoutY="495.0" mnemonicParsing="false" text="12:00 - 13:00" />
