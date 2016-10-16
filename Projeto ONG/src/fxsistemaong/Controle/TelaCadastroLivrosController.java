@@ -8,15 +8,20 @@ package fxsistemaong.Controle;
 import fxsistemaong.DAO.LivroDAO;
 import fxsistemaong.Objeto.Livro;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 
 /**
  * FXML Controller class
@@ -49,8 +54,6 @@ public class TelaCadastroLivrosController implements Initializable {
     @FXML
     private TextField TxtPaginasLivro;
     @FXML
-    private TextField TxtAdicionarCategoriaLivro;
-    @FXML
     private TextArea TxtAreaResumoLivro;
     @FXML
     private TextArea TxtareaSumarioLivro;
@@ -58,7 +61,11 @@ public class TelaCadastroLivrosController implements Initializable {
     private ComboBox ComboboxFormatoLivro;
     @FXML
     private ComboBox ComboboxCategoriaLivro;
-    
+    @FXML
+    private Button BtnAlterarLivro;
+    @FXML
+    private Button BtnExcluirLivro;
+  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,6 +80,9 @@ public class TelaCadastroLivrosController implements Initializable {
                 = FXCollections.observableArrayList("Autoajuda", "Literatura Nacional", "Literatura Estrangeira", 
                         "Biografia", "Ciências Exatas", "Ciências Biológicas", "Ciências Humanas", "Outros");
         ComboboxCategoriaLivro.setItems(listaCategorias);
+                
+        BtnAlterarLivro.setDisable(true);
+        BtnExcluirLivro.setDisable(true);
     }
     
     //método que limpa todos os campos do formulário
@@ -86,23 +96,29 @@ public class TelaCadastroLivrosController implements Initializable {
         TxtEditoraLivro.clear();
         TxtQtdeLivro.clear();
         TxtPaginasLivro.clear();
-        TxtAdicionarCategoriaLivro.clear();
         TxtAreaResumoLivro.clear();
         TxtareaSumarioLivro.clear();
         ComboboxFormatoLivro.setValue(null);
         ComboboxCategoriaLivro.setValue(null);
+        
+        BtnAlterarLivro.setDisable(true);
+        BtnExcluirLivro.setDisable(true);
     }
     
     //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a gravação no banco
-    public void cadastrarControle(){
+    public void cadastrarControle() throws ParseException{
         Livro livroControle = new Livro();
         
-        livroControle.setIsbn(Double.parseDouble((TxtISBNLivro.getText())));
+        //formatador de datas para o formato brasileiro
+        String formato = "dd/MM/yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(formato);
+        
+        livroControle.setIsbn(Long.parseLong(TxtISBNLivro.getText()));
         livroControle.setTitulo(TxtTituloLivro.getText());
         livroControle.setSubtitulo(TxtSubtituloLivro.getText());
         livroControle.setAutor1(TxtPrimeiroAutor.getText());
         livroControle.setAutor2(TxtSegundoAutor.getText());
-        //livroControle.setPublicacao(TxtDataPublicacaoLivro.getText()); ***A TRATAR***
+        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getText())); //conversão de String para Date
         livroControle.setEditora(TxtEditoraLivro.getText());
         livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
         livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
@@ -124,7 +140,7 @@ public class TelaCadastroLivrosController implements Initializable {
     public void excluirControle(){
         Livro livroControle = new Livro();
         LivroDAO livroDAO = new LivroDAO();
-        livroControle.setIsbn(Double.valueOf(TxtISBNLivro.getText()));
+        livroControle.setIsbn(Long.valueOf(TxtISBNLivro.getText()));
         if (livroDAO.excluirDAO(livroControle)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
@@ -135,9 +151,12 @@ public class TelaCadastroLivrosController implements Initializable {
     }
     
     //método que pega o ISBN do formulário e o envia para a classe LivroDAO efetuar a pesquisa no banco
-    public void pesquisarLivro(){
+    public void pesquisarLivro() throws ParseException{
+        String formato = "dd/MM/yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(formato);
+        
         Livro livro = new Livro();
-        livro.setIsbn(Double.parseDouble(TxtISBNLivro.getText()));
+        livro.setIsbn(Long.valueOf(TxtISBNLivro.getText()));
         try{
             LivroDAO livroDAO = new LivroDAO();
             livro = livroDAO.pesquisarLivroDAO(livro);
@@ -155,24 +174,27 @@ public class TelaCadastroLivrosController implements Initializable {
             TxtAreaResumoLivro.setText(livro.getResumo());
             TxtareaSumarioLivro.setText(livro.getSumario());
             ComboboxFormatoLivro.setValue(livro.getFormato());
-            ComboboxCategoriaLivro.setValue(livro.getCategoria());
+            ComboboxCategoriaLivro.setValue(livro.getCategoria());         
+            TxtDataPublicacaoLivro.setText(dateFormat.format(livro.getPublicao()));
             
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
-            alert.setContentText("Pesquisado com sucesso");
-            alert.showAndWait();
+            BtnAlterarLivro.setDisable(false);
+            BtnExcluirLivro.setDisable(false);
     }
     
     //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a atualização no banco
-    public void alterarLivro(){
+    public void alterarLivro() throws ParseException{
         Livro livroControle = new Livro();
         
-        livroControle.setIsbn(Double.parseDouble((TxtISBNLivro.getText())));
+        //formatador de datas para o formato brasileiro
+        String formato = "dd/MM/yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(formato);
+        
+        livroControle.setIsbn(Long.parseLong((TxtISBNLivro.getText())));
         livroControle.setTitulo(TxtTituloLivro.getText());
         livroControle.setSubtitulo(TxtSubtituloLivro.getText());
         livroControle.setAutor1(TxtPrimeiroAutor.getText());
         livroControle.setAutor2(TxtSegundoAutor.getText());
-        //livroControle.setPublicacao(TxtDataPublicacaoLivro.getText()); ***A TRATAR***
+        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getText())); //conversão de String para Date
         livroControle.setEditora(TxtEditoraLivro.getText());
         livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
         livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
