@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 
 /**
  * FXML Controller class
@@ -53,8 +54,6 @@ public class TelaCadastroLivrosController implements Initializable {
     @FXML
     private TextField TxtPaginasLivro;
     @FXML
-    private TextField TxtAdicionarCategoriaLivro;
-    @FXML
     private TextArea TxtAreaResumoLivro;
     @FXML
     private TextArea TxtareaSumarioLivro;
@@ -62,10 +61,11 @@ public class TelaCadastroLivrosController implements Initializable {
     private ComboBox ComboboxFormatoLivro;
     @FXML
     private ComboBox ComboboxCategoriaLivro;
-    
     @FXML
     private Button BtnAlterarLivro;
-    
+    @FXML
+    private Button BtnExcluirLivro;
+  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,6 +82,7 @@ public class TelaCadastroLivrosController implements Initializable {
         ComboboxCategoriaLivro.setItems(listaCategorias);
                 
         BtnAlterarLivro.setDisable(true);
+        BtnExcluirLivro.setDisable(true);
     }
     
     //método que limpa todos os campos do formulário
@@ -95,13 +96,13 @@ public class TelaCadastroLivrosController implements Initializable {
         TxtEditoraLivro.clear();
         TxtQtdeLivro.clear();
         TxtPaginasLivro.clear();
-        TxtAdicionarCategoriaLivro.clear();
         TxtAreaResumoLivro.clear();
         TxtareaSumarioLivro.clear();
         ComboboxFormatoLivro.setValue(null);
         ComboboxCategoriaLivro.setValue(null);
         
         BtnAlterarLivro.setDisable(true);
+        BtnExcluirLivro.setDisable(true);
     }
     
     //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a gravação no banco
@@ -177,6 +178,7 @@ public class TelaCadastroLivrosController implements Initializable {
             TxtDataPublicacaoLivro.setText(dateFormat.format(livro.getPublicao()));
             
             BtnAlterarLivro.setDisable(false);
+            BtnExcluirLivro.setDisable(false);
     }
     
     //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a atualização no banco

@@ -16,7 +16,7 @@
       <TextField fx:id="TxtISBNLivro" layoutX="136.0" layoutY="169.0" />
       <TextField fx:id="TxtTituloLivro" layoutX="359.0" layoutY="169.0" prefHeight="27.0" prefWidth="392.0" />
       <TextField fx:id="TxtSubtituloLivro" layoutX="136.0" layoutY="207.0" prefHeight="27.0" prefWidth="614.0" />
-      <Button fx:id="BtnConsultarLivro" layoutX="767.0" layoutY="164.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="64.0" prefWidth="114.0" text="CONSULTAR" />
+      <Button fx:id="BtnConsultarLivro" layoutX="769.0" layoutY="164.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="74.0" prefWidth="114.0" text="CONSULTAR" />
       <Label layoutX="76.0" layoutY="53.0" text="CADASTRO DE LIVROS" textAlignment="CENTER" textFill="#000000" underline="true" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="147.96875" AnchorPane.topAnchor="53.0">
          <font>
             <Font name="Arial" size="64.0" />
@@ -29,17 +29,15 @@
       <Label layoutX="60.0" layoutY="329.0" text="Data de Publicação:" />
       <Label layoutX="417.0" layoutY="329.0" text="Editora:" />
       <Label layoutX="662.0" layoutY="329.0" text="Qtd:" />
-      <Label layoutX="303.0" layoutY="374.0" text="Categoria:" />
-      <TextField fx:id="TxtDataPublicacaoLivro" layoutX="185.0" layoutY="324.0" prefHeight="27.0" prefWidth="225.0" />
+      <Label layoutX="345.0" layoutY="374.0" text="Categoria:" />
+      <TextField fx:id="TxtDataPublicacaoLivro" layoutX="185.0" layoutY="324.0" prefHeight="27.0" prefWidth="225.0" promptText="dd/mm/aaaa" />
       <TextField fx:id="TxtEditoraLivro" layoutX="472.0" layoutY="324.0" prefHeight="27.0" prefWidth="179.0" />
-      <TextField fx:id="TxtQtdeLivro" layoutX="694.0" layoutY="324.0" prefHeight="27.0" prefWidth="34.0" />
-      <ComboBox fx:id="ComboboxCategoriaLivro" layoutX="375.0" layoutY="369.0" prefHeight="27.0" prefWidth="187.0" />
-      <Label layoutX="739.0" layoutY="329.0" text="N˚ de Páginas:" />
-      <TextField fx:id="TxtPaginasLivro" layoutX="842.0" layoutY="324.0" prefHeight="27.0" prefWidth="39.0" />
+      <TextField fx:id="TxtQtdeLivro" layoutX="690.0" layoutY="324.0" prefHeight="27.0" prefWidth="43.0" />
+      <ComboBox fx:id="ComboboxCategoriaLivro" layoutX="419.0" layoutY="369.0" prefHeight="27.0" prefWidth="187.0" />
+      <Label layoutX="750.0" layoutY="329.0" text="N˚ de Páginas:" />
+      <TextField fx:id="TxtPaginasLivro" layoutX="832.0" layoutY="324.0" prefHeight="27.0" prefWidth="46.0" />
       <Label layoutX="60.0" layoutY="374.0" text="Formato:" />
-      <ComboBox fx:id="ComboboxFormatoLivro" layoutX="116.0" layoutY="369.0" prefHeight="27.0" prefWidth="167.0" />
-      <Label layoutX="580.0" layoutY="374.0" text="Adicionar Categoria:" />
-      <TextField fx:id="TxtAdicionarCategoriaLivro" layoutX="711.0" layoutY="369.0" prefHeight="27.0" prefWidth="167.0" />
+      <ComboBox fx:id="ComboboxFormatoLivro" layoutX="136.0" layoutY="369.0" prefHeight="27.0" prefWidth="167.0" />
       <Label layoutX="60.0" layoutY="416.0" text="Resumo:" />
       <Label layoutX="59.0" layoutY="493.0" text="Sumário:" />
       <TextArea fx:id="TxtAreaResumoLivro" layoutX="134.0" layoutY="416.0" prefHeight="64.0" prefWidth="744.0" />
