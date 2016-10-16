@@ -5,16 +5,26 @@
  */
 package fxsistemaong.Objeto;
 
+import java.util.Date;
+
 /**
  *
  * @author Danilo
  */
 public class Livro {
-    private String titulo, subtitulo, autor1, autor2, publicacao, 
+    private String titulo, subtitulo, autor1, autor2, 
             editora, formato, categoria, resumo, sumario; 
-
+    private Date publicao;
     private int qtd, numPags, codlivro;    //codlivro é utilizado no banco como PK auto increment
-    private double isbn;                   //isbn não está como PK no banco, porém por ser único, é utilizado nas principais operações (insert, update, delete, select)
+    private long isbn;                   //isbn não está como PK no banco, porém por ser único, é utilizado nas principais operações (insert, update, delete, select)
+    
+    public Date getPublicao() {
+        return publicao;
+    }
+
+    public void setPublicao(Date publicao) {
+        this.publicao = publicao;
+    }
     
     public int getCodlivro() {
         return codlivro;
@@ -24,11 +34,11 @@ public class Livro {
         this.codlivro = codlivro;
     }
 
-    public double getIsbn() {
+    public long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(double isbn) {
+    public void setIsbn(long isbn) {
         this.isbn = isbn;
     }
 
@@ -62,14 +72,6 @@ public class Livro {
 
     public void setAutor2(String autor2) {
         this.autor2 = autor2;
-    }
-
-    public String getPublicacao() {
-        return publicacao;
-    }
-
-    public void setPublicacao(String publicacao) {
-        this.publicacao = publicacao;
     }
 
     public String getEditora() {

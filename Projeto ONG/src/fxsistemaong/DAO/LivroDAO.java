@@ -3,9 +3,13 @@ package fxsistemaong.DAO;
 
 import fxsistemaong.Objeto.Livro;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javafx.scene.control.Alert;
 
 /**
@@ -26,7 +30,7 @@ public class LivroDAO {
             
             String sql = "insert into LIVRO (TITULO_LIVRO, SUBTITULO, AUTOR_LIVRO, "
                     + "AUTOR_LIVRO2, EDITORA_LIVRO, QTD, N_PAG, RESUMO, "
-                    + "SUMARIO, FORMATO, CATEGORIA, ISBN) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "SUMARIO, FORMATO, CATEGORIA, ISBN, PUBLICACAO) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             PreparedStatement statement;
             statement = conexao.prepareStatement(sql);
@@ -42,7 +46,9 @@ public class LivroDAO {
             statement.setString(9, livro.getSumario());
             statement.setString(10, livro.getFormato());
             statement.setString(11, livro.getCategoria());
-            statement.setDouble(12, livro.getIsbn());
+            statement.setLong(12, livro.getIsbn());
+            Date sqlDate = new Date(livro.getPublicao().getTime()); //Conversão de util.Date para sql.Date 
+            statement.setDate(13, sqlDate);
             
             salvo = statement.executeUpdate();
             
@@ -90,7 +96,7 @@ public class LivroDAO {
     }
     
     //método que efetua pesquisa pelo ISBN
-    public Livro pesquisarLivroDAO(Livro livro){
+    public Livro pesquisarLivroDAO(Livro livro) throws ParseException{
         try{
             conexao = banco.getConexao();
             String sql = "select * from LIVRO where ISBN = ?";
@@ -100,7 +106,7 @@ public class LivroDAO {
             ResultSet resultSet = statement.executeQuery();
             
             while(resultSet.next()){
-                livro.setIsbn(resultSet.getDouble("ISBN"));
+                livro.setIsbn(resultSet.getLong("ISBN"));
                 livro.setTitulo(resultSet.getString("TITULO_LIVRO"));
                 livro.setSubtitulo(resultSet.getString("SUBTITULO"));
                 livro.setAutor1(resultSet.getString("AUTOR_LIVRO"));
@@ -112,6 +118,11 @@ public class LivroDAO {
                 livro.setCategoria(resultSet.getString("CATEGORIA"));
                 livro.setResumo(resultSet.getString("RESUMO"));
                 livro.setSumario(resultSet.getString("SUMARIO"));
+                
+                //*********resgatar data sql.Date e converter para util.Date                                                                   
+                java.util.Date utilData = resultSet.getTimestamp("PUBLICACAO");
+                livro.setPublicao(utilData);
+               
             }
             
         }catch(SQLException | RuntimeException sql){
@@ -131,7 +142,7 @@ public class LivroDAO {
             conexao = banco.getConexao();
             String sql = "update livro set TITULO_LIVRO=?, SUBTITULO=?,  AUTOR_LIVRO=?,"
                     + " AUTOR_LIVRO2=?, EDITORA_LIVRO=?, QTD=?, N_PAG=?, FORMATO=?,"
-                    + " CATEGORIA=?, RESUMO=?, SUMARIO=? where ISBN=?";
+                    + " CATEGORIA=?, RESUMO=?, SUMARIO=?, PUBLICACAO=? where ISBN=?";
             
             PreparedStatement statement;
             statement = conexao.prepareStatement(sql);
@@ -147,7 +158,9 @@ public class LivroDAO {
             statement.setString(9, livro.getCategoria());
             statement.setString(10, livro.getResumo());
             statement.setString(11, livro.getSumario());
-            statement.setDouble(12, livro.getIsbn());
+            Date sqlDate = new Date(livro.getPublicao().getTime()); //Conversão de util.Date para sql.Date 
+            statement.setDate(12, sqlDate);
+            statement.setLong(13, livro.getIsbn());
             
             alterado = statement.executeUpdate();
             banco.fechar(conexao);
