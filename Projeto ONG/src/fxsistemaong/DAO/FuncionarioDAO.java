@@ -129,36 +129,36 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public Funcionario atualizarFuncionario(Funcionario func) throws SQLException {//throws SQLException  {
-        banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
+    public boolean atualizarFuncionario(Funcionario func){//throws SQLException  {
+        banco = new Banco("root","123456", "localhost","G_ONG", 3306);
+        int alterado = 0;
         try {
             conexao = banco.getConexao();
-            String sql = "select * from funcionario where ID_COLABORADOR =" + func.getCod();
-            PreparedStatement std;         
-            std = conexao.prepareStatement(sql);
-            ResultSet rs = std.executeQuery();
-            while (rs.next()) {
-                func.setNome(rs.getString("NOME"));
-                func.setRg(rs.getString("RG"));
-                func.setCpf(rs.getString("CPF"));
-                func.setEmail(rs.getString("EMAIL"));
-                func.setEndereco(rs.getString("ENDERECO"));
-                func.setNumero(rs.getString("NUMERO"));
-                func.setBairro(rs.getString("BAIRRO"));
-                func.setCidade(rs.getString("CIDADE"));
-                func.setCep(rs.getString("CEP"));
-                func.setFone1(rs.getString("TELEFONE1"));
-                func.setFone2(rs.getString("TELEFONE2"));
-                func.setFone3(rs.getString("TELEFONE3"));
-                func.setSexo(rs.getString("SEXO"));
-                func.setComplemento(rs.getString("COMPLEMENTO"));
-            }
-            String sqlu = "update funcionario where ID_COLABORADOR =" + func.getCod()
-                    + "set NOME =" + func.getNome() + "RG =" + func.getRg();
-            PreparedStatement stdu;         
+            sql = "update funcionario set NOME = ?, RG = ?, CPF = ?, EMAIL = ?,"
+                    + "ENDERECO = ?, NUMERO = ?, CEP = ?, COMPLEMENTO = ?, BAIRRO = ?,"
+                    + "CIDADE = ?, TELEFONE1 = ?,TELEFONE2 = ?, TELEFONE3 = ?,"
+                    + " where ID_COLABORADOR = ?";
+            PreparedStatement statement;
+            statement = conexao.prepareStatement(sql);
+            statement.setString(1,func.getNome());
+            statement.setString(2,func.getRg());
+            statement.setString(3,func.getCpf());
+            statement.setString(4,func.getEmail());
+            statement.setString(5,func.getEndereco());
+            statement.setString(6,func.getNumero());
+            statement.setString(7,func.getCep());
+            statement.setString(8,func.getComplemento());
+            statement.setString(9,func.getBairro());
+            statement.setString(10,func.getCidade());
+            statement.setString(11,func.getFone1());
+            statement.setString(12,func.getFone2());
+            statement.setString(13,func.getFone3());
+      //      statement.setString(14,func.getAptidoes());
+      //      statement.setString(15,func.getDisp_dia());
+      //      statement.setString(16,func.getDisp_sab());
+            statement.setInt(14,func.getCod());
             
-            stdu = conexao.prepareStatement(sqlu);
-            ResultSet rsu = stdu.executeQuery();
+            alterado = statement.executeUpdate();
             banco.fechar(conexao);
         } catch (SQLException | RuntimeException sql) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -166,6 +166,10 @@ public class FuncionarioDAO {
             alert.setContentText(sql.getMessage());
             alert.showAndWait();
         }
-        return func;
+        if (alterado == 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

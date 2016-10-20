@@ -4,6 +4,8 @@ import fxsistemaong.DAO.FuncionarioDAO;
 import fxsistemaong.Objeto.Funcionario;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,12 +123,35 @@ public class TelaCadastroFuncionarioController implements Initializable {
     @FXML
     public void BtnAtualizarFuncionario(ActionEvent event)throws SQLException {
         Funcionario func = new Funcionario();
-        func.setCod(Integer.valueOf(TxtCodigoFuncionario.getText()));
-        try {
-            FuncionarioDAO dao = new FuncionarioDAO();
-            func = dao.atualizarFuncionario(func);
-        } catch (RuntimeException E) {
-            System.out.println(E.getMessage());
+        String formato = "dd/MM/yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(formato);
+        func.setNome(TxtNomeFuncionario.getText());
+        func.setBairro(TxtBairroFuncionario.getText());
+        func.setCod(Integer.parseInt(TxtCodigoFuncionario.getText()));
+        func.setAptidoes(TxtAreaAptidoesFuncionario.getText());
+        func.setCep(TxtCEPFuncionario.getText());
+        func.setCidade(TxtCidadeFuncionario.getText());
+        func.setComplemento(TxtComplementoFuncionario.getText());
+        func.setCpf(TxtCPFFuncionario.getText());
+        func.setDatacadastro(TxtDataCadasroFuncionario.getText());
+        func.setDatanasc(TxtDataCadasroFuncionario.getText());
+        func.setDisp_dia(carregardia());
+        //func.setDisp_hora(carregarhora());
+        func.setDisp_sab(carregarsab());
+        func.setEmail(TxtEmailFuncionario.getText());
+        func.setEndereco(TxtEnderecoFuncionario.getText());
+        func.setFone1(TxtFoneCelularFuncionario.getText());
+        func.setFone2(TxtFoneRecadoFuncionario.getText());
+        func.setFone3(TxtFoneResidencialFuncionario.getText());
+        func.setNumero(TxtNumeroFuncionario.getText());
+        func.setRg(TxtRGFuncionario.getText());
+        FuncionarioDAO dao = new FuncionarioDAO();
+        if (dao.atualizarFuncionario(func))
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText("Atualizado com sucesso");
+            alert.showAndWait();
         }
     }
     
