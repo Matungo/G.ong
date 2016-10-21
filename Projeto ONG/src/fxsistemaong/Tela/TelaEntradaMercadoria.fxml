@@ -8,39 +8,38 @@
 
 <AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaEntradaMercadoriaController">
    <children>
-      <Label layoutX="42.0" layoutY="77.0" text="Categoria:" />
-      <ComboBox fx:id="CbCategoria" layoutX="112.0" layoutY="72.0" prefHeight="27.0" prefWidth="206.0" />
-      <Label layoutX="542.0" layoutY="77.0" text="Tipo:" />
-      <ComboBox fx:id="CbTipo" layoutX="585.0" layoutY="72.0" prefWidth="150.0" />
-      <Button fx:id="BtnAdicionarCategoria" layoutX="337.0" layoutY="72.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="188.0" text="Adicionar Categoria" />
-      <Button fx:id="BtnAdicionarTipo" layoutX="753.0" layoutY="72.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="194.0" text="Adicionar Tipo" />
-      <Label layoutX="51.0" layoutY="152.0" text="Nome:" />
-      <TextField fx:id="TextfieldNome" layoutX="103.0" layoutY="147.0" prefHeight="27.0" prefWidth="531.0" />
-      <Button fx:id="BtnBuscarNome" layoutX="649.0" layoutY="147.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Buscar" />
-      <Button fx:id="BtnCadastrarNome" layoutX="789.0" layoutY="147.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Cadastrar" />
-      <Label layoutX="54.0" layoutY="209.0" text="Tipo de Produto:" />
-      <Label layoutX="481.0" layoutY="209.0" text="Tamanho:" />
-      <TextField fx:id="TextFieldTamanho" layoutX="551.0" layoutY="204.0" />
-      <TextField fx:id="TxtFieldQuantidade" layoutX="170.0" layoutY="265.0" />
-      <Label layoutX="74.0" layoutY="270.0" text="Quantidade:" />
-      <Label layoutX="357.0" layoutY="270.0" text="Valor Unitário:" />
-      <Label layoutX="667.0" layoutY="270.0" text="Data Entrada:" />
-      <TextField fx:id="TxtFieldValorUnitario" layoutX="455.0" layoutY="265.0" />
-      <DatePicker fx:id="DateDataEntrada" layoutX="753.0" layoutY="265.0" />
-      <Button fx:id="BtnAdicionar" layoutX="54.0" layoutY="342.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="194.0" text="Adicionar" />
-      <Button fx:id="BtnModificar" layoutX="287.0" layoutY="342.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="194.0" text="Modificar" />
-      <Button fx:id="BtnExcluir" layoutX="515.0" layoutY="342.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="194.0" text="Excluir" />
-      <TableView layoutX="42.0" layoutY="428.0" prefHeight="244.0" prefWidth="921.0">
-        <columns>
-          <TableColumn fx:id="TcCodigo" prefWidth="75.0" text="Código" />
-          <TableColumn fx:id="TcNomeProduto" prefWidth="278.0" text="Nome Produto" />
-            <TableColumn fx:id="TcTipoProduto" prefWidth="116.0" text="Tipo Produto" />
-            <TableColumn fx:id="TcCategoria" prefWidth="161.0" text="Categoria" />
-            <TableColumn fx:id="TcQuantidade" prefWidth="138.0" text="Quantidade " />
-            <TableColumn fx:id="TcDataEntrada" prefWidth="152.0" text="Data de Entrada" />
-        </columns>
+      <Label layoutX="412.0" layoutY="62.0" text="Categoria:" />
+      <ComboBox fx:id="CbCategoria" layoutX="482.0" layoutY="57.0" prefHeight="27.0" prefWidth="206.0" />
+      <Label layoutX="173.0" layoutY="168.0" text="Nome:" />
+      <TextField fx:id="TextfieldNome" layoutX="222.0" layoutY="163.0" prefHeight="27.0" prefWidth="412.0" />
+      <Button fx:id="BtnBuscarNome" layoutX="649.0" layoutY="163.0" mnemonicParsing="false" onAction="#BuscarNomeProduto" prefHeight="27.0" prefWidth="121.0" text="Buscar" />
+      <Button fx:id="BtnCadastrarNome" layoutX="789.0" layoutY="163.0" mnemonicParsing="false" onAction="#IncluirProduto" prefHeight="27.0" prefWidth="121.0" text="Cadastrar" />
+      <TextField fx:id="TxtFieldQuantidade" layoutX="454.0" layoutY="232.0" />
+      <Label layoutX="358.0" layoutY="237.0" text="Quantidade:" />
+      <Label layoutX="649.0" layoutY="237.0" text="Valor Unitário:" />
+      <Label layoutX="53.0" layoutY="237.0" text="Data Entrada:" />
+      <TextField fx:id="TxtFieldValorUnitario" layoutX="747.0" layoutY="232.0" />
+      <DatePicker fx:id="DateDataEntrada" layoutX="139.0" layoutY="232.0" />
+      <Button fx:id="BtnAdicionar" layoutX="54.0" layoutY="342.0" mnemonicParsing="false" onAction="#IncluirEntradaProduto" prefHeight="53.0" prefWidth="194.0" text="Adicionar" />
+      <Button fx:id="BtnModificar" layoutX="287.0" layoutY="342.0" mnemonicParsing="false" onAction="#ModificarProdutoTabela" prefHeight="53.0" prefWidth="194.0" text="Modificar" />
+      <Button fx:id="BtnExcluir" layoutX="515.0" layoutY="342.0" mnemonicParsing="false" onAction="#ExcluirProdutoTabela" prefHeight="53.0" prefWidth="194.0" text="Excluir" />
+      <TableView fx:id="TVProduto" layoutX="42.0" layoutY="428.0" prefHeight="244.0" prefWidth="921.0">
+         <columns>
+            <TableColumn fx:id="TcCodigo" prefWidth="64.0" text="Código" />
+            <TableColumn fx:id="TcNomeProduto" prefWidth="261.0" text="Nome Produto" />
+            <TableColumn fx:id="TcCategoria" prefWidth="115.0" text="Categoria" />
+            <TableColumn fx:id="TcQuantidade" prefWidth="110.0" text="Quantidade " />
+            <TableColumn fx:id="TcDataEntrada" prefWidth="135.0" text="Data de Entrada" />
+            <TableColumn fx:id="TCTipoEntrada" prefWidth="103.0" text="Tipo Entrada" />
+            <TableColumn fx:id="TcValorEntrada" prefWidth="156.0" text="Valor Entrada" />
+         </columns>
       </TableView>
-      <ComboBox fx:id="CbTipoProduto" layoutX="170.0" layoutY="204.0" prefWidth="150.0" />
-      <Button fx:id="BtnAdicionarTipo" layoutX="337.0" layoutY="204.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="132.0" text="Adicionar Tipo" />
+      <Label layoutX="54.0" layoutY="62.0" text="Tipo de Entrada:" />
+      <ComboBox fx:id="CbTipoEntrada" layoutX="173.0" layoutY="57.0" prefHeight="27.0" prefWidth="194.0" />
+      <Label layoutX="35.0" layoutY="115.0" text="Dados do Produto" />
+      <Separator layoutX="153.0" layoutY="122.0" prefHeight="0.0" prefWidth="793.0" />
+      <Label layoutX="52.0" layoutY="168.0" text="Cod:" />
+      <TextField fx:id="TxtFieldCodProduto" layoutX="90.0" layoutY="163.0" prefHeight="27.0" prefWidth="53.0" />
+      <Button fx:id="BtnLimpar" layoutX="747.0" layoutY="342.0" mnemonicParsing="false" onAction="#LimparCampos" prefHeight="53.0" prefWidth="194.0" text="Limpar" />
    </children>
 </AnchorPane>
