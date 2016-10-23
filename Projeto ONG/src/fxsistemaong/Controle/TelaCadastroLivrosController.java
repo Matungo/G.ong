@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 
 /**
@@ -45,7 +46,7 @@ public class TelaCadastroLivrosController implements Initializable {
     @FXML
     private TextField TxtSegundoAutor;
     @FXML
-    private TextField TxtDataPublicacaoLivro;
+    private DatePicker TxtDataPublicacaoLivro;
     @FXML
     private TextField TxtEditoraLivro;
     @FXML
@@ -91,7 +92,7 @@ public class TelaCadastroLivrosController implements Initializable {
         TxtSubtituloLivro.clear();
         TxtPrimeiroAutor.clear();
         TxtSegundoAutor.clear();
-        TxtDataPublicacaoLivro.clear();
+        TxtDataPublicacaoLivro.getEditor().clear();
         TxtEditoraLivro.clear();
         TxtQtdeLivro.clear();
         TxtPaginasLivro.clear();
@@ -117,7 +118,7 @@ public class TelaCadastroLivrosController implements Initializable {
         livroControle.setSubtitulo(TxtSubtituloLivro.getText());
         livroControle.setAutor1(TxtPrimeiroAutor.getText());
         livroControle.setAutor2(TxtSegundoAutor.getText());
-        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getText())); //conversão de String para Date
+        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getEditor().getText())); //conversão de String para Date
         livroControle.setEditora(TxtEditoraLivro.getText());
         livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
         livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
@@ -174,7 +175,7 @@ public class TelaCadastroLivrosController implements Initializable {
             TxtareaSumarioLivro.setText(livro.getSumario());
             ComboboxFormatoLivro.setValue(livro.getFormato());
             ComboboxCategoriaLivro.setValue(livro.getCategoria());         
-            TxtDataPublicacaoLivro.setText(dateFormat.format(livro.getPublicao()));
+            TxtDataPublicacaoLivro.getEditor().setText(dateFormat.format(livro.getPublicao()));
             
             BtnAlterarLivro.setDisable(false);
             BtnExcluirLivro.setDisable(false);
@@ -193,7 +194,7 @@ public class TelaCadastroLivrosController implements Initializable {
         livroControle.setSubtitulo(TxtSubtituloLivro.getText());
         livroControle.setAutor1(TxtPrimeiroAutor.getText());
         livroControle.setAutor2(TxtSegundoAutor.getText());
-        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getText())); //conversão de String para Date
+        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getEditor().getText())); //conversão de String para Date
         livroControle.setEditora(TxtEditoraLivro.getText());
         livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
         livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));

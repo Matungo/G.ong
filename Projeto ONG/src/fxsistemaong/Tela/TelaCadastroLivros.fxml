@@ -30,7 +30,6 @@
       <Label layoutX="417.0" layoutY="329.0" text="Editora:" />
       <Label layoutX="662.0" layoutY="329.0" text="Qtd:" />
       <Label layoutX="345.0" layoutY="374.0" text="Categoria:" />
-      <TextField fx:id="TxtDataPublicacaoLivro" layoutX="185.0" layoutY="324.0" prefHeight="27.0" prefWidth="225.0" promptText="dd/mm/aaaa" />
       <TextField fx:id="TxtEditoraLivro" layoutX="472.0" layoutY="324.0" prefHeight="27.0" prefWidth="179.0" />
       <TextField fx:id="TxtQtdeLivro" layoutX="690.0" layoutY="324.0" prefHeight="27.0" prefWidth="43.0" />
       <ComboBox fx:id="ComboboxCategoriaLivro" layoutX="419.0" layoutY="369.0" prefHeight="27.0" prefWidth="187.0" />
@@ -46,5 +45,6 @@
       <Button fx:id="BtnAlterarLivro" layoutX="268.0" layoutY="612.0" mnemonicParsing="false" onAction="#alterarLivro" prefHeight="57.0" prefWidth="161.0" text="Alterar" />
       <Button fx:id="BtnExcluirLivro" layoutX="465.0" layoutY="612.0" mnemonicParsing="false" onAction="#excluirControle" prefHeight="57.0" prefWidth="161.0" text="Excluir" />
       <Button fx:id="BtnLimparCamposLivro" layoutX="657.0" layoutY="612.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="57.0" prefWidth="161.0" text="Limpar" />
+      <DatePicker fx:id="TxtDataPublicacaoLivro" layoutX="181.0" layoutY="325.0" />
    </children>
 </AnchorPane>
