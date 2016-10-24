@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="337.0" prefWidth="452.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fxsistemaong.Controle.TelaRedefinirSenhaController">
+   <children>
+      <Label layoutX="73.0" layoutY="82.0" text="Senha Antiga:" />
+      <Label layoutX="73.0" layoutY="137.0" text="Nova Senha:" />
+      <Label layoutX="73.0" layoutY="192.0" text="Confirmar Senha:" />
+      <TextField fx:id="TxtFieldSenhaAntiga" layoutX="198.0" layoutY="77.0" />
+      <TextField fx:id="TxtFieldNovaSenha" layoutX="198.0" layoutY="132.0" />
+      <TextField fx:id="TxtFieldConfirmaSenha" layoutX="198.0" layoutY="187.0" />
+      <Button fx:id="ButtonRedefinirSenha" layoutX="75.0" layoutY="249.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="103.0" text="Redefinir" />
+      <Button fx:id="ButtonSair" layoutX="262.0" layoutY="249.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="103.0" text="Sair" />
+   </children>
+</AnchorPane>

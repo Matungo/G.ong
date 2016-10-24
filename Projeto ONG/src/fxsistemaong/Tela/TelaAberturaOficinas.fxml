@@ -39,7 +39,13 @@
       </TableView>
       <Label layoutX="458.0" layoutY="152.0" text="Instrutor:" />
       <ComboBox fx:id="ComboBoxInstrutor" layoutX="527.0" layoutY="147.0" prefWidth="150.0" />
-      <Button fx:id="BtnAdicionarOficina" layoutX="45.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Adicionar" />
-      <Button fx:id="BtnLimparCampos" layoutX="322.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Limpar" />
+      <Button fx:id="ButtonAdicionarOficina" layoutX="45.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Adicionar" />
+      <Button fx:id="ButtonExcluir" layoutX="410.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Excluir" />
+      <Label layoutX="41.0" layoutY="82.0" text="Tipo:" />
+      <TextField fx:id="TxtFieldTipoOficina" layoutX="96.0" layoutY="77.0" prefHeight="27.0" prefWidth="304.0" />
+      <Button fx:id="ButtonSalvarOficina" layoutX="416.0" layoutY="77.0" mnemonicParsing="false" onAction="#SalvarNovaOficina" prefHeight="27.0" prefWidth="82.0" text="Salvar" />
+      <Button fx:id="ButtonNovoOficina" layoutX="512.0" layoutY="77.0" mnemonicParsing="false" onAction="#NovaOficina" prefHeight="27.0" prefWidth="82.0" text="Novo" />
+      <Button fx:id="ButtonAlterar" layoutX="227.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Alterar" />
+      <Button fx:id="ButtonLimparCampos" layoutX="594.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Limpar" />
    </children>
 </AnchorPane>

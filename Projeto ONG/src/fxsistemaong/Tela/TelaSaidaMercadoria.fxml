@@ -35,7 +35,7 @@
       <Label layoutX="367.0" layoutY="51.0" text="CPF:" />
       <TextField fx:id="TxtFieldCodigoBeneficiario" layoutX="120.0" layoutY="46.0" />
       <TextField fx:id="TxtFieldCPFBeneficiario" layoutX="402.0" layoutY="46.0" />
-      <Button fx:id="BtnBuscarCodigo" layoutX="300.0" layoutY="46.0" mnemonicParsing="false" text="Buscar" />
+      <Button fx:id="BtnBuscarCodigo" layoutX="300.0" layoutY="46.0" mnemonicParsing="false" onAction="#BuscarBeneficiarioCod" text="Buscar" />
       <Button fx:id="BtnBuscarCPF" layoutX="586.0" layoutY="46.0" mnemonicParsing="false" text="Buscar" />
       <Label layoutX="63.0" layoutY="102.0" text="Nome:" />
       <Label layoutX="552.0" layoutY="102.0" text="Idade:" />
