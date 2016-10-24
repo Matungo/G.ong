@@ -196,7 +196,7 @@ public class TelaSaidaMercadoriaController implements Initializable {
         //metodo para buscar o beneficiario que recebera a doação
         public void BuscarBeneficiarioCod(ActionEvent event){
             SaidaProduto saida= new SaidaProduto();
-           
+            
             
             
         }
