@@ -1,0 +1,3 @@
+rename table usuario to BENEFICIARIOS;
+alter table BENEFICIARIOS change ID_USUARIO ID_BENEFICIARIO integer(11) auto_increment;
+alter table BENEFICIARIOS MODIFY RENDA_FAMILIAR float;
