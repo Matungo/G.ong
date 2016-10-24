@@ -21,7 +21,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private MenuItem menuItemFuncionarios;
     @FXML
-    private MenuItem menuItemUsuarios;
+    private MenuItem menuItemBeneficiarios;
     @FXML
     private MenuItem menuItemDependentes;
     @FXML
@@ -69,11 +69,11 @@ public class TelaPrincipalController implements Initializable {
         menuRelatorios.setDisable(true);   
     }
     
-    // Metodo que chama a tela de cadastro de usuarios para a tela principal
-    public void handleMenuItemUsuarios() throws IOException{
+    // Metodo que chama a tela de cadastro de beneficiarios para a tela principal
+    public void handleMenuItemBeneficiarios() throws IOException{
         //Procedimento para carregar a tela de cadastro
         try{
-         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaCadastroUsuario.fxml"));
+         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaCadastroBeneficiario.fxml"));
          anchorPane.getChildren().setAll(a);
         }
         catch(IllegalArgumentException le){
