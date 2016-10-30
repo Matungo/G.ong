@@ -862,5 +862,4 @@ public class TelaCadastroDependentesController implements Initializable {
         alert.setContentText("Pesquisado com sucesso");
         alert.showAndWait();
     }
-
 }

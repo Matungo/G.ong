@@ -199,5 +199,9 @@ public class Funcionario {
         this.disp_sab = disp_sab;
     }
 
+    public void getCod(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

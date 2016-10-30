@@ -8,11 +8,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaSaidaMercadoriaController">
    <children>
-      <TableView layoutX="46.0" layoutY="177.0" prefHeight="189.0" prefWidth="916.0">
+      <TableView fx:id="TvProdutoEstoque" layoutX="46.0" layoutY="177.0" prefHeight="189.0" prefWidth="916.0">
         <columns>
           <TableColumn fx:id="TcCodigo" prefWidth="104.0" text="Codigo" />
           <TableColumn fx:id="TcNomeProduto" minWidth="0.0" prefWidth="280.0" text="Nome do Produto" />
-            <TableColumn fx:id="TcTipoProduto" prefWidth="126.0" text="Tipo do Produto" />
+            <TableColumn fx:id="TcTipoEntrada" prefWidth="126.0" text="Tipo do Entrada" />
             <TableColumn fx:id="TcCategoria" prefWidth="138.0" text="Categoria" />
             <TableColumn fx:id="TcQuantidade" minWidth="0.0" prefWidth="95.0" text="Quantidade" />
             <TableColumn fx:id="TcDataEntrada" prefWidth="172.0" text="Data de Entrada" />
@@ -30,7 +30,7 @@
       <Separator layoutX="162.0" layoutY="531.0" prefHeight="2.0" prefWidth="802.0" />
       <Label layoutX="402.0" layoutY="563.0" text="Valor:" />
       <Separator layoutX="164.0" layoutY="152.0" prefHeight="3.0" prefWidth="832.0" />
-      <Label layoutX="29.0" layoutY="24.0" text="Dados do Beneficiário:" />
+      <Label layoutX="29.0" layoutY="24.0" text="Dados do Beneficiário" />
       <Label layoutX="63.0" layoutY="51.0" text="Código:" />
       <Label layoutX="367.0" layoutY="51.0" text="CPF:" />
       <TextField fx:id="TxtFieldCodigoBeneficiario" layoutX="120.0" layoutY="46.0" />
@@ -46,10 +46,9 @@
       <TextField fx:id="TxtFieldValorEntrada" layoutX="673.0" layoutY="470.0" prefHeight="27.0" prefWidth="289.0" />
       <Label layoutX="63.0" layoutY="563.0" text="Data de Saída:" />
       <DatePicker fx:id="DateDataSaida" layoutX="164.0" layoutY="558.0" />
-      <Label layoutX="642.0" layoutY="563.0" text="Reponsável venda:" />
       <TextField fx:id="TxtFieldValorSaida" layoutX="450.0" layoutY="558.0" />
-      <TextField fx:id="TxtFieldResponsavelVenda" layoutX="770.0" layoutY="558.0" prefHeight="27.0" prefWidth="186.0" />
-      <Button fx:id="BtnRegistrarVenda" layoutX="37.0" layoutY="618.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="167.0" text="Registrar" />
-      <Button fx:id="BtnLimparCampos" layoutX="247.0" layoutY="618.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="167.0" text="Limpar" />
+      <Button fx:id="BtnRegistrarVenda" layoutX="37.0" layoutY="618.0" mnemonicParsing="false" onAction="#IncluirSaidaMercadoria" prefHeight="64.0" prefWidth="167.0" text="Registrar" />
+      <Button fx:id="BtnLimparCampos" layoutX="247.0" layoutY="618.0" mnemonicParsing="false" onAction="#LimparCampos" prefHeight="64.0" prefWidth="167.0" text="Limpar" />
+      <Separator layoutX="164.0" layoutY="31.0" prefHeight="3.0" prefWidth="802.0" />
    </children>
 </AnchorPane>

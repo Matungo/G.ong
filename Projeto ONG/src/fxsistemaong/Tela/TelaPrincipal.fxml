@@ -13,7 +13,7 @@
           <Menu fx:id="menuCadastros" mnemonicParsing="false" text="Cadastros">
             <items>
               <MenuItem fx:id="menuItemFuncionarios" mnemonicParsing="false" onAction="#handleMenuItemFuncionarios" text="Funcionários" />
-                  <MenuItem fx:id="menuItemUsuarios" mnemonicParsing="false" onAction="#handleMenuItemUsuarios" text="Usuários" />
+                  <MenuItem fx:id="menuItemBeneficiarios" mnemonicParsing="false" onAction="#handleMenuItemBeneficiarios" text="Beneficiarios" />
                   <MenuItem fx:id="menuItemDependentes" mnemonicParsing="false" onAction="#handleMenuItemDependentes" text="Dependentes" />
             </items>
           </Menu>
