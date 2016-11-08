@@ -14,8 +14,8 @@ public class FXSistemaOng extends Application {
     //Abre a tela de login como a primeira tela
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaPrincipal.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaLogin.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaLogin.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
