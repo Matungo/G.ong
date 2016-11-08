@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaPrincipalController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1024.0" styleClass="AnchorPane" stylesheets="@../css/ProjetoShalom.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaPrincipalController">
    <children>
       <MenuBar fx:id="MenuLogout">
         <menus>
@@ -45,6 +48,16 @@
             <Menu fx:id="menuLogout" mnemonicParsing="false" text="Logoff" />
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" prefHeight="711.0" prefWidth="1024.0" />
+      <AnchorPane fx:id="anchorPane" prefHeight="711.0" prefWidth="1024.0" styleClass="AnchorPane" stylesheets="@../css/ProjetoShalom.css">
+         <effect>
+            <Glow />
+         </effect>
+         <children>
+            <ImageView fx:id="ImagemFundo" blendMode="SOFT_LIGHT" fitHeight="711.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/grande.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </VBox>

@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fxsistemaong.Controle;
 
 import fxsistemaong.DAO.Banco;
 import fxsistemaong.DAO.ProdutoDAO;
+import fxsistemaong.Objeto.Beneficiario;
 import fxsistemaong.Objeto.EntradaProduto;
+import fxsistemaong.Objeto.Produto;
 import fxsistemaong.Objeto.SaidaProduto;
 import java.net.URL;
 import java.sql.Connection;
@@ -35,7 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * FXML Controller class
  *
- * @author Macbook
+ * @author Thiago Lopes
  */
 public class TelaSaidaMercadoriaController implements Initializable {
 
@@ -49,13 +46,17 @@ public class TelaSaidaMercadoriaController implements Initializable {
     @FXML
     private TextField TxtFieldNomeBeneficiario;
     @FXML
-    private TextField TxtFieldIdade;
+    private TextField TxtFieldDataNasc;
     @FXML
     private TextField TxtFieldNomeProduto;
     @FXML
     private TextField TxtFieldTipoProduto;
     @FXML
     private TextField TxtFieldQuantidadeProduto;
+    @FXML
+    private TextField TxtFieldQtdSaida;
+    @FXML
+    private TextField TxtFieldCodEntrada;
     @FXML
     private TextField TxtFieldDataEntrada;
     @FXML
@@ -89,7 +90,9 @@ public class TelaSaidaMercadoriaController implements Initializable {
     private Button BtnRegistrarVenda;
     @FXML
     private Button BtnLimparCampos;
-    
+    private int totalproduto;
+    private int qtdentrada;
+    private int qtdsaida;
     //Conceito de criar uma lista para depois listar dentro da tabela de produtos
     private List<EntradaProduto> ListaAddProdutos;
     private ObservableList<EntradaProduto> observableListAddProdutos;
@@ -112,21 +115,42 @@ public class TelaSaidaMercadoriaController implements Initializable {
         
             TvProdutoEstoque.getSelectionModel().selectedItemProperty().addListener(
                 (observable,oldValue,newValue) -> selecionarItemTableViewProduto((EntradaProduto) newValue));
+        
+        TxtFieldNomeBeneficiario.setDisable(true);
+        TxtFieldCodEntrada.setDisable(true);
+        TxtFieldDataNasc.setDisable(true);
+        TxtFieldNomeProduto.setDisable(true);
+        TxtFieldTipoProduto.setDisable(true);
+        TxtFieldQuantidadeProduto.setDisable(true);
+        TxtFieldQtdSaida.setDisable(true);
+        TxtFieldDataEntrada.setDisable(true);
+        TxtFieldValorEntrada.setDisable(true);
+        TxtFieldValorSaida.setDisable(true);
+        DateDataSaida.getEditor().setDisable(true);
+        BtnRegistrarVenda.setDisable(true);
+        BtnLimparCampos.setDisable(true);
         }
      
         public void LimparCampos (){
             TxtFieldCodigoBeneficiario.clear();
             TxtFieldCPFBeneficiario.clear();
             TxtFieldNomeBeneficiario.clear();
-            TxtFieldIdade.clear();
+            TxtFieldDataNasc.clear();
             TxtFieldNomeProduto.clear();
             TxtFieldTipoProduto.clear();
             TxtFieldQuantidadeProduto.clear();
+            TxtFieldQtdSaida.clear();
             TxtFieldDataEntrada.clear();
             TxtFieldValorEntrada.clear();
             TxtFieldValorSaida.clear();
             DateDataSaida.getEditor().clear();
-        }//tvvyvy
+            //comandos para desabilitar campos e botoes novamente
+            TxtFieldQtdSaida.setDisable(true);
+            TxtFieldValorSaida.setDisable(true);
+            DateDataSaida.getEditor().setDisable(true);
+            BtnRegistrarVenda.setDisable(true);
+            BtnLimparCampos.setDisable(true);
+        }
     
         //função que serve para carregar as variaveis dentro da tableview
         public void selecionarItemTableViewProduto(EntradaProduto entradaProduto){
@@ -134,6 +158,7 @@ public class TelaSaidaMercadoriaController implements Initializable {
             DateFormat dataBR = DateFormat.getDateInstance(DateFormat.MEDIUM);
         
             if (entradaProduto != null){
+                TxtFieldCodEntrada.setText(Integer.toString(entradaProduto.getCodigoEntrada()));
                 TxtFieldNomeProduto.setText(entradaProduto.getNome());
                 TxtFieldQuantidadeProduto.setText(Integer.toString(entradaProduto.getQuantidade()));
                 TxtFieldTipoProduto.setText(entradaProduto.getTipoEntrada());
@@ -148,10 +173,9 @@ public class TelaSaidaMercadoriaController implements Initializable {
             TcCodigo.setCellValueFactory(new PropertyValueFactory<EntradaProduto,Integer>("CodigoEntrada"));
             TcNomeProduto.setCellValueFactory(new PropertyValueFactory<EntradaProduto,String>("nome"));
             TcCategoria.setCellValueFactory(new PropertyValueFactory<EntradaProduto,String>("Categoria"));
-            TcQuantidade.setCellValueFactory(new PropertyValueFactory<EntradaProduto,Integer>("Quantidade"));
+            TcQuantidade.setCellValueFactory(new PropertyValueFactory<EntradaProduto,Integer>("QuantidadeEntrada"));
             TcDataEntrada.setCellValueFactory(new PropertyValueFactory<EntradaProduto, Date>("DataEntrada"));
             TcTipoEntrada.setCellValueFactory(new PropertyValueFactory<EntradaProduto, String>("TipoEntrada"));
-            //TcValorEntrada.setCellValueFactory(new PropertyValueFactory<>("ValorEntrada"));
         
             ListaAddProdutos = dao.Listar();
         
@@ -162,18 +186,15 @@ public class TelaSaidaMercadoriaController implements Initializable {
     
     
         public void IncluirSaidaMercadoria (ActionEvent event){
-            
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Sistema G.onG - projeto Shalom  Helping");
-            alert.setContentText("Luciano falta os dados dos beneficiarios!!!!");
-            alert.showAndWait();
-            
+        
+            Produto produto = new Produto();
             SaidaProduto saida = new SaidaProduto();
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            
             try{
-                saida.setNome(TxtFieldNomeProduto.getText());
-                saida.setCategoria(TxtFieldTipoProduto.getText());
-                saida.setQuantidade(Integer.parseInt(TxtFieldQuantidadeProduto.getText()));
+                produto.setNome(TxtFieldNomeProduto.getText());
+                produto.setCategoria(TxtFieldTipoProduto.getText());
+                saida.setQuantidade(Integer.parseInt(TxtFieldQtdSaida.getText()));
                 saida.setDataSaida(formato.parse(DateDataSaida.getEditor().getText()));
                 saida.setValorSaida(Float.valueOf(TxtFieldValorSaida.getText()));   
             }catch(Exception e){
@@ -181,22 +202,87 @@ public class TelaSaidaMercadoriaController implements Initializable {
                 }
         
                 ProdutoDAO dao = new ProdutoDAO();
-               /* if (dao.AdicionarSaidaProduto(saida)){
+               if (dao.AdicionarSaidaProduto(produto, saida)){
+                   qtdentrada = Integer.parseInt(TxtFieldQuantidadeProduto.getText());
+                   qtdsaida = Integer.parseInt(TxtFieldQtdSaida.getText());                   
+                   totalproduto = qtdentrada - qtdsaida;
+                   int cod = Integer.parseInt(TxtFieldCodEntrada.getText());
+                   dao.AtualizaQuantidadeEntrada(totalproduto, cod);
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
                     alert.setContentText("Salvo com Sucesso!!!");
                     alert.showAndWait();
                     LimparCampos();
-                }*/
+                }
             
                 AtualizarTableView();
             
             }
+       
         
         //metodo para buscar o beneficiario que recebera a doação
-        public void BuscarBeneficiarioCod(ActionEvent event){
-            SaidaProduto saida= new SaidaProduto();
+        public void BuscarBeneficiarioCPF(ActionEvent evento){
+            Beneficiario bene = new Beneficiario();
+            ProdutoDAO dao = new ProdutoDAO();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        bene.setCpf(TxtFieldCPFBeneficiario.getText());
+        try{
+            bene = dao.PesquisarBeneficiario(bene);
             
+        TxtFieldQtdSaida.setDisable(false);
+        TxtFieldValorSaida.setDisable(false);
+        DateDataSaida.getEditor().setDisable(false);
+        BtnRegistrarVenda.setDisable(false);
+        BtnLimparCampos.setDisable(false);
+        
+        }catch(RuntimeException E){
+            System.out.println(E.getMessage());
+        }
+        
+        TxtFieldCodigoBeneficiario.setText(Integer.toString(bene.getCodigo()));
+        TxtFieldCPFBeneficiario.setText(bene.getCpf());
+        TxtFieldNomeBeneficiario.setText(bene.getNome());
+        TxtFieldDataNasc.setText(formato.format(bene.getDataNascimento()));
+        
+        //Mostrar se houve exito na busca do produto
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+        alert.setContentText("Pesquisado com Sucesso");
+        alert.showAndWait();
+            
+            
+        }
+        
+        //metodo para buscar o beneficiario que recebera a doação ou comprara algo
+        public void BuscarBeneficiarioCOD(ActionEvent evento){
+            Beneficiario bene = new Beneficiario();
+            ProdutoDAO dao = new ProdutoDAO();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        bene.setCpf(TxtFieldCodigoBeneficiario.getText());
+        try{
+            bene = dao.PesquisarBeneficiarioCOD(bene);
+            
+        TxtFieldQtdSaida.setDisable(false);
+        TxtFieldValorSaida.setDisable(false);
+        DateDataSaida.getEditor().setDisable(false);
+        BtnRegistrarVenda.setDisable(false);
+        BtnLimparCampos.setDisable(false);
+        }catch(RuntimeException E){
+            System.out.println(E.getMessage());
+        }
+        
+        TxtFieldCodigoBeneficiario.setText(Integer.toString(bene.getCodigo()));
+        TxtFieldCPFBeneficiario.setText(bene.getCpf());
+        TxtFieldNomeBeneficiario.setText(bene.getNome());
+        TxtFieldDataNasc.setText(formato.format(bene.getDataNascimento()));
+        
+        //Mostrar se houve exito na busca do produto
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+        alert.setContentText("Pesquisado com Sucesso");
+        alert.showAndWait();
             
             
         }

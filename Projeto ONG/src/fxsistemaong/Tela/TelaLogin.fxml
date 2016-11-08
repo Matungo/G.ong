@@ -9,15 +9,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaLoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/ProjetoShalom.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaLoginController">
    <children>
       <Group AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="55.0">
          <children>
             <Label layoutX="151.0" layoutY="183.0" text="Usuário:" />
             <Button fx:id="BtnSair" layoutX="382.0" layoutY="287.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="120.0" text="SAIR" />
-            <ImageView fx:id="ImageNome" fitHeight="143.0" fitWidth="300.0" layoutX="232.0" layoutY="33.0" opacity="0.96" pickOnBounds="true">
+            <ImageView fx:id="ImageNome" fitHeight="94.0" fitWidth="300.0" layoutX="232.0" layoutY="57.0" opacity="0.96" pickOnBounds="true">
                <image>
-                  <Image url="@../../../../../../NetBeansProjects/FXSistemaOng/src/fxsistemaong/imagens/projetoshalom.png" />
+                  <Image url="@../Imagens/projetoshalom_logo_200x100.png" />
                </image>
                <viewport>
                   <Rectangle2D />
@@ -27,7 +27,7 @@
             <Button fx:id="BtnNovo" layoutX="231.0" layoutY="287.0" mnemonicParsing="false" onAction="#HandleCadastrarLogin" prefHeight="57.0" prefWidth="120.0" text="NOVO" />
             <ImageView fx:id="ImageLogo" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../../../../NetBeansProjects/FXSistemaOng/src/fxsistemaong/imagens/favico.png" />
+                  <Image url="@../Imagens/pequeno.png" />
                </image>
             </ImageView>
             <Label layoutX="151.0" layoutY="234.0" text="Senha:" />

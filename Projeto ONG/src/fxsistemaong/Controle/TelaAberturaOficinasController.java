@@ -6,17 +6,13 @@
 package fxsistemaong.Controle;
 
 import fxsistemaong.DAO.OficinasDAO;
-import fxsistemaong.DAO.ProdutoDAO;
 import fxsistemaong.Objeto.Funcionario;
 import fxsistemaong.Objeto.Oficina;
-import fxsistemaong.Objeto.Produto;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,11 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import static javafx.scene.input.KeyCode.E;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
-import static javax.print.attribute.standard.MediaSize.Engineering.E;
-import static javax.print.attribute.standard.MediaSizeName.E;
 
 /**
  * FXML Controller class

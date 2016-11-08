@@ -20,7 +20,7 @@
       <Separator layoutX="136.0" layoutY="208.0" prefHeight="3.0" prefWidth="831.0" />
       <Label layoutX="67.0" layoutY="238.0" text="Código:" />
       <Label layoutX="384.0" layoutY="238.0" text="CPF:" />
-      <TextField fx:id="TxtFieldCodigoAluno" layoutX="127.0" layoutY="233.0" prefHeight="27.0" prefWidth="246.0" />
+      <TextField fx:id="TxtFieldCodigoAluno" layoutX="127.0" layoutY="233.0" prefHeight="27.0" prefWidth="58.0" />
       <TextField fx:id="TxtFieldCPFAluno" layoutX="417.0" layoutY="233.0" prefHeight="27.0" prefWidth="233.0" />
       <Button fx:id="BtnBuscarDadosAluno" layoutX="675.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="142.0" text="Buscar" />
       <Label layoutX="67.0" layoutY="289.0" text="Nome:" />
@@ -40,5 +40,7 @@
             <TableColumn fx:id="TableColumnTelefoneAluno" prefWidth="206.0" text="Telefone" />
         </columns>
       </TableView>
+      <Button fx:id="ButtonLimparCampos" layoutX="498.0" layoutY="335.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" text="Limpar" />
+      <Button fx:id="ButtonBuscar" layoutX="214.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0" text="Buscar" />
    </children>
 </AnchorPane>

@@ -10,41 +10,36 @@
 
 <AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaCadastroLivrosController">
    <children>
-      <Label layoutX="60.0" layoutY="174.0" text="ISBN:" />
-      <Label layoutX="312.0" layoutY="174.0" text="Título:" />
-      <Label layoutX="60.0" layoutY="212.0" text="Sub-Título:" />
-      <TextField fx:id="TxtISBNLivro" layoutX="136.0" layoutY="169.0" />
-      <TextField fx:id="TxtTituloLivro" layoutX="359.0" layoutY="169.0" prefHeight="27.0" prefWidth="392.0" />
-      <TextField fx:id="TxtSubtituloLivro" layoutX="136.0" layoutY="207.0" prefHeight="27.0" prefWidth="614.0" />
-      <Button fx:id="BtnConsultarLivro" layoutX="769.0" layoutY="164.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="74.0" prefWidth="114.0" text="CONSULTAR" />
-      <Label layoutX="76.0" layoutY="53.0" text="CADASTRO DE LIVROS" textAlignment="CENTER" textFill="#000000" underline="true" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="147.96875" AnchorPane.topAnchor="53.0">
-         <font>
-            <Font name="Arial" size="64.0" />
-         </font>
-      </Label>
-      <Label layoutX="60.0" layoutY="249.0" text="Autor 1:" />
-      <Label layoutX="60.0" layoutY="286.0" text="Autor 2:" />
-      <TextField fx:id="TxtPrimeiroAutor" layoutX="136.0" layoutY="244.0" prefHeight="27.0" prefWidth="744.0" />
-      <TextField fx:id="TxtSegundoAutor" layoutX="136.0" layoutY="281.0" prefHeight="27.0" prefWidth="744.0" />
-      <Label layoutX="60.0" layoutY="329.0" text="Data de Publicação:" />
-      <Label layoutX="417.0" layoutY="329.0" text="Editora:" />
-      <Label layoutX="662.0" layoutY="329.0" text="Qtd:" />
-      <Label layoutX="345.0" layoutY="374.0" text="Categoria:" />
-      <TextField fx:id="TxtEditoraLivro" layoutX="472.0" layoutY="324.0" prefHeight="27.0" prefWidth="179.0" />
-      <TextField fx:id="TxtQtdeLivro" layoutX="690.0" layoutY="324.0" prefHeight="27.0" prefWidth="43.0" />
-      <ComboBox fx:id="ComboboxCategoriaLivro" layoutX="419.0" layoutY="369.0" prefHeight="27.0" prefWidth="187.0" />
-      <Label layoutX="750.0" layoutY="329.0" text="N˚ de Páginas:" />
-      <TextField fx:id="TxtPaginasLivro" layoutX="832.0" layoutY="324.0" prefHeight="27.0" prefWidth="46.0" />
-      <Label layoutX="60.0" layoutY="374.0" text="Formato:" />
-      <ComboBox fx:id="ComboboxFormatoLivro" layoutX="136.0" layoutY="369.0" prefHeight="27.0" prefWidth="167.0" />
-      <Label layoutX="60.0" layoutY="416.0" text="Resumo:" />
-      <Label layoutX="59.0" layoutY="493.0" text="Sumário:" />
-      <TextArea fx:id="TxtAreaResumoLivro" layoutX="134.0" layoutY="416.0" prefHeight="64.0" prefWidth="744.0" />
-      <TextArea fx:id="TxtareaSumarioLivro" layoutX="134.0" layoutY="493.0" prefHeight="64.0" prefWidth="744.0" />
-      <Button fx:id="BtnCadastrarLivro" layoutX="65.0" layoutY="612.0" mnemonicParsing="false" onAction="#cadastrarControle" prefHeight="57.0" prefWidth="161.0" text="Cadastrar" />
-      <Button fx:id="BtnAlterarLivro" layoutX="268.0" layoutY="612.0" mnemonicParsing="false" onAction="#alterarLivro" prefHeight="57.0" prefWidth="161.0" text="Alterar" />
-      <Button fx:id="BtnExcluirLivro" layoutX="465.0" layoutY="612.0" mnemonicParsing="false" onAction="#excluirControle" prefHeight="57.0" prefWidth="161.0" text="Excluir" />
-      <Button fx:id="BtnLimparCamposLivro" layoutX="657.0" layoutY="612.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="57.0" prefWidth="161.0" text="Limpar" />
-      <DatePicker fx:id="TxtDataPublicacaoLivro" layoutX="181.0" layoutY="325.0" />
+      <Label layoutX="60.0" layoutY="102.0" text="ISBN:" />
+      <Label layoutX="312.0" layoutY="102.0" text="Título:" />
+      <Label layoutX="60.0" layoutY="140.0" text="Sub-Título:" />
+      <TextField fx:id="TxtISBNLivro" layoutX="136.0" layoutY="97.0" />
+      <TextField fx:id="TxtTituloLivro" layoutX="359.0" layoutY="97.0" prefHeight="27.0" prefWidth="392.0" />
+      <TextField fx:id="TxtSubtituloLivro" layoutX="136.0" layoutY="135.0" prefHeight="27.0" prefWidth="614.0" />
+      <Button fx:id="BtnConsultarLivro" layoutX="769.0" layoutY="92.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="74.0" prefWidth="114.0" text="CONSULTAR" />
+      <Label layoutX="60.0" layoutY="177.0" text="Autor 1:" />
+      <Label layoutX="60.0" layoutY="214.0" text="Autor 2:" />
+      <TextField fx:id="TxtPrimeiroAutor" layoutX="136.0" layoutY="172.0" prefHeight="27.0" prefWidth="744.0" />
+      <TextField fx:id="TxtSegundoAutor" layoutX="136.0" layoutY="209.0" prefHeight="27.0" prefWidth="744.0" />
+      <Label layoutX="60.0" layoutY="257.0" text="Data de Publicação:" />
+      <Label layoutX="417.0" layoutY="257.0" text="Editora:" />
+      <Label layoutX="662.0" layoutY="257.0" text="Qtd:" />
+      <Label layoutX="345.0" layoutY="302.0" text="Categoria:" />
+      <TextField fx:id="TxtEditoraLivro" layoutX="472.0" layoutY="252.0" prefHeight="27.0" prefWidth="179.0" />
+      <TextField fx:id="TxtQtdeLivro" layoutX="690.0" layoutY="252.0" prefHeight="27.0" prefWidth="43.0" />
+      <ComboBox fx:id="ComboboxCategoriaLivro" layoutX="419.0" layoutY="297.0" prefHeight="27.0" prefWidth="187.0" />
+      <Label layoutX="750.0" layoutY="257.0" text="N˚ de Páginas:" />
+      <TextField fx:id="TxtPaginasLivro" layoutX="832.0" layoutY="252.0" prefHeight="27.0" prefWidth="46.0" />
+      <Label layoutX="60.0" layoutY="302.0" text="Formato:" />
+      <ComboBox fx:id="ComboboxFormatoLivro" layoutX="136.0" layoutY="297.0" prefHeight="27.0" prefWidth="167.0" />
+      <Label layoutX="60.0" layoutY="344.0" text="Resumo:" />
+      <Label layoutX="59.0" layoutY="421.0" text="Sumário:" />
+      <TextArea fx:id="TxtAreaResumoLivro" layoutX="134.0" layoutY="344.0" prefHeight="64.0" prefWidth="744.0" />
+      <TextArea fx:id="TxtareaSumarioLivro" layoutX="134.0" layoutY="421.0" prefHeight="64.0" prefWidth="744.0" />
+      <Button fx:id="BtnCadastrarLivro" layoutX="65.0" layoutY="540.0" mnemonicParsing="false" onAction="#cadastrarControle" prefHeight="57.0" prefWidth="161.0" text="Cadastrar" />
+      <Button fx:id="BtnAlterarLivro" layoutX="268.0" layoutY="540.0" mnemonicParsing="false" onAction="#alterarLivro" prefHeight="57.0" prefWidth="161.0" text="Alterar" />
+      <Button fx:id="BtnExcluirLivro" layoutX="465.0" layoutY="540.0" mnemonicParsing="false" onAction="#excluirControle" prefHeight="57.0" prefWidth="161.0" text="Excluir" />
+      <Button fx:id="BtnLimparCamposLivro" layoutX="657.0" layoutY="540.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="57.0" prefWidth="161.0" text="Limpar" />
+      <DatePicker fx:id="TxtDataPublicacaoLivro" layoutX="181.0" layoutY="253.0" />
    </children>
 </AnchorPane>
