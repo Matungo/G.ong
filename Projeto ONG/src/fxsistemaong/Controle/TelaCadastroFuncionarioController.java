@@ -15,6 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 
 public class TelaCadastroFuncionarioController implements Initializable {
             
@@ -70,11 +71,20 @@ public class TelaCadastroFuncionarioController implements Initializable {
     private CheckBox CheckboxSabadoManha;
     @FXML
     private CheckBox CheckboxSabadoTarde;
-
+    @FXML
+    private ComboBox ComboboxFuncao;
+    
     public TelaCadastroFuncionarioController() {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    //Preenchidmento da combobox com as informações sobre qual tipo de entrada
+        //ObservableList<String> listaFuncoes //combobox trabalha com lista por isso é necessario criar ela
+          //      = FXCollections.observableArrayList("Presidente", "Instrutor","Assistente Social","Chefe Oficinas");
+        //ComboboxFuncao.setItems(listaFuncoes);
+        
+    
+    
     }   
     @FXML
     public void BtnSalvarFuncionario(ActionEvent evento) throws SQLException

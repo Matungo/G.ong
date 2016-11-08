@@ -71,7 +71,7 @@
                         <Button fx:id="BtnConsultarCPFDependente" layoutX="823.0" layoutY="300.0" mnemonicParsing="false" onAction="#consultarCrianca" prefHeight="25.0" prefWidth="119.0" text="CONSULTAR" />
                         <TextField fx:id="TxtRGMaeDependente" layoutX="340.0" layoutY="103.0" prefHeight="27.0" prefWidth="187.0" />
                         <Separator layoutX="156.0" layoutY="48.0" prefHeight="3.0" prefWidth="806.0" />
-                        <TextArea fx:id="TxtComposicaoFamiliar" layoutX="142.0" layoutY="600.0" prefHeight="60.0" prefWidth="397.0" />
+                        <TextArea fx:id="TxtComposicaoFamiliar" layoutX="158.0" layoutY="600.0" prefHeight="60.0" prefWidth="381.0" />
                         <Label layoutX="22.0" layoutY="600.0" text="Composição Familiar:" />
                         <TextField fx:id="TxtNomeEscola" layoutX="192.0" layoutY="565.0" prefHeight="27.0" prefWidth="432.0" />
                         <TextField fx:id="TxtCPFMaeDependente" layoutX="583.0" layoutY="103.0" prefHeight="27.0" prefWidth="213.0" />
@@ -105,14 +105,14 @@
                         <DatePicker fx:id="TxtNascimentoDependente" layoutX="785.0" layoutY="258.0" />
                         <Label fx:id="TxtDataCadastroDependente" layoutX="509.0" prefHeight="25.0" prefWidth="148.0" />
                         <Label layoutX="543.0" layoutY="622.0" text="Esta na escola atualmente?" />
-                        <RadioButton fx:id="RadioSimEstuda" layoutX="701.0" layoutY="609.0" mnemonicParsing="false" text="Sim">
+                        <RadioButton fx:id="RadioSimEstuda" layoutX="712.0" layoutY="610.0" mnemonicParsing="false" text="Sim">
                            <toggleGroup>
                               <ToggleGroup fx:id="GrupoEscola" />
                            </toggleGroup>
                         </RadioButton>
                         <Label layoutX="776.0" layoutY="609.0" text="Serie" />
                         <Label layoutX="766.0" layoutY="636.0" text="Porque?" />
-                        <RadioButton fx:id="RadioNaoEstuda" layoutX="701.0" layoutY="636.0" mnemonicParsing="false" text="Não" toggleGroup="$GrupoEscola" />
+                        <RadioButton fx:id="RadioNaoEstuda" layoutX="712.0" layoutY="636.0" mnemonicParsing="false" text="Não" toggleGroup="$GrupoEscola" />
                         <TextField fx:id="TxtSerieDependente" layoutX="831.0" layoutY="605.0" prefHeight="25.0" prefWidth="167.0" />
                         <TextField fx:id="TxtPorqueDependente" layoutX="831.0" layoutY="641.0" prefHeight="25.0" prefWidth="167.0" />
                      </children>

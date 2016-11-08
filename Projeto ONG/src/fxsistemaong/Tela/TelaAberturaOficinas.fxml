@@ -11,26 +11,8 @@
       <Label layoutX="41.0" layoutY="152.0" text="Oficina:" />
       <ComboBox fx:id="ComboBoxOficina" layoutX="99.0" layoutY="147.0" prefHeight="27.0" prefWidth="304.0" />
       <Label layoutX="41.0" layoutY="213.0" text="Horário:" />
-      <CheckBox fx:id="CheckboxSextoHorario3" layoutX="519.0" layoutY="239.0" mnemonicParsing="false" text="12:00 - 13:00" />
-      <CheckBox fx:id="CheckboxTerceiroHorario2" layoutX="284.0" layoutY="299.0" mnemonicParsing="false" text="09:00 - 10:00" />
-      <CheckBox fx:id="CheckboxSegundoHorario" layoutX="284.0" layoutY="269.0" mnemonicParsing="false" text="08:00 - 09:00" />
-      <Label layoutX="749.0" layoutY="239.0" text="Sábado:" />
-      <CheckBox fx:id="CheckboxSabadoTarde" layoutX="804.0" layoutY="269.0" mnemonicParsing="false" text="Tarde" />
-      <CheckBox fx:id="CheckboxSabadoManha" layoutX="804.0" layoutY="239.0" mnemonicParsing="false" text="Manhã" />
-      <CheckBox fx:id="CheckboxDecimoHorario" layoutX="519.0" layoutY="359.0" mnemonicParsing="false" text="16:00 - 17:00" />
-      <CheckBox fx:id="CheckboxNonoHorario" layoutX="519.0" layoutY="329.0" mnemonicParsing="false" text="15:00 - 16:00" />
-      <CheckBox fx:id="CheckboxOitavoHorario" layoutX="519.0" layoutY="299.0" mnemonicParsing="false" text="14:00 - 15:00" />
-      <CheckBox fx:id="CheckboxSetimoHorario" layoutX="519.0" layoutY="269.0" mnemonicParsing="false" text="13:00 - 14:00" />
-      <CheckBox fx:id="CheckboxQuintoHorario" layoutX="284.0" layoutY="359.0" mnemonicParsing="false" text="11:00 - 12:00" />
-      <CheckBox fx:id="CheckboxQuartoHorario" layoutX="284.0" layoutY="329.0" mnemonicParsing="false" text="10:00 - 11:00" />
-      <CheckBox fx:id="CheckboxPrimeiroHorario" layoutX="284.0" layoutY="239.0" mnemonicParsing="false" text="07:30 - 08:00" />
-      <CheckBox fx:id="CheckboxSexta" layoutX="64.0" layoutY="359.0" mnemonicParsing="false" text="Sexta-Feira" />
-      <CheckBox fx:id="CheckboxQuinta" layoutX="64.0" layoutY="329.0" mnemonicParsing="false" text="Quinta-Feira" />
-      <CheckBox fx:id="CheckboxQuarta" layoutX="64.0" layoutY="299.0" mnemonicParsing="false" text="Quarta-Feira" />
-      <CheckBox fx:id="CheckboxTerca" layoutX="64.0" layoutY="269.0" mnemonicParsing="false" text="Terça-Feira" />
-      <CheckBox fx:id="CheckboxSegunda" layoutX="64.0" layoutY="239.0" mnemonicParsing="false" text="Segunda-Feira" />
-      <Label layoutX="45.0" layoutY="477.0" text="Cursos Abertos:" />
-      <TableView layoutX="63.0" layoutY="502.0" prefHeight="162.0" prefWidth="866.0">
+      <Label layoutX="41.0" layoutY="379.0" text="Cursos Abertos:" />
+      <TableView fx:id="TvOficinasAbertas" layoutX="59.0" layoutY="404.0" prefHeight="162.0" prefWidth="866.0">
         <columns>
           <TableColumn fx:id="TableColumnOficina" prefWidth="297.0" text="Oficina" />
           <TableColumn fx:id="TableColumnInstrutor" prefWidth="214.0" text="Instrutor" />
@@ -39,7 +21,19 @@
       </TableView>
       <Label layoutX="458.0" layoutY="152.0" text="Instrutor:" />
       <ComboBox fx:id="ComboBoxInstrutor" layoutX="527.0" layoutY="147.0" prefWidth="150.0" />
-      <Button fx:id="BtnAdicionarOficina" layoutX="45.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Adicionar" />
-      <Button fx:id="BtnLimparCampos" layoutX="322.0" layoutY="405.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="239.0" text="Limpar" />
+      <Button fx:id="ButtonAdicionarOficina" layoutX="41.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Adicionar" />
+      <Button fx:id="ButtonExcluir" layoutX="406.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Excluir" />
+      <Label layoutX="41.0" layoutY="82.0" text="Nome da Oficina:" />
+      <TextField fx:id="TxtFieldTipoOficina" layoutX="158.0" layoutY="77.0" prefHeight="27.0" prefWidth="372.0" />
+      <Button fx:id="ButtonSalvarOficina" layoutX="544.0" layoutY="77.0" mnemonicParsing="false" onAction="#SalvarNovaOficina" prefHeight="27.0" prefWidth="82.0" text="Salvar" />
+      <Button fx:id="ButtonNovoOficina" layoutX="640.0" layoutY="77.0" mnemonicParsing="false" onAction="#NovaOficina" prefHeight="27.0" prefWidth="82.0" text="Novo" />
+      <Button fx:id="ButtonAlterar" layoutX="223.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Alterar" />
+      <Button fx:id="ButtonLimparCampos" layoutX="590.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Limpar" />
+      <ComboBox fx:id="ComboboxDiaSemana" layoutX="169.0" layoutY="246.0" prefHeight="27.0" prefWidth="253.0" />
+      <Label layoutX="66.0" layoutY="251.0" text="Dia da Semana:" />
+      <Label layoutX="441.0" layoutY="251.0" text="Começa:" />
+      <ComboBox fx:id="ComboboxHorarioComeca" layoutX="498.0" layoutY="246.0" prefWidth="150.0" />
+      <Label layoutX="660.0" layoutY="251.0" text="Termina:" />
+      <ComboBox fx:id="ComboboxHorarioTermina" layoutX="722.0" layoutY="246.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

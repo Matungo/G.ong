@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -56,6 +57,8 @@ public class TelaPrincipalController implements Initializable {
     private MenuItem menuItemRelatorioDoacoes;
     @FXML
     private MenuItem menuItemRelatorioGastos;
+    @FXML
+    private ImageView ImagemFundo;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

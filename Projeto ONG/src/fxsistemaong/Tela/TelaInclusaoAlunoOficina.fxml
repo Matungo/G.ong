@@ -6,22 +6,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fxsistemaong.Controle.TelaInclusaoAlunoOficinaController">
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaInclusaoAlunoOficinaController">
    <children>
       <Label layoutX="35.0" layoutY="91.0" text="Dados da Oficina" />
       <Separator layoutX="141.0" layoutY="98.0" prefHeight="3.0" prefWidth="831.0" />
       <Label layoutX="68.0" layoutY="129.0" text="Oficina:" />
-      <ComboBox fx:id="ComboBoxOficina" layoutX="127.0" layoutY="124.0" prefHeight="27.0" prefWidth="233.0" />
-      <Label layoutX="384.0" layoutY="129.0" text="Dia de Semana:" />
-      <ComboBox fx:id="ComboBoxDiaSemana" layoutX="487.0" layoutY="124.0" prefWidth="150.0" />
+      <ComboBox fx:id="ComboboxOficina" layoutX="127.0" layoutY="124.0" prefHeight="27.0" prefWidth="233.0" />
+      <Label layoutX="384.0" layoutY="129.0" text="Instrutor:" />
+      <ComboBox fx:id="ComboboxInstrutor" layoutX="459.0" layoutY="124.0" prefHeight="27.0" prefWidth="189.0" />
       <Label layoutX="654.0" layoutY="129.0" text="Horario:" />
-      <ComboBox fx:id="ComboBoxHorario" layoutX="715.0" layoutY="124.0" prefHeight="27.0" prefWidth="189.0" />
+      <ComboBox fx:id="ComboboxHorario" layoutX="715.0" layoutY="124.0" prefHeight="27.0" prefWidth="189.0" />
       <Label layoutX="35.0" layoutY="201.0" text="Dados do Aluno" />
       <Separator layoutX="136.0" layoutY="208.0" prefHeight="3.0" prefWidth="831.0" />
       <Label layoutX="67.0" layoutY="238.0" text="Código:" />
       <Label layoutX="384.0" layoutY="238.0" text="CPF:" />
-      <TextField fx:id="TxtFieldCodigoAluno" layoutX="127.0" layoutY="233.0" prefHeight="27.0" prefWidth="246.0" />
+      <TextField fx:id="TxtFieldCodigoAluno" layoutX="127.0" layoutY="233.0" prefHeight="27.0" prefWidth="58.0" />
       <TextField fx:id="TxtFieldCPFAluno" layoutX="417.0" layoutY="233.0" prefHeight="27.0" prefWidth="233.0" />
       <Button fx:id="BtnBuscarDadosAluno" layoutX="675.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="142.0" text="Buscar" />
       <Label layoutX="67.0" layoutY="289.0" text="Nome:" />
@@ -41,5 +40,7 @@
             <TableColumn fx:id="TableColumnTelefoneAluno" prefWidth="206.0" text="Telefone" />
         </columns>
       </TableView>
+      <Button fx:id="ButtonLimparCampos" layoutX="498.0" layoutY="335.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" text="Limpar" />
+      <Button fx:id="ButtonBuscar" layoutX="214.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0" text="Buscar" />
    </children>
 </AnchorPane>

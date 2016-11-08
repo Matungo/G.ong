@@ -15,7 +15,7 @@ public class FXSistemaOng extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaPrincipal.fxml"));
-        
+        //Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaLogin.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

@@ -107,7 +107,13 @@ private TableColumn<EntradaProduto, String> TcValorEntrada;
         
         //Deixa o campo de Cod de produto desabilitado para modificação
         TxtFieldCodProduto.setDisable(true);
-        
+        TxtFieldValorUnitario.setDisable(true);
+        TxtFieldQuantidade.setDisable(true);
+        DateDataEntrada.setDisable(true);
+        CbTipoEntrada.setDisable(true);
+        BtnAdicionar.setDisable(true);
+        BtnModificar.setDisable(true);
+        BtnExcluir.setDisable(true);
         //Carrega a tabela com os dados referente ao banco entrada mercadoria
         IncluirTableView();
         
@@ -125,7 +131,15 @@ private TableColumn<EntradaProduto, String> TcValorEntrada;
         DateDataEntrada.getEditor().clear();
         CbTipoEntrada.setValue(null);
         CbCategoria.setValue(null);
-        System.out.println("Limpo");
+        
+        //desabilitação dos botões que foram habilitados
+        TxtFieldValorUnitario.setDisable(true);
+        TxtFieldQuantidade.setDisable(true);
+        DateDataEntrada.setDisable(true);
+        CbTipoEntrada.setDisable(true);
+        BtnAdicionar.setDisable(true);
+        BtnModificar.setDisable(true);
+        BtnExcluir.setDisable(true);
     }
     
     
@@ -137,6 +151,14 @@ private TableColumn<EntradaProduto, String> TcValorEntrada;
         try{
             ProdutoDAO dao = new ProdutoDAO();
             produto = dao.pesquisarProduto(produto);
+            //Habilitação dos botões após a busca do produto
+            TxtFieldValorUnitario.setDisable(false);
+            TxtFieldQuantidade.setDisable(false);
+            DateDataEntrada.setDisable(false);
+            CbTipoEntrada.setDisable(false);
+            BtnAdicionar.setDisable(false);
+            BtnModificar.setDisable(false);
+            BtnExcluir.setDisable(false);
         }catch(RuntimeException E){
             System.out.println(E.getMessage());
         }
@@ -238,6 +260,14 @@ private TableColumn<EntradaProduto, String> TcValorEntrada;
             TxtFieldValorUnitario.setText(Float.toString(entradaProduto.getValorEntrada()));
             DateDataEntrada.getEditor().setText(dataBR.format(entradaProduto.getDataEntrada()));
             
+                        //Habilitação dos botões após selecionar um produto na tableview
+            TxtFieldValorUnitario.setDisable(false);
+            TxtFieldQuantidade.setDisable(false);
+            DateDataEntrada.setDisable(false);
+            CbTipoEntrada.setDisable(false);
+            BtnAdicionar.setDisable(false);
+            BtnModificar.setDisable(false);
+            BtnExcluir.setDisable(false);
         }
             
         

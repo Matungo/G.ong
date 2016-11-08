@@ -1,0 +1,104 @@
+/*tela principal*/
+#AnchorPane{
+    -fx-background-color: linear-gradient(to bottom, #477998, #D3D8E8);
+}
+#anchorPane{
+    -fx-background-color: linear-gradient(to bottom, #477998, #D3D8E8);
+}
+.AnchorPane{
+    -fx-background-color:blue;
+}
+
+/*Labels / Input / Box / Button*/
+.text-input{
+    -fx-background-color:#d3d8e8;
+}
+
+/*Combo box*/
+.combo-box{
+    -fx-background-color:#d3d8e8;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: transparent, #477998, transparent, #477998;
+}
+.combo-box-base .arrow {
+    -fx-padding: 0.333333em 0.333333em 0.333333em 0.333333em; /* 4 4 4 4 */
+    -fx-shape: "M8.124,13.625l4.125-3.375v2.889l-4.125,3.86L4,13.139V10.25L8.124,13.625z";
+}
+
+
+/*Label*/
+.label{
+    -fx-font-family:"Helvetica", Arial, Serif;
+    -fx-font-size:14px;  
+    -fx-text-transform: uppercase;
+    -fx-border-radius:5px;
+}
+
+/*Check Box*/
+.check-box{
+    -fx-font-family:"Helvetica", Arial, Serif;
+    -fx-font-size:14px;
+}
+
+/*Radio Button*/
+.radio-button{
+    -fx-font-family:"Helvetica", Arial, Serif;
+    -fx-font-size:14px;
+}
+
+
+/*Button*/
+.button{
+    -fx-background-color: linear-gradient(to bottom, #D3D8E8, #477998);   
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-font-size: 14px;
+}
+.button:hover{
+   -fx-background-color: #D3D8E8; 
+   -fx-border: 0px;
+   -fx-border-color: #b1bcd8;
+   -fx-border-radius:5px;
+}
+#buttonLivros{
+    
+    -fx-background-image: url("livro.png");
+    -border-radius: 20px;
+}
+#buttonLivros:hover{
+    
+    -fx-background-image: url("livro.png");
+    -fx-border: 0;
+   -fx-border-color: #b1bcd8;
+   -fx-border-radius:5px;
+}
+.table-view {
+    -fx-background-color:#d3d8e8;
+}
+
+#TextArea{
+    -fx-background-color:#d3d8e8;
+}
+
+
+.menu-bar{
+   -fx-background-color: linear-gradient(to top, #477998, #D3D8E8);
+
+}
+
+.menu:hover{
+   -fx-background-color: #D3D8E8;
+
+}
+
+.menu-bar .label {
+    -fx-font-size: 14px;
+    -fx-font-family:"Helvetica", Arial, Serif;
+    -fx-text-fill: #000000;
+      
+
+}
+

@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Macbook
  */
 public class EntradaProduto {
-    private int CodigoEntrada, Quantidade;
+    private int CodigoEntrada, Quantidade, QuantidadeEntrada;
     private String nome;
     private String Categoria;
     private String TipoEntrada;
@@ -67,6 +67,15 @@ public class EntradaProduto {
         this.Quantidade = Quantidade;
     }
 
+    public int getQuantidadeEntrada() {
+        return QuantidadeEntrada;
+    }
+
+    public void setQuantidadeEntrada(int QuantidadeEntrada) {
+        this.QuantidadeEntrada = QuantidadeEntrada;
+    }
+
+    
     public float getValorEntrada() {
         return ValorEntrada;
     }
