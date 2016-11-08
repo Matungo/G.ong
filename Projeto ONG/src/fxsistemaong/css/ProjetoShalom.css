@@ -55,7 +55,7 @@
     -fx-text-align: center;
     -fx-text-decoration: none;
     -fx-display: inline-block;
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
 }
 .button:hover{
    -fx-background-color: #D3D8E8; 
@@ -78,6 +78,11 @@
 .table-view {
     -fx-background-color:#d3d8e8;
 }
+
+#TextArea{
+    -fx-background-color:#d3d8e8;
+}
+
 
 .menu-bar{
    -fx-background-color: linear-gradient(to top, #477998, #D3D8E8);
