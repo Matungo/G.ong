@@ -60,6 +60,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private ImageView ImagemFundo;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // comando para deixar os menus desabilitados
@@ -69,7 +70,7 @@ public class TelaPrincipalController implements Initializable {
         menuEstoque.setDisable(false);
         menuLogout.setDisable(true);
         menuConsulta.setDisable(false);
-        menuRelatorios.setDisable(true);   
+        menuRelatorios.setDisable(false);   
     }
     
     // Metodo que chama a tela de cadastro de beneficiarios para a tela principal
@@ -141,6 +142,12 @@ public class TelaPrincipalController implements Initializable {
     //metodo para chamar a tela de saida de mercadoria para a tela principal
     public void handleMenuSaidaMercadoria() throws IOException{
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaSaidaMercadoria.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    //metodo para chamar a tela de relatorio de doacoes
+    public void handleMenuRelatorio() throws IOException{
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaRelatorioDoacoes.fxml"));
         anchorPane.getChildren().setAll(a);
     }
 

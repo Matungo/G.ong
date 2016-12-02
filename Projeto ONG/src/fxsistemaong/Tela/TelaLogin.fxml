@@ -14,8 +14,8 @@
       <Group AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="55.0">
          <children>
             <Label layoutX="151.0" layoutY="183.0" text="Usuário:" />
-            <Button fx:id="BtnSair" layoutX="382.0" layoutY="287.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="120.0" text="SAIR" />
-            <ImageView fx:id="ImageNome" fitHeight="94.0" fitWidth="300.0" layoutX="232.0" layoutY="57.0" opacity="0.96" pickOnBounds="true">
+            <Button fx:id="BtnSair" layoutX="382.0" layoutY="287.0" mnemonicParsing="false" onAction="#HandlerSair" prefHeight="57.0" prefWidth="120.0" text="SAIR" />
+            <ImageView fx:id="ImageNome" fitHeight="121.0" fitWidth="341.0" layoutX="231.0" layoutY="51.0" opacity="0.96" pickOnBounds="true">
                <image>
                   <Image url="@../Imagens/projetoshalom_logo_200x100.png" />
                </image>

@@ -95,9 +95,9 @@ private TableColumn<EntradaProduto, String> TcValorEntrada;
     public void initialize(URL url, ResourceBundle rb) {
         
         //Preenchidmento da combobox com as informações sobre qual tipo de entrada
-        ObservableList<String> listaCores //combobox trabalha com lista por isso é necessario criar ela
+        ObservableList<String> listaTipo //combobox trabalha com lista por isso é necessario criar ela
                 = FXCollections.observableArrayList("Doação", "Compra");
-        CbTipoEntrada.setItems(listaCores);
+        CbTipoEntrada.setItems(listaTipo);
         
 
 //Preenchimento da combobox Categoria referente as categorias que possui de serviços

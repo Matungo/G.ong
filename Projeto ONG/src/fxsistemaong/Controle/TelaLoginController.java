@@ -1,8 +1,10 @@
 package fxsistemaong.Controle;
 
+import fxsistemaong.FXSistemaOng;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 
 
@@ -40,9 +43,22 @@ public class TelaLoginController implements Initializable {
      
     }
     
-    public void HandleCadastrarLogin() throws IOException{
-       //Procedimento para carregar a tela de cadastro de Login
-        FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaCadastroLogin.fxml"));
+    public void HandleCadastrarLogin(ActionEvent event) throws IOException{
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaPrincipal.fxml"));        
+        Scene scene = new Scene(root);
         
+        //forma de fechar um scene após colocar os dados e chamar a principal
+        //Stage stage2 = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaLogin.fxml"));
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("G.onG - Gerenciamento de Ong's");
+        //stage2.close();
+        stage.show();
+        
+    }
+    
+    public void HandlerSair (ActionEvent event){
+        System.exit(0);
     }
 }
