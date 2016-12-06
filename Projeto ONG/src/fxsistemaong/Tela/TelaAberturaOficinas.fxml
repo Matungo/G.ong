@@ -12,23 +12,24 @@
       <ComboBox fx:id="ComboBoxOficina" layoutX="99.0" layoutY="147.0" prefHeight="27.0" prefWidth="304.0" />
       <Label layoutX="41.0" layoutY="213.0" text="Horário:" />
       <Label layoutX="41.0" layoutY="379.0" text="Cursos Abertos:" />
-      <TableView fx:id="TvOficinasAbertas" layoutX="59.0" layoutY="404.0" prefHeight="162.0" prefWidth="866.0">
+      <TableView fx:id="TvOficinasAbertas" layoutX="59.0" layoutY="404.0" prefHeight="162.0" prefWidth="817.0">
         <columns>
-          <TableColumn fx:id="TableColumnOficina" prefWidth="297.0" text="Oficina" />
-          <TableColumn fx:id="TableColumnInstrutor" prefWidth="214.0" text="Instrutor" />
-            <TableColumn fx:id="TableColumnHorario" prefWidth="354.0" text="Horário" />
+          <TableColumn fx:id="TableColumnOficina" prefWidth="192.0" text="Oficina" />
+          <TableColumn fx:id="TableColumnInstrutor" prefWidth="260.0" text="Instrutor" />
+            <TableColumn fx:id="TableColumnHorario" prefWidth="145.0" text="Horário Começo" />
+            <TableColumn fx:id="TableColumnHorarioTermino" prefWidth="219.0" text="Horário Término" />
         </columns>
       </TableView>
       <Label layoutX="458.0" layoutY="152.0" text="Instrutor:" />
       <ComboBox fx:id="ComboBoxInstrutor" layoutX="527.0" layoutY="147.0" prefWidth="150.0" />
-      <Button fx:id="ButtonAdicionarOficina" layoutX="41.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Adicionar" />
-      <Button fx:id="ButtonExcluir" layoutX="406.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Excluir" />
+      <Button fx:id="ButtonAdicionarOficina" layoutX="41.0" layoutY="307.0" mnemonicParsing="false" onAction="#IncluirOficinaAberta" prefHeight="55.0" prefWidth="173.0" text="Adicionar" />
+      <Button fx:id="ButtonExcluir" layoutX="406.0" layoutY="307.0" mnemonicParsing="false" onAction="#ExcluirOficinasAbertas" prefHeight="55.0" prefWidth="173.0" text="Excluir" />
       <Label layoutX="41.0" layoutY="82.0" text="Nome da Oficina:" />
       <TextField fx:id="TxtFieldTipoOficina" layoutX="158.0" layoutY="77.0" prefHeight="27.0" prefWidth="372.0" />
       <Button fx:id="ButtonSalvarOficina" layoutX="544.0" layoutY="77.0" mnemonicParsing="false" onAction="#SalvarNovaOficina" prefHeight="27.0" prefWidth="82.0" text="Salvar" />
       <Button fx:id="ButtonNovoOficina" layoutX="640.0" layoutY="77.0" mnemonicParsing="false" onAction="#NovaOficina" prefHeight="27.0" prefWidth="82.0" text="Novo" />
-      <Button fx:id="ButtonAlterar" layoutX="223.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Alterar" />
-      <Button fx:id="ButtonLimparCampos" layoutX="590.0" layoutY="307.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="173.0" text="Limpar" />
+      <Button fx:id="ButtonAlterar" layoutX="223.0" layoutY="307.0" mnemonicParsing="false" onAction="#ModificarOficinaAberta" prefHeight="55.0" prefWidth="173.0" text="Alterar" />
+      <Button fx:id="ButtonLimparCampos" layoutX="590.0" layoutY="307.0" mnemonicParsing="false" onAction="#LimparCampos" prefHeight="55.0" prefWidth="173.0" text="Limpar" />
       <ComboBox fx:id="ComboboxDiaSemana" layoutX="169.0" layoutY="246.0" prefHeight="27.0" prefWidth="253.0" />
       <Label layoutX="66.0" layoutY="251.0" text="Dia da Semana:" />
       <Label layoutX="441.0" layoutY="251.0" text="Começa:" />
