@@ -7,10 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="711.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fxsistemaong.Controle.TelaRelatorioDoacoesController">
+<AnchorPane id="AnchorPane" prefHeight="711.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaRelatorioDoacoesController">
    <children>
-      <BarChart layoutX="56.0" layoutY="35.0" prefHeight="538.0" prefWidth="926.0" title="Quantidade de doações por Mês">
+      <BarChart fx:id="BarchartQtdDoacoes" layoutX="56.0" layoutY="35.0" prefHeight="538.0" prefWidth="926.0" title="Quantidade de doações por Mês">
         <xAxis>
           <CategoryAxis fx:id="MesesAno" side="BOTTOM" />
         </xAxis>
@@ -19,6 +18,6 @@
         </yAxis>
       </BarChart>
       <Button fx:id="BtnPDF" layoutX="73.0" layoutY="605.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="PDF" />
-      <Button fx:id="BtnPDF1" layoutX="212.0" layoutY="605.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="IMPRIMIR" />
+      <Button fx:id="BtnImprimir" layoutX="212.0" layoutY="605.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="116.0" text="IMPRIMIR" />
    </children>
 </AnchorPane>

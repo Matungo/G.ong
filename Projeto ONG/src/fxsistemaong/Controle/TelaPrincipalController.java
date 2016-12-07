@@ -1,16 +1,21 @@
 
 package fxsistemaong.Controle;
 
+import fxsistemaong.Objeto.Login;
+import fxsistemaong.Objeto.TelaPrincipal;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 
 public class TelaPrincipalController implements Initializable {
@@ -50,6 +55,8 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private Menu menuLogout;
     @FXML
+    private MenuItem MenuItemSair;
+    @FXML
     private Menu menuRelatorios;
     @FXML
     private MenuItem menuItemRelatorioBeneficiarios;
@@ -59,18 +66,39 @@ public class TelaPrincipalController implements Initializable {
     private MenuItem menuItemRelatorioGastos;
     @FXML
     private ImageView ImagemFundo;
-    
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // comando para deixar os menus desabilitados
-        menuCadastros.setDisable(false);
-        menuBiblioteca.setDisable(false);
-        menuOficinas.setDisable(false);
-        menuEstoque.setDisable(false);
-        menuLogout.setDisable(true);
-        menuConsulta.setDisable(false);
-        menuRelatorios.setDisable(false);   
+           /* menuCadastros.setDisable(true);
+            menuBiblioteca.setDisable(true);
+            menuOficinas.setDisable(true);
+            menuEstoque.setDisable(true);
+            menuLogout.setDisable(true);
+            menuConsulta.setDisable(true);
+            menuRelatorios.setDisable(true);*/
+        
+            Stage stage = new Stage();
+            Parent root;        
+
+            if("Diretor".equals(TelaPrincipal.getPermissao())){
+            menuCadastros.setDisable(false);
+            menuBiblioteca.setDisable(false);
+            menuOficinas.setDisable(false);
+            menuEstoque.setDisable(false);
+            menuLogout.setDisable(false);
+            menuConsulta.setDisable(false);
+            menuRelatorios.setDisable(false); 
+        } else{
+            // comando para deixar os menus desabilitados
+            menuCadastros.setDisable(true);
+            menuBiblioteca.setDisable(false);
+            menuOficinas.setDisable(false);
+            menuEstoque.setDisable(true);
+            menuLogout.setDisable(false);
+            menuConsulta.setDisable(false);
+            menuRelatorios.setDisable(true); 
+            }       
     }
     
     // Metodo que chama a tela de cadastro de beneficiarios para a tela principal
@@ -152,7 +180,16 @@ public class TelaPrincipalController implements Initializable {
     }
 
     public void handleMenuLogout() throws IOException{
-        
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaLogin.fxml"));        
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("G.onG - Gerenciamento de Ong's");
+            
+            //System.exit(0);
+            stage.show(); 
     }
 
 }

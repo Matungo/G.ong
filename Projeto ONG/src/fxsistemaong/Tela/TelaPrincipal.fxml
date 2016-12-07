@@ -45,7 +45,10 @@
                   <MenuItem fx:id="menuItemRelatorioDoacoes" mnemonicParsing="false" onAction="#handleMenuRelatorio" text="Doações" />
                   <MenuItem fx:id="menuItemRelatorioGastos" mnemonicParsing="false" text="Gastos" />
                </items></Menu>
-            <Menu fx:id="menuLogout" mnemonicParsing="false" text="Logoff" />
+            <Menu fx:id="menuLogout" mnemonicParsing="false" text="Logoff">
+               <items>
+                  <MenuItem fx:id="MenuItemSair" mnemonicParsing="false" onAction="#handleMenuLogout" text="SAIR" />
+               </items></Menu>
         </menus>
       </MenuBar>
       <AnchorPane fx:id="anchorPane" prefHeight="711.0" prefWidth="1024.0" styleClass="AnchorPane" stylesheets="@../css/ProjetoShalom.css">
