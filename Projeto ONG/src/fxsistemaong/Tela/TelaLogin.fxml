@@ -31,8 +31,8 @@
                </image>
             </ImageView>
             <Label layoutX="151.0" layoutY="234.0" text="Senha:" />
-            <TextField fx:id="TxtFieldSenha" layoutX="214.0" layoutY="229.0" prefHeight="27.0" prefWidth="217.0" />
             <Button fx:id="BtnLogar" layoutX="85.0" layoutY="287.0" mnemonicParsing="false" onAction="#HandlerValidarUsuario" prefHeight="57.0" prefWidth="120.0" text="LOGAR" />
+            <PasswordField fx:id="TxtFieldSenha" layoutX="214.0" layoutY="229.0" prefHeight="27.0" prefWidth="216.0" />
          </children>
       </Group>
    </children>

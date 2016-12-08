@@ -14,15 +14,15 @@ public class FXSistemaOng extends Application {
     //Abre a tela de login como a primeira tela
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaPrincipal.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaLogin.fxml"));
         Scene scene = new Scene(root);
         
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("G.onG - Gerenciamento de Ong's");
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("G.onG - Gerenciamento de Ong's");
+        primaryStage.show();
     }
     
     public static void main(String[] args) {

@@ -10,7 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
@@ -320,6 +324,38 @@ public class ProdutoDAO {
             alert.showAndWait();
         }
         return bene;
+    }
+    
+    
+    public Map<Integer, ArrayList> listarQuantidadeDoacoesMes (){
+        
+        //String sql= "select count(*) as quantidade from ENTRADA_PRODUTO where TIPO_ENTRADA='Doação'";
+        String sql = "select year(DATA_ENTRADA) as Ano, month(DATA_ENTRADA) as Mes, sum(QTD_ENTRADA) as Quantidade from ENTRADA_PRODUTO where TIPO_ENTRADA = 'Doação' group by Ano, Mes order by Ano, Mes";
+        Map<Integer, ArrayList> retorno = new HashMap();
+        
+        try {
+            conexao = banco.getConexao();
+            PreparedStatement std;
+            std = conexao.prepareStatement(sql);
+            ResultSet rs = std.executeQuery();
+            while (rs.next()) {
+                ArrayList linha = new ArrayList();                
+                if (!retorno.containsKey(rs.getInt("ano")))
+                {
+                    linha.add(rs.getInt("mes"));
+                    linha.add(rs.getInt("quantidade"));
+                    retorno.put(rs.getInt("ano"), linha);
+                }else{
+                    ArrayList linhaNova = retorno.get(rs.getInt("ano"));
+                    linhaNova.add(rs.getInt("mes"));
+                    linhaNova.add(rs.getInt("quantidade"));
+                }
+            }
+            return retorno;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
     }
 
 }

@@ -89,6 +89,8 @@ public class TelaPrincipalController implements Initializable {
             menuLogout.setDisable(false);
             menuConsulta.setDisable(false);
             menuRelatorios.setDisable(false); 
+            menuItemRelatorioBeneficiarios.setDisable(true);
+            menuItemRelatorioGastos.setDisable(true);
         } else{
             // comando para deixar os menus desabilitados
             menuCadastros.setDisable(true);
@@ -97,7 +99,9 @@ public class TelaPrincipalController implements Initializable {
             menuEstoque.setDisable(true);
             menuLogout.setDisable(false);
             menuConsulta.setDisable(false);
-            menuRelatorios.setDisable(true); 
+            menuRelatorios.setDisable(true);
+            menuItemRelatorioBeneficiarios.setDisable(true);
+            menuItemRelatorioGastos.setDisable(true);
             }       
     }
     
