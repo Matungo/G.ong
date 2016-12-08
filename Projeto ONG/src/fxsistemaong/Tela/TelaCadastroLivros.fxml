@@ -15,7 +15,7 @@
       <Label layoutX="60.0" layoutY="102.0" text="ISBN:" />
       <Label layoutX="312.0" layoutY="102.0" text="Título:" />
       <Label layoutX="60.0" layoutY="140.0" text="Sub-Título:" />
-      <TextField fx:id="TxtISBNLivro" layoutX="136.0" layoutY="97.0" />
+      <TextField fx:id="TxtISBNLivro" layoutX="136.0" layoutY="97.0" onKeyTyped="#isbnAtualizado" />
       <TextField fx:id="TxtTituloLivro" layoutX="359.0" layoutY="97.0" prefHeight="27.0" prefWidth="392.0" />
       <TextField fx:id="TxtSubtituloLivro" layoutX="136.0" layoutY="135.0" prefHeight="27.0" prefWidth="614.0" />
       <Button fx:id="BtnConsultarLivro" layoutX="769.0" layoutY="92.0" mnemonicParsing="false" onAction="#pesquisarLivro" prefHeight="74.0" prefWidth="114.0" text="BUSCAR" />

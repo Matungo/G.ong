@@ -95,16 +95,20 @@ public class TelaAluguelLivrosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {           
         
+        BtnConsultarUsuarioEmprestimo.setDisable(true);
+        BtnBuscarLivroEmprestimo.setDisable(true);
         btnDevolver.setDisable(true);
         
         tableViewEmprestimos.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selecionarItemTableViewEmprestimos(newValue));
-        
+                (observable, oldValue, newValue) -> selecionarItemTableViewEmprestimos(newValue));       
                      
     }   
     
     @FXML
     public void buscarBeneficiario(){
+        
+        tableViewEmprestimos.getItems().clear();
+        listEmprestimos = new ArrayList(); 
         
         Beneficiario beneficiario = new Beneficiario();
         beneficiario.setCodigo(Integer.parseInt(TxtCodigoUsuario.getText()));
@@ -114,45 +118,23 @@ public class TelaAluguelLivrosController implements Initializable {
         
         TxtNomeUsuario.setText(beneficiario.getNome());
         TxtCPFUsuario.setText(beneficiario.getCpf());
-        
-        //Emprestimo emprestimo = new Emprestimo();
-        
+                       
         ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
         
         emprestimos = buscarEmprestimo(beneficiario);
         int i = 0;
-        
-        //Emprestimo e1 = (Emprestimo) emprestimos.get(0);
-        
+                        
         if(emprestimos.size() != 0){
                       
             for(i = 0; i < emprestimos.size(); i++){
                 carregarTableViewEmprestimos(emprestimos.get(i));
-            }
-                        
-            /*Iterator<Emprestimo> it = emprestimos.iterator();
-                while (it.hasNext()) {
-                Emprestimo e = it.next();
-                carregarTableViewEmprestimos(e);
-                System.out.println(e.getTitulo());
-            }*/    
+            }  
                 
         }
         else{
             JOptionPane.showMessageDialog(null, "Nenhum empréstimo registrado");
-        }
+        }      
         
-        //emprestimo = buscarEmprestimo(beneficiario);
-        
-        /*
-       // emprestimo = buscarEmprestimo(beneficiario);
-        
-        if(emprestimo.getCodEmprestimo() > 0){
-        carregarTableViewEmprestimos(emprestimo);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Nenhum empréstimo registrado");
-        }*/
     }
     
     @FXML
@@ -172,7 +154,7 @@ public class TelaAluguelLivrosController implements Initializable {
         TxtQtdDisponivelLivroEmprestimo.setText(String.valueOf(livro.getQtd()));
         TxtFormatoLivroEmprestimo.setText(livro.getFormato());
         TxtDataPublicacaoLivroEmprestimo.getEditor().setText(dateFormat.format(livro.getPublicao()));
-        
+    
     }
     
     public void carregarTableViewEmprestimos(Emprestimo emprestimo){
@@ -236,26 +218,34 @@ public class TelaAluguelLivrosController implements Initializable {
         
         emprestimo.setIdBeneficiario(Integer.parseInt(TxtCodigoUsuario.getText()));
         emprestimo.setIsbn(Long.valueOf(TxtISBNLivroEmprestimo.getText()));
-        emprestimo.setTitulo(TxtNomeLivroEmprestimo.getText());
         
-        Calendar c1 = Calendar.getInstance(); //data retirada
-        Calendar c2 = Calendar.getInstance(); //data devolução
+        if(validarDisponibilidade(emprestimo)){ //verificar disponibilidade do livro
         
-        emprestimo.setDataRetirada(c1.getTime()); // pegar data atual do tipo Date
-        c2.setTime(emprestimo.getDataRetirada()); //dataRetirada é usada como base para calcular a dataDevolução
-        c2.add(Calendar.DAY_OF_YEAR, 7); //adiciona 7 dias à dataRetirada, gerando a dataDevolução
-        emprestimo.setDataDevolucao(c2.getTime());
-        
-        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
-        if(emprestimoDAO.registrarEmprestimo(emprestimo)){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
-            alert.setContentText("Empréstimo registrado com sucesso!");
-            alert.showAndWait();
-            
-            carregarTableViewEmprestimos(emprestimo);
+            emprestimo.setTitulo(TxtNomeLivroEmprestimo.getText());
+
+            Calendar c1 = Calendar.getInstance(); //data retirada
+            Calendar c2 = Calendar.getInstance(); //data devolução
+
+            emprestimo.setDataRetirada(c1.getTime()); // pegar data atual do tipo Date
+            c2.setTime(emprestimo.getDataRetirada()); //dataRetirada é usada como base para calcular a dataDevolução
+            c2.add(Calendar.DAY_OF_YEAR, 7); //adiciona 7 dias à dataRetirada, gerando a dataDevolução
+            emprestimo.setDataDevolucao(c2.getTime());
+
+            EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+            if(emprestimoDAO.registrarEmprestimo(emprestimo)){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+                alert.setContentText("Empréstimo registrado com sucesso!");
+                alert.showAndWait();
+
+                carregarTableViewEmprestimos(emprestimo);
+                debitarLivro(emprestimo);
+                buscarLivro();
+            }
         }
-        
+        else
+            JOptionPane.showMessageDialog(null, "Livro indisponível no momento");
+            
     }
     
     public ArrayList<Emprestimo> buscarEmprestimo(Beneficiario beneficiario){
@@ -301,10 +291,54 @@ public class TelaAluguelLivrosController implements Initializable {
                 alert.setContentText("Empréstimo finalizado");
                 alert.showAndWait();
             }
-            tableViewEmprestimos.getItems().remove(emprestimo);
+            tableViewEmprestimos.getItems().remove(emprestimo);   
+            observableListEmprestimos.remove(emprestimo);
+            listEmprestimos.remove(emprestimo);
+            
+            creditarLivro(emprestimo);
+            if(Long.parseLong(TxtISBNLivroEmprestimo.getText()) == emprestimo.getIsbn()){
+                buscarLivro();
+            }
+            
+        }
+        
+    }
+    
+    public boolean validarDisponibilidade(Emprestimo emprestimo){
+        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+        return emprestimoDAO.validarDisponibilidade(emprestimo);        
+    }
+    
+    public boolean debitarLivro(Emprestimo emprestimo){
+        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+        return emprestimoDAO.debitarLivro(emprestimo);
+    }
+    
+    public boolean creditarLivro(Emprestimo emprestimo){
+        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+        return emprestimoDAO.creditarLivro(emprestimo);
+    }
+    
+    @FXML
+    public void codigoAtualizado(){
+        if(TxtCodigoUsuario.getText().isEmpty()){
+            BtnConsultarUsuarioEmprestimo.setDisable(true);
+        }
+        else{
+            BtnConsultarUsuarioEmprestimo.setDisable(false);
         }
     }
     
+    @FXML
+    public void isbnAtualizado(){
+        if(TxtISBNLivroEmprestimo.getText().isEmpty()){
+            BtnBuscarLivroEmprestimo.setDisable(true);
+        }
+        else{
+            BtnBuscarLivroEmprestimo.setDisable(false);
+        }
+    }
+                
 }
     
 

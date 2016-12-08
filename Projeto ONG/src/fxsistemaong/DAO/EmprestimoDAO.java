@@ -196,4 +196,103 @@ public class EmprestimoDAO {
         }
     }
     
+    public boolean validarDisponibilidade(Emprestimo emprestimo){
+        
+        int booleana=0;
+        int qtd = 0;
+        
+        try{
+            conexao = banco.getConexao();
+            String sql = "select QTD from LIVRO where ISBN = ?";
+            PreparedStatement statement;
+            statement = conexao.prepareStatement(sql);
+            statement.setLong(1, emprestimo.getIsbn());
+            ResultSet resultSet = statement.executeQuery();
+            
+            if(resultSet.next()){
+                qtd = (resultSet.getInt("QTD"));
+                if(qtd > 0){
+                    booleana = 1;
+                }
+                else
+                    booleana = 0;                
+            }
+            else
+                booleana = 0;
+            
+        }catch(SQLException | RuntimeException sql){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText(sql.getMessage());
+            alert.showAndWait();
+        }
+            
+        if(booleana==1){
+            return true;}
+        else  
+            return false;
+    }
+    
+    public boolean debitarLivro(Emprestimo emprestimo){
+        
+        int alterado = 0;
+        
+        try{
+            conexao = banco.getConexao();
+            String sql = "update LIVRO set QTD=QTD-1 where ISBN=?";
+            
+            PreparedStatement statement;
+            statement = conexao.prepareStatement(sql);
+            
+            statement.setLong(1, emprestimo.getIsbn());
+                                    
+            alterado = statement.executeUpdate();
+            banco.fechar(conexao);
+            
+        }catch(SQLException | RuntimeException sql){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText(sql.getMessage());
+            alert.showAndWait();
+        }
+        
+        if (alterado == 1){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    
+    public boolean creditarLivro(Emprestimo emprestimo){
+        
+        int alterado = 0;
+        
+        try{
+            conexao = banco.getConexao();
+            String sql = "update LIVRO set QTD=QTD+1 where ISBN=?";
+            
+            PreparedStatement statement;
+            statement = conexao.prepareStatement(sql);
+            
+            statement.setLong(1, emprestimo.getIsbn());
+                                    
+            alterado = statement.executeUpdate();
+            banco.fechar(conexao);
+            
+        }catch(SQLException | RuntimeException sql){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+            alert.setContentText(sql.getMessage());
+            alert.showAndWait();
+        }
+        
+        if (alterado == 1){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    
 }
