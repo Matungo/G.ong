@@ -13,7 +13,7 @@
       <Separator layoutX="150.0" layoutY="88.0" prefHeight="0.0" prefWidth="851.0" />
       <Label layoutX="82.0" layoutY="124.0" text="Código:" />
       <Label layoutX="326.0" layoutY="124.0" text="CPF:" />
-      <TextField fx:id="TxtCodigoUsuario" layoutX="137.0" layoutY="119.0" />
+      <TextField fx:id="TxtCodigoUsuario" layoutX="137.0" layoutY="119.0" onKeyTyped="#codigoAtualizado" />
       <TextField fx:id="TxtCPFUsuario" editable="false" layoutX="362.0" layoutY="119.0" prefHeight="27.0" prefWidth="265.0" />
       <Button fx:id="BtnConsultarUsuarioEmprestimo" layoutX="661.0" layoutY="119.0" mnemonicParsing="false" onAction="#buscarBeneficiario" prefHeight="27.0" prefWidth="152.0" text="LOCALIZAR" />
       <Label layoutX="82.0" layoutY="168.0" text="Nome:" />
@@ -21,7 +21,7 @@
       <Label layoutX="84.0" layoutY="216.0" text="Livro" />
       <Separator layoutX="144.0" layoutY="223.0" prefHeight="3.0" prefWidth="858.0" />
       <Label layoutX="82.0" layoutY="256.0" text="ISBN:" />
-      <TextField fx:id="TxtISBNLivroEmprestimo" layoutX="125.0" layoutY="251.0" prefHeight="27.0" prefWidth="152.0" />
+      <TextField fx:id="TxtISBNLivroEmprestimo" layoutX="125.0" layoutY="251.0" onKeyTyped="#isbnAtualizado" prefHeight="27.0" prefWidth="152.0" />
       <Label layoutX="294.0" layoutY="256.0" text="Título do Livro:" />
       <TextField fx:id="TxtNomeLivroEmprestimo" editable="false" layoutX="397.0" layoutY="251.0" prefHeight="27.0" prefWidth="339.0" />
       <Button fx:id="BtnBuscarLivroEmprestimo" layoutX="743.0" layoutY="251.0" mnemonicParsing="false" onAction="#buscarLivro" text="BUSCAR" />
@@ -44,7 +44,7 @@
       </TableView>
       <Button fx:id="btnEmprestar" layoutX="82.0" layoutY="590.0" mnemonicParsing="false" onAction="#registrarEmprestimo" prefHeight="40.0" prefWidth="202.0" text="REGISTRAR EMPRÉSTIMO" />
       <Button fx:id="btnDevolver" layoutX="350.0" layoutY="590.0" mnemonicParsing="false" onAction="#finalizarEmprestimo" prefHeight="40.0" prefWidth="202.0" text="FINALIZAR EMPRÉSTIMO" />
-      <Button fx:id="btnLimpar" layoutX="618.0" layoutY="590.0" mnemonicParsing="false" onAction="#limparTela" prefHeight="40.0" prefWidth="202.0" text="ABORTAR OPERAÇÃO" />
+      <Button fx:id="btnLimpar" layoutX="618.0" layoutY="590.0" mnemonicParsing="false" onAction="#limparTela" prefHeight="40.0" prefWidth="202.0" text="LIMPAR" />
       <DatePicker fx:id="TxtDataPublicacaoLivroEmprestimo" editable="false" layoutX="212.0" layoutY="306.0" prefHeight="25.0" prefWidth="149.0" />
    </children>
 </AnchorPane>

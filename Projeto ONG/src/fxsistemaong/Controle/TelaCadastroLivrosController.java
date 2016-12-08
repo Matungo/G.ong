@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -65,11 +66,15 @@ public class TelaCadastroLivrosController implements Initializable {
     private Button BtnAlterarLivro;
     @FXML
     private Button BtnExcluirLivro;
+    @FXML
+    private Button BtnConsultarLivro;
   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Inicialização das comboboxs
+        
+        BtnConsultarLivro.setDisable(true);
         
         ObservableList<String> listaFormatos //combobox trabalha com lista por isso é necessario criar ela
                 = FXCollections.observableArrayList("Brochura", "Grampo", "Capa Dura", "Espiral");
@@ -107,32 +112,49 @@ public class TelaCadastroLivrosController implements Initializable {
     
     //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a gravação no banco
     public void cadastrarControle() throws ParseException{
-        Livro livroControle = new Livro();
-        
-        //formatador de datas para o formato brasileiro
-        String formato = "dd/MM/yyyy";
-        DateFormat dateFormat = new SimpleDateFormat(formato);
-        
-        livroControle.setIsbn(Long.parseLong(TxtISBNLivro.getText()));
-        livroControle.setTitulo(TxtTituloLivro.getText());
-        livroControle.setSubtitulo(TxtSubtituloLivro.getText());
-        livroControle.setAutor1(TxtPrimeiroAutor.getText());
-        livroControle.setAutor2(TxtSegundoAutor.getText());
-        livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getEditor().getText())); //conversão de String para Date
-        livroControle.setEditora(TxtEditoraLivro.getText());
-        livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
-        livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
-        livroControle.setResumo(TxtAreaResumoLivro.getText());
-        livroControle.setSumario(TxtareaSumarioLivro.getText());
-        livroControle.setFormato(String.valueOf(ComboboxFormatoLivro.getValue())); // pegar valor da combobox
-        livroControle.setCategoria(String.valueOf(ComboboxCategoriaLivro.getValue())); // pegar valor da combobox
-        
-        LivroDAO livroDAO = new LivroDAO();
-        if(livroDAO.cadastrarDAO(livroControle)){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
-            alert.setContentText("Salvo com sucesso");
-            alert.showAndWait();
+                
+        if((!(TxtISBNLivro.getText().isEmpty()))
+           &&(!(TxtTituloLivro.getText().isEmpty()))      
+           &&(!(TxtSubtituloLivro.getText().isEmpty()))
+           &&(!(TxtPrimeiroAutor.getText().isEmpty()))
+           &&(!(TxtSegundoAutor.getText().isEmpty()))
+           &&(!(TxtDataPublicacaoLivro.getEditor().getText().isEmpty()))
+           &&(!(TxtEditoraLivro.getText().isEmpty()))
+           &&(!(TxtQtdeLivro.getText().isEmpty()))
+           &&(!(TxtPaginasLivro.getText().isEmpty()))
+           &&(!((TxtAreaResumoLivro.getText().isEmpty())))
+           &&(!(TxtareaSumarioLivro.getText().isEmpty()))
+               ){
+                Livro livroControle = new Livro();
+
+                //formatador de datas para o formato brasileiro
+                String formato = "dd/MM/yyyy";
+                DateFormat dateFormat = new SimpleDateFormat(formato);
+
+                livroControle.setIsbn(Long.parseLong(TxtISBNLivro.getText()));
+                livroControle.setTitulo(TxtTituloLivro.getText());
+                livroControle.setSubtitulo(TxtSubtituloLivro.getText());
+                livroControle.setAutor1(TxtPrimeiroAutor.getText());
+                livroControle.setAutor2(TxtSegundoAutor.getText());
+                livroControle.setPublicao(dateFormat.parse(TxtDataPublicacaoLivro.getEditor().getText())); //conversão de String para Date
+                livroControle.setEditora(TxtEditoraLivro.getText());
+                livroControle.setQtd(Integer.parseInt(TxtQtdeLivro.getText()));
+                livroControle.setNumPags(Integer.parseInt(TxtPaginasLivro.getText()));
+                livroControle.setResumo(TxtAreaResumoLivro.getText());
+                livroControle.setSumario(TxtareaSumarioLivro.getText());
+                livroControle.setFormato(String.valueOf(ComboboxFormatoLivro.getValue())); // pegar valor da combobox
+                livroControle.setCategoria(String.valueOf(ComboboxCategoriaLivro.getValue())); // pegar valor da combobox
+
+                LivroDAO livroDAO = new LivroDAO();
+                if(livroDAO.cadastrarDAO(livroControle)){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
+                    alert.setContentText("Salvo com sucesso");
+                    alert.showAndWait();
+                }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos");
         }
     }
     
@@ -163,6 +185,8 @@ public class TelaCadastroLivrosController implements Initializable {
         }catch(RuntimeException E){
             System.out.println(E.getMessage());
         }
+        
+                
             TxtISBNLivro.setText(String.valueOf(livro.getIsbn()));
             TxtTituloLivro.setText(livro.getTitulo());
             TxtSubtituloLivro.setText(livro.getSubtitulo());
@@ -179,6 +203,7 @@ public class TelaCadastroLivrosController implements Initializable {
             
             BtnAlterarLivro.setDisable(false);
             BtnExcluirLivro.setDisable(false);
+        
     }
     
     //método que pega as informações do formulário e as envia para a classe LivroDAO efetuar a atualização no banco
@@ -211,4 +236,15 @@ public class TelaCadastroLivrosController implements Initializable {
             alert.showAndWait();
         }
     }
+    
+    @FXML
+    public void isbnAtualizado(){
+        if(TxtISBNLivro.getText().isEmpty()){
+            BtnConsultarLivro.setDisable(true);
+        }
+        else{
+            BtnConsultarLivro.setDisable(false);
+        }
+    }
+    
 }
