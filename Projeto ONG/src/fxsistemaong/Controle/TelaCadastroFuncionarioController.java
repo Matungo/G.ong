@@ -80,7 +80,7 @@ public class TelaCadastroFuncionarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     //Preenchidmento da combobox com as informações sobre qual tipo de entrada
         //ObservableList<String> listaFuncoes //combobox trabalha com lista por isso é necessario criar ela
-          //      = FXCollections.observableArrayList("Presidente", "Instrutor","Assistente Social","Chefe Oficinas");
+          //      = FXCollections.observableArrayList("Presidente", "Instrutor","Assistente Social","Líder Oficinas");
         //ComboboxFuncao.setItems(listaFuncoes);
         
     

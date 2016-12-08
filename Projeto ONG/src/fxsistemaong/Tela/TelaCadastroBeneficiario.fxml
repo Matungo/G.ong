@@ -77,17 +77,17 @@
       <Label layoutX="683.0" layoutY="392.0" text="Fone Celular:" />
       <TextField fx:id="TxtFoneCelular" layoutX="778.0" layoutY="387.0" prefHeight="27.0" prefWidth="179.0" />
       <Label layoutX="45.0" layoutY="473.0" text="Interesse em:" />
-      <CheckBox fx:id="CheckboxContacao" layoutX="170.0" layoutY="473.0" mnemonicParsing="false" text="Curso Contação de Histórias" />
-      <CheckBox fx:id="CheckboxEducacaoFinanceira" layoutX="170.0" layoutY="502.0" mnemonicParsing="false" text="Curso de Educação Financeira" />
+      <CheckBox fx:id="CheckboxContacao" layoutX="170.0" layoutY="473.0" mnemonicParsing="false" text="Contação de Histórias" />
+      <CheckBox fx:id="CheckboxEducacaoFinanceira" layoutX="170.0" layoutY="502.0" mnemonicParsing="false" text="Educação Financeira" />
       <CheckBox fx:id="CheckboxDesenhoMecanico" layoutX="170.0" layoutY="532.0" mnemonicParsing="false" text="Desenho Mecânico e Industrial" />
       <CheckBox fx:id="CheckboxInformatica" layoutX="400.0" layoutY="502.0" mnemonicParsing="false" text="Básico de Informática" />
-      <CheckBox fx:id="CheckboxAulaReforço" layoutX="400.0" layoutY="473.0" mnemonicParsing="false" text="Aula Reforço Escolar" />
-      <CheckBox fx:id="CheckboxIngles" layoutX="400.0" layoutY="532.0" mnemonicParsing="false" text="Aula de Inglês" />
-      <CheckBox fx:id="CheckboxEspanhol" layoutX="400.0" layoutY="560.0" mnemonicParsing="false" text="Aula de Espanhol" />
-      <CheckBox fx:id="CheckboxArtesanato" layoutX="400.0" layoutY="590.0" mnemonicParsing="false" text="Aula de Artesanato" />
-      <CheckBox fx:id="CheckboxTeclado" layoutX="570.0" layoutY="473.0" mnemonicParsing="false" text="Curso Teclado" />
-      <CheckBox fx:id="CheckboxViolao" layoutX="570.0" layoutY="502.0" mnemonicParsing="false" text="Curso Violão" />
-      <CheckBox fx:id="CheckboxDesignModa" layoutX="170.0" layoutY="589.0" mnemonicParsing="false" text="Curso de Design de Modas" />
+      <CheckBox fx:id="CheckboxAulaReforço" layoutX="400.0" layoutY="473.0" mnemonicParsing="false" text="Reforço Escolar" />
+      <CheckBox fx:id="CheckboxIngles" layoutX="400.0" layoutY="532.0" mnemonicParsing="false" text="Inglês" />
+      <CheckBox fx:id="CheckboxEspanhol" layoutX="400.0" layoutY="560.0" mnemonicParsing="false" text="Espanhol" />
+      <CheckBox fx:id="CheckboxArtesanato" layoutX="400.0" layoutY="590.0" mnemonicParsing="false" text="Artesanato" />
+      <CheckBox fx:id="CheckboxTeclado" layoutX="570.0" layoutY="473.0" mnemonicParsing="false" text="Teclado" />
+      <CheckBox fx:id="CheckboxViolao" layoutX="570.0" layoutY="502.0" mnemonicParsing="false" text="Violão" />
+      <CheckBox fx:id="CheckboxDesignModa" layoutX="170.0" layoutY="589.0" mnemonicParsing="false" text="Design de Modas" />
       <CheckBox fx:id="CheckboxCapoeira" layoutX="570.0" layoutY="531.0" mnemonicParsing="false" text="Capoeira" />
       <CheckBox fx:id="CheckboxFraldasA" layoutX="570.0" layoutY="560.0" mnemonicParsing="false" text="Fraldas Adulto" />
       <CheckBox fx:id="CheckboxFraldasI" layoutX="570.0" layoutY="589.0" mnemonicParsing="false" text="Fraldas Infatil" />
@@ -102,7 +102,7 @@
       <TextArea fx:id="TxtAreaObservacoes" layoutX="170.0" layoutY="620.0" prefHeight="37.0" prefWidth="784.0" />
       <Label layoutX="294.0" layoutY="132.0" text="NIS:" />
       <TextField fx:id="TxtNIS" layoutX="330.0" layoutY="127.0" prefHeight="27.0" prefWidth="223.0" />
-      <DatePicker fx:id="TxtNascimento" layoutX="755.0" layoutY="85.0" />
+      <DatePicker fx:id="TxtNascimento" layoutX="765.0" layoutY="84.0" />
       <Label fx:id="TxtDataCadastro" layoutX="510.0" layoutY="13.0" prefHeight="27.0" prefWidth="157.0" />
    </children>
 </AnchorPane>

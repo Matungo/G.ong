@@ -1,6 +1,5 @@
 package fxsistemaong.DAO;
 
-import fxsistemaong.Objeto.EntradaProduto;
 import fxsistemaong.Objeto.Funcionario;
 import fxsistemaong.Objeto.Oficina;
 import java.sql.Connection;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 /**
@@ -85,6 +83,31 @@ public class OficinasDAO {
                Funcionario addFuncionario = new Funcionario();
 
                addFuncionario.setNome(rs.getString("NOME"));
+               
+               retorno.add(addFuncionario);
+           }
+           banco.fechar(conexao);
+       }catch(SQLException ex){
+                   Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+            
+       return retorno;
+    }
+    
+    public List<Funcionario> ListarHorario(){
+        //nome.getNome();
+        String sql= "SELECT * from FUNCIONARIO";
+        List <Funcionario> retorno = new ArrayList<Funcionario>();
+        try{
+        conexao = banco.getConexao();
+
+           PreparedStatement std = conexao.prepareStatement(sql);
+           ResultSet rs = std.executeQuery();
+           while(rs.next()){
+               Funcionario addFuncionario = new Funcionario();
+
+               addFuncionario.setDisp_dia(rs.getString("DISPONIBILIDADE_DIA"));
+               //addFuncionario.setDisp_sab(rs.getString("DISPONIBILIDADE_SABADO"));
                
                retorno.add(addFuncionario);
            }

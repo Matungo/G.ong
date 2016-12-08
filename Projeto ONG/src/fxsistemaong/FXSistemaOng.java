@@ -20,7 +20,7 @@ public class FXSistemaOng extends Application {
         
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("Tela de Login - Entre com seu usuário e Senha");
+        stage.setTitle("G.onG - Gerenciamento de Ong's");
         stage.show();
     }
     

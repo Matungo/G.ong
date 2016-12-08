@@ -41,7 +41,32 @@ public class TelaAberturaOficinasController implements Initializable {
  private ComboBox<Oficina> ComboBoxOficina;
  @FXML
  private ComboBox<Funcionario> ComboBoxInstrutor;
-     
+ @FXML
+ private ComboBox<String> ComboboxDiaSemana;
+ @FXML
+ private ComboBox<String> ComboboxHorarioComeca;
+ @FXML
+ private ComboBox<String> ComboboxHorarioTermina;
+ @FXML
+ private Button ButtonAdicionarOficina;
+ @FXML
+ private Button ButtonAlterar;
+ @FXML
+ private Button ButtonExcluir;
+ @FXML
+ private Button ButtonLimparCampos;
+ @FXML
+ private TableView TvOficinasAbertas;
+ @FXML
+ private TableColumn TableColumnOficina;
+ @FXML
+ private TableColumn TableColumnInstrutor;
+ @FXML
+ private TableColumn TableColumnHorario;
+ 
+ 
+ 
+ 
  // lista e observable lista para preencher a combobox de oficinas
  private List<Oficina> addOficinas = new ArrayList<>();
  private ObservableList<Oficina> observableListOficina;
@@ -49,6 +74,7 @@ public class TelaAberturaOficinasController implements Initializable {
  //Lista e observablelist para preencher a combobox de Instrutor
  private List<Funcionario> addFunc = new ArrayList<>();
  private ObservableList<Funcionario> observableListFunc;
+
     /**
      * Initializes the controller class.
      */
@@ -56,6 +82,23 @@ public class TelaAberturaOficinasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         TxtFieldTipoOficina.setDisable(true);
         ButtonSalvarOficina.setDisable(true);
+        
+        
+        //Preenchidmento da combobox com as informações sobre dias da semana
+        ObservableList<String> listaDiasSemana
+               = FXCollections.observableArrayList("Segunda", "Terça","Quarta","Quinta","Sexta","Sábado");
+        ComboboxDiaSemana.setItems(listaDiasSemana);
+        
+        //Preenchidmento da combobox com as informações sobre horario que começa a oficina
+        ObservableList<String> listaHoraComeca
+               = FXCollections.observableArrayList("07:30", "08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00");
+        ComboboxHorarioComeca.setItems(listaHoraComeca);
+        
+        //Preenchidmento da combobox com as informações sobre horario que começa a oficina
+        ObservableList<String> listaHoraTermina
+               = FXCollections.observableArrayList("09:00", "10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00");
+        ComboboxHorarioTermina.setItems(listaHoraTermina);
+        
         
         ComboBoxOficina.setConverter(new StringConverter<Oficina>() {
             @Override
@@ -85,9 +128,8 @@ public class TelaAberturaOficinasController implements Initializable {
             public Funcionario fromString(String string) {
                 return null;
             }
-        });    
-        
-        
+        });
+
         AtualizarComboboxInstrutor();
         AtualizarComboboxOficinas();
     }    
@@ -145,7 +187,8 @@ public class TelaAberturaOficinasController implements Initializable {
         
         observableListFunc = FXCollections.observableArrayList(addFunc);
         ComboBoxInstrutor.setItems(observableListFunc);
+        
+        
     }
-    
-    
+
 }
