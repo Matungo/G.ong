@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,13 +73,27 @@ public class TelaCadastroFuncionarioController implements Initializable {
     private CheckBox CheckboxSabadoManha;
     @FXML
     private CheckBox CheckboxSabadoTarde;
+<<<<<<< .mine
+    @FXML
+    private ComboBox ComboBoxFuncao;
+
+||||||| .r63
+
+=======
     @FXML
     private ComboBox ComboboxFuncao;
     
+>>>>>>> .r202
     public TelaCadastroFuncionarioController() {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+<<<<<<< .mine
+        ObservableList<String> funcao
+                = FXCollections.observableArrayList("Presidente", "Voluntário", "Instrutor", "Assistente Social", "Coordenador de Oficina");
+        ComboBoxFuncao.setItems(funcao);
+||||||| .r63
+=======
     //Preenchidmento da combobox com as informações sobre qual tipo de entrada
         //ObservableList<String> listaFuncoes //combobox trabalha com lista por isso é necessario criar ela
           //      = FXCollections.observableArrayList("Presidente", "Instrutor","Assistente Social","Líder Oficinas");
@@ -85,6 +101,7 @@ public class TelaCadastroFuncionarioController implements Initializable {
         
     
     
+>>>>>>> .r202
     }   
     @FXML
     public void BtnSalvarFuncionario(ActionEvent evento) throws SQLException
@@ -106,10 +123,13 @@ public class TelaCadastroFuncionarioController implements Initializable {
             func.setFone1(TxtFoneCelularFuncionario.getText());
             func.setFone2(TxtFoneRecadoFuncionario.getText());
             func.setFone3(TxtFoneResidencialFuncionario.getText());
+            func.setAptidoes(TxtAreaAptidoesFuncionario.getText());
             dispdia = carregardia();
             dispsab = carregarsab();
             func.setDisp_dia(dispdia);
             func.setDisp_sab(dispsab);
+            //func.setDatacadastro(toString(System.currentTimeMillis()));
+            System.out.println(func.getDatacadastro());
             if (RadioFemininoFuncionario.isSelected())
             {
                 func.setSexo("F");
@@ -118,6 +138,7 @@ public class TelaCadastroFuncionarioController implements Initializable {
             {
                 func.setSexo("M");
             }
+            func.setFuncao((String) ComboBoxFuncao.getValue());
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -258,5 +279,9 @@ public class TelaCadastroFuncionarioController implements Initializable {
         if (CheckboxSabadoManha.isSelected()){dispsab = dispsab.concat("manha |");}
         if (CheckboxSabadoTarde.isSelected()){dispsab = dispsab.concat("tarde");}
         return dispsab;
+    }
+
+    private String toString(long currentTimeMillis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

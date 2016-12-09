@@ -10,11 +10,41 @@ package fxsistemaong.Objeto;
  * @author giovanni.sanches
  */
 public class Funcionario {
+<<<<<<< .mine
+<<<<<<< .mine
+    private int cod, disp_hora;
+    private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
+            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
+            disp_sab, senha;
+||||||| .r202
     private int cod, disp_hora;
     private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
             complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
             disp_sab;
+=======
+    int cod,disp_dia, disp_hora, disp_sab;
+    String nome, rg, cpf, datacadastro, email, sexo, endereço, numero, cep,
+            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes;
+||||||| .r3
+    int cod,disp_dia, disp_hora, disp_sab;
+    String nome, rg, cpf, datacadastro, email, sexo, endereço, numero, cep,
+            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes;
+=======
+    private int cod, disp_hora;
+    private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
+            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
+            disp_sab;
+>>>>>>> .r207
+>>>>>>> .r3
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     public int getCod() {
         return cod;
     }

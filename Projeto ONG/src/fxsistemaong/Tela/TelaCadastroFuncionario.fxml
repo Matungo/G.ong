@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaCadastroFuncionarioController">
    <children>
-      <TextField fx:id="TxtDataCadastroFuncionario" layoutX="522.0" layoutY="24.0" prefHeight="27.0" prefWidth="152.0" />
+      <DatePicker fx:id="TxtDataCadastroFuncionario" layoutX="522.0" layoutY="24.0" prefHeight="27.0" prefWidth="152.0" />
       <Label layoutX="406.0" layoutY="29.0" text="Data de Cadastro:" />
       <Label layoutX="20.0" layoutY="68.0" text="Dados Pessoais" />
       <Separator layoutX="134.0" layoutY="75.0" prefHeight="3.0" prefWidth="857.0" />
