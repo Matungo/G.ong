@@ -7,9 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javafx.scene.control.Alert;
 
 /**
@@ -18,7 +16,7 @@ import javafx.scene.control.Alert;
  */
 public class LivroDAO {
     //parâmetros para conexão com o banco
-    Banco banco = new Banco("root", "123456", "localhost", "g_ong", 3306);
+    Banco banco = new Banco("root", "", "localhost", "G_ONG", 3306);
     Connection conexao;
     
     //método que grava  no banco as informações sobre um novo livro

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class EmprestimoDAO {
     
-    Banco banco = new Banco("root", "123456", "localhost", "g_ong", 3306);
+    Banco banco = new Banco("root", "", "localhost", "G_ONG", 3306);
     Connection conexao;
     
     public Beneficiario buscarBeneficiario(Beneficiario beneficiario){

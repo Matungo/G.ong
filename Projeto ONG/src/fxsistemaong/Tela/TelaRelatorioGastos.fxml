@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="711.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxsistemaong.Controle.TelaRelatorioGastosController">
+   <children>
+      <BarChart fx:id="BarchartGastos" layoutX="57.0" layoutY="53.0" prefHeight="530.0" prefWidth="913.0" title="Gastos Totais p/ Mês">
+        <xAxis>
+          <CategoryAxis fx:id="CategoryMes" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="GastosTotal" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

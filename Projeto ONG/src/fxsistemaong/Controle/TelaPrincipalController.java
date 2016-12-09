@@ -90,7 +90,7 @@ public class TelaPrincipalController implements Initializable {
             menuConsulta.setDisable(false);
             menuRelatorios.setDisable(false); 
             menuItemRelatorioBeneficiarios.setDisable(true);
-            menuItemRelatorioGastos.setDisable(true);
+            menuItemRelatorioGastos.setDisable(false);
         } else{
             // comando para deixar os menus desabilitados
             menuCadastros.setDisable(true);
@@ -180,6 +180,12 @@ public class TelaPrincipalController implements Initializable {
     //metodo para chamar a tela de relatorio de doacoes
     public void handleMenuRelatorio() throws IOException{
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaRelatorioDoacoes.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    //metodo para chamar a tela de relatorio de Gastos
+    public void handleMenuRelatorioGastos() throws IOException{
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxsistemaong/Tela/TelaRelatorioGastos.fxml"));
         anchorPane.getChildren().setAll(a);
     }
 

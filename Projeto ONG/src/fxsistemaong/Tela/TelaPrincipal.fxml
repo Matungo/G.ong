@@ -43,7 +43,7 @@
                <items>
                   <MenuItem fx:id="menuItemRelatorioBeneficiarios" mnemonicParsing="false" text="Beneficiário" />
                   <MenuItem fx:id="menuItemRelatorioDoacoes" mnemonicParsing="false" onAction="#handleMenuRelatorio" text="Doações" />
-                  <MenuItem fx:id="menuItemRelatorioGastos" mnemonicParsing="false" text="Gastos" />
+                  <MenuItem fx:id="menuItemRelatorioGastos" mnemonicParsing="false" onAction="#handleMenuRelatorioGastos" text="Gastos" />
                </items></Menu>
             <Menu fx:id="menuLogout" mnemonicParsing="false" text="Logoff">
                <items>

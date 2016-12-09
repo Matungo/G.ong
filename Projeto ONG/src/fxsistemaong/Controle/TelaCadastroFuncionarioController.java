@@ -73,35 +73,18 @@ public class TelaCadastroFuncionarioController implements Initializable {
     private CheckBox CheckboxSabadoManha;
     @FXML
     private CheckBox CheckboxSabadoTarde;
-<<<<<<< .mine
     @FXML
     private ComboBox ComboBoxFuncao;
 
-||||||| .r63
-
-=======
-    @FXML
-    private ComboBox ComboboxFuncao;
     
->>>>>>> .r202
     public TelaCadastroFuncionarioController() {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-<<<<<<< .mine
         ObservableList<String> funcao
                 = FXCollections.observableArrayList("Presidente", "Voluntário", "Instrutor", "Assistente Social", "Coordenador de Oficina");
         ComboBoxFuncao.setItems(funcao);
-||||||| .r63
-=======
-    //Preenchidmento da combobox com as informações sobre qual tipo de entrada
-        //ObservableList<String> listaFuncoes //combobox trabalha com lista por isso é necessario criar ela
-          //      = FXCollections.observableArrayList("Presidente", "Instrutor","Assistente Social","Líder Oficinas");
-        //ComboboxFuncao.setItems(listaFuncoes);
         
-    
-    
->>>>>>> .r202
     }   
     @FXML
     public void BtnSalvarFuncionario(ActionEvent evento) throws SQLException
@@ -151,7 +134,6 @@ public class TelaCadastroFuncionarioController implements Initializable {
         }
     }
     
-    @FXML
     public void BtnAtualizarFuncionario(ActionEvent event)throws SQLException {
         Funcionario func = new Funcionario();
         String formato = "dd/MM/yyyy";

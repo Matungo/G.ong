@@ -10,56 +10,10 @@ package fxsistemaong.Objeto;
  * @author giovanni.sanches
  */
 public class Funcionario {
-<<<<<<< .mine
-<<<<<<< .mine
-    private int cod, disp_hora;
+
     private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
-            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
-            disp_sab, senha;
-||||||| .r202
-    private int cod, disp_hora;
-    private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
-            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
-            disp_sab;
-=======
-    int cod,disp_dia, disp_hora, disp_sab;
-    String nome, rg, cpf, datacadastro, email, sexo, endereço, numero, cep,
-            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes;
-||||||| .r3
-    int cod,disp_dia, disp_hora, disp_sab;
-    String nome, rg, cpf, datacadastro, email, sexo, endereço, numero, cep,
-            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes;
-=======
-    private int cod, disp_hora;
-    private String nome, rg, cpf, datacadastro, datanasc, email, sexo, endereco, numero, cep,
-            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_dia,
-            disp_sab;
->>>>>>> .r207
->>>>>>> .r3
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    public int getCod() {
-        return cod;
-    }
-
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
-
-    public int getDisp_hora() {
-        return disp_hora;
-    }
-
-    public void setDisp_hora(int disp_hora) {
-        this.disp_hora = disp_hora;
-    }
+            complemento, bairro, cidade, fone1, fone2, fone3, aptidoes, funcao, permissao, disp_hora, disp_sab,disp_dia;
+    int cod;
 
     public String getNome() {
         return nome;
@@ -213,12 +167,30 @@ public class Funcionario {
         this.permissao = permissao;
     }
 
+    public int getCod() {
+        return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
+
     public String getDisp_dia() {
         return disp_dia;
     }
 
     public void setDisp_dia(String disp_dia) {
         this.disp_dia = disp_dia;
+    }
+
+
+
+    public String getDisp_hora() {
+        return disp_hora;
+    }
+
+    public void setDisp_hora(String disp_hora) {
+        this.disp_hora = disp_hora;
     }
 
     public String getDisp_sab() {
@@ -229,9 +201,9 @@ public class Funcionario {
         this.disp_sab = disp_sab;
     }
 
-    public void getCod(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
+
 
 
 }

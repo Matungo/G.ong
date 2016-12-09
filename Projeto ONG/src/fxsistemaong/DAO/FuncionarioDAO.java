@@ -21,15 +21,9 @@ import javafx.scene.control.Alert;
  */
 public class FuncionarioDAO {
 
-    private Funcionario func;
-    private Banco banco;
-    private Connection conexao;
-    private PreparedStatement pst = null;
-    private ResultSet rs;
-    private Statement st;
-    private String sql=null;
-<<<<<<< .mine
-<<<<<<< .mine
+    //parâmetros para conexão com o banco
+    Banco banco = new Banco("root", "", "localhost", "G_ONG", 3306);
+    Connection conexao;
 
     public boolean SalvarFuncionario(Funcionario func) throws SQLException {//throws SQLException 
         banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
@@ -76,19 +70,7 @@ public class FuncionarioDAO {
         }            
   }
 
-    public boolean excluirFuncionario(Funcionario func) {
-        banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
-        int excluido = 0;
-        try {
-            conexao = banco.getConexao();
-            String sql = "delete from FUNCIONARIO WHERE ID_COLABORADOR =" + func.getCod();
-            System.out.println(sql);
-            PreparedStatement std;
-            std = conexao.prepareStatement(sql);            
-            excluido = std.executeUpdate();
-||||||| .r202
-
-    public boolean SalvarFuncionario(Funcionario func) throws SQLException {//throws SQLException 
+    /*public boolean SalvarFuncionario(Funcionario func) throws SQLException {//throws SQLException 
         banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
         int salvado = 0;
             try {
@@ -128,71 +110,8 @@ public class FuncionarioDAO {
         else{
             return false;
         }            
-  }
+  }*/
 
-    public boolean excluirFuncionario(Funcionario func) {
-        banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
-        int excluido = 0;
-        try {
-            conexao = banco.getConexao();
-            String sql = "delete from FUNCIONARIO WHERE ID_COLABORADOR =" + func.getCod();
-            System.out.println(sql);
-            PreparedStatement std;
-            std = conexao.prepareStatement(sql);            
-            excluido = std.executeUpdate();
-=======
-    
-    public FuncionarioDAO(Banco banco) {
-        this.banco = banco;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-||||||| .r3
-    
-    public FuncionarioDAO(Banco banco) {
-        this.banco = banco;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
-
-    public boolean SalvarFuncionario(Funcionario func) throws SQLException {//throws SQLException 
-        banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
-        int salvado = 0;
-            try {
-                conexao = banco.getConexao();
-                String sql = "insert into FUNCIONARIO(NOME, RG, CPF, EMAIL, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP,"
-                        + "TELEFONE1, TELEFONE2, TELEFONE3, SEXO, COMPLEMENTO, DISPONIBILIDADE_DIA, DISPONIBILIDADE_SAB)"
-                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement std;
-                std = conexao.prepareStatement(sql);
-                std.setString(1, func.getNome());
-                std.setString(2, func.getRg());
-                std.setString(3, func.getCpf());
-                std.setString(4, func.getEmail());
-                std.setString(5, func.getEndereco());
-                std.setString(6, func.getNumero());
-                std.setString(7, func.getBairro());
-                std.setString(8, func.getCidade());
-                std.setString(9, func.getCep());
-                std.setString(10, func.getFone1());
-                std.setString(11, func.getFone2());
-                std.setString(12, func.getFone3());
-                std.setString(13, func.getSexo());
-                std.setString(14, func.getComplemento());
-                std.setString(15, func.getDisp_dia());
-                std.setString(16, func.getDisp_sab());
-                salvado = std.executeUpdate();
-                banco.fechar(conexao);
-            }catch (SQLException | RuntimeException sql) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
-                alert.setContentText(sql.getMessage());
-                alert.showAndWait();
-            } 
-        if(salvado == 1){
-           return true;
-        } 
-        else{
-            return false;
-        }            
-  }
 
     public boolean excluirFuncionario(Funcionario func) {
         banco =    new Banco("root","123456", "localhost","G_ONG", 3306);
@@ -216,7 +135,6 @@ public class FuncionarioDAO {
         } else {
             return false;
         }
->>>>>>> .r207
     }
 
     public Funcionario pesquisarFuncionario(Funcionario func) {
@@ -243,7 +161,6 @@ public class FuncionarioDAO {
                 func.setSexo(rs.getString("SEXO"));
                 func.setComplemento(rs.getString("COMPLEMENTO"));
             }
->>>>>>> .r3
             banco.fechar(conexao);
         } catch (SQLException | RuntimeException sql) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -259,7 +176,7 @@ public class FuncionarioDAO {
         int alterado = 0;
         try {
             conexao = banco.getConexao();
-            sql = "update funcionario set NOME = ?, RG = ?, CPF = ?, EMAIL = ?,"
+            String sql = "update funcionario set NOME = ?, RG = ?, CPF = ?, EMAIL = ?,"
                     + "ENDERECO = ?, NUMERO = ?, CEP = ?, COMPLEMENTO = ?, BAIRRO = ?,"
                     + "CIDADE = ?, TELEFONE1 = ?,TELEFONE2 = ?, TELEFONE3 = ?,"
                     + " where ID_COLABORADOR = ?";
