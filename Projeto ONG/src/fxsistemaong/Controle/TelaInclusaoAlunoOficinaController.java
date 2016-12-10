@@ -207,9 +207,9 @@ public class TelaInclusaoAlunoOficinaController implements Initializable {
             TxtFieldNomeAluno.setDisable(true);
             TxtFieldIdadeAluno.setDisable(true);
             TxtFieldTelefoneAluno.setDisable(true);
-            ComboboxOficina.setDisable(true);
-            ComboboxInstrutor.setDisable(true);
-            ComboboxHorario.setDisable(true);
+            ComboboxOficina.setDisable(false);
+            ComboboxInstrutor.setDisable(false);
+            ComboboxHorario.setDisable(false);
             ButtonBuscar.setDisable(true);
             BtnBuscarDadosAluno.setDisable(true);
             BtnAdicionarAlunoOficina.setDisable(false);
@@ -266,9 +266,9 @@ public class TelaInclusaoAlunoOficinaController implements Initializable {
             TxtFieldNomeAluno.setDisable(true);
             TxtFieldIdadeAluno.setDisable(true);
             TxtFieldTelefoneAluno.setDisable(true);
-            ComboboxOficina.setDisable(true);
-            ComboboxInstrutor.setDisable(true);
-            ComboboxHorario.setDisable(true);
+            ComboboxOficina.setDisable(false);
+            ComboboxInstrutor.setDisable(false);
+            ComboboxHorario.setDisable(false);
             ButtonBuscar.setDisable(true);
             BtnBuscarDadosAluno.setDisable(true);
             BtnAdicionarAlunoOficina.setDisable(false);
@@ -384,7 +384,7 @@ public class TelaInclusaoAlunoOficinaController implements Initializable {
             
             TableColumnNomeAluno.setCellValueFactory(new PropertyValueFactory<InclusaoAlunoOficinaAberta, String> ("nomeAluno"));
             TableColumnIdadeAluno.setCellValueFactory(new PropertyValueFactory<InclusaoAlunoOficinaAberta, String>("idadeAluno"));
-            TableColumnTelefoneAluno.setCellValueFactory(new PropertyValueFactory<InclusaoAlunoOficinaAberta, String>("horarioComeca"));
+            TableColumnTelefoneAluno.setCellValueFactory(new PropertyValueFactory<InclusaoAlunoOficinaAberta, String>("telefoneAluno"));
 
             oficinaSel = ComboboxOficina.getSelectionModel().getSelectedItem().getNome();
              

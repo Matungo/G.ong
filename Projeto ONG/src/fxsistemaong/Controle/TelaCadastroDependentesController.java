@@ -2,23 +2,19 @@ package fxsistemaong.Controle;
 
 import fxsistemaong.DAO.BeneficiarioDAO;
 import fxsistemaong.DAO.DependentesDAO;
+<<<<<<< Updated upstream
 import fxsistemaong.Objeto.Beneficiario;
 import fxsistemaong.Objeto.Dependentes;
+=======
+>>>>>>> Stashed changes
 
 import fxsistemaong.Objeto.Dependentes;
 import fxsistemaong.Validacao.ValidaCampo;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +29,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javax.swing.JOptionPane;
 import java.text.DateFormat;
 
 public class TelaCadastroDependentesController implements Initializable {

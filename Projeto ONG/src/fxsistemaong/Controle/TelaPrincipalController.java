@@ -86,7 +86,7 @@ public class TelaPrincipalController implements Initializable {
             menuBiblioteca.setDisable(false);
             menuOficinas.setDisable(false);
             menuEstoque.setDisable(false);
-            menuLogout.setDisable(false);
+            menuLogout.setDisable(true);
             menuConsulta.setDisable(false);
             menuRelatorios.setDisable(false); 
             menuItemRelatorioBeneficiarios.setDisable(true);
@@ -97,7 +97,7 @@ public class TelaPrincipalController implements Initializable {
             menuBiblioteca.setDisable(false);
             menuOficinas.setDisable(false);
             menuEstoque.setDisable(true);
-            menuLogout.setDisable(false);
+            menuLogout.setDisable(true);
             menuConsulta.setDisable(false);
             menuRelatorios.setDisable(true);
             menuItemRelatorioBeneficiarios.setDisable(true);
