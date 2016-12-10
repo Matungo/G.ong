@@ -140,7 +140,7 @@ public class BeneficiarioDAO {
             std.setString(1, beneficiario.getNome());
             std.setDate(2, new Date(beneficiario.getDataNascimento().getTime()));; 
             std.setString(3, beneficiario.getRg());
-            std.setString(4, beneficiario.getNis());
+            std.setString(4, beneficiario.getNome());
             std.setString(5, beneficiario.getCpf());
             std.setString(6, beneficiario.getEmail());
             std.setString(7, beneficiario.getSexo());
@@ -163,7 +163,7 @@ public class BeneficiarioDAO {
             std.setString(24, beneficiario.getQual());
             std.setString(25, beneficiario.getObs());
             std.setInt(26, beneficiario.getCodigo());
-
+            
             atualizado = std.executeUpdate();
 
             banco.fechar(conexao);

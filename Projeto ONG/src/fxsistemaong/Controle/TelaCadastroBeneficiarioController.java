@@ -126,7 +126,8 @@ public class TelaCadastroBeneficiarioController implements Initializable {
     @FXML
     private TextArea TxtAreaObservacoes;
 
-    private int check =0;
+    private int check = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         limparMarcação();
@@ -261,89 +262,70 @@ public class TelaCadastroBeneficiarioController implements Initializable {
     public void salvarBeneficiario(ActionEvent event) throws ParseException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         Beneficiario bene = new Beneficiario();
         BeneficiarioDAO dao = new BeneficiarioDAO();
-       
 
         //formatar a data atual exibida no textfield em padrao date amricano para colocar no banco
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         //
-         ValidaCampo valida = new ValidaCampo();
-         if (CheckboxContacao.isSelected()) {
-                bene.setInteresse(1);
-                check = 1;
-            }
-            if (CheckboxEducacaoFinanceira.isSelected()) {
-                bene.setInteresse(2);
-                check = 1;
-            }
-            if (CheckboxDesenhoMecanico.isSelected()) {
-                bene.setInteresse(3);
-                check = 1;
-            }
-            if (CheckboxEmprestimo.isSelected()) {
-                bene.setInteresse(4);
-                check = 1;
-            }
-            if (CheckboxDesignModa.isSelected()) {
-                bene.setInteresse(5);
-                check = 1;
-            }
-            if (CheckboxAulaReforço.isSelected()) {
-                bene.setInteresse(6);
-                check = 1;
-            }
-            if (CheckboxInformatica.isSelected()) {
-                bene.setInteresse(7);
-                check = 1;
-            }
-            if (CheckboxIngles.isSelected()) {
-                bene.setInteresse(8);
-                check = 1;
-            }
-            if (CheckboxEspanhol.isSelected()) {
-                bene.setInteresse(9);
-                check = 1;
-            }
-            if (CheckboxArtesanato.isSelected()) {
-                bene.setInteresse(10);
-                check = 1;
-            }
-            if (CheckboxTeclado.isSelected()) {
-                bene.setInteresse(11);
-                check = 1;
-            }
-            if (CheckboxViolao.isSelected()) {
-                bene.setInteresse(12);
-                check = 1;
-            }
-            if (CheckboxCapoeira.isSelected()) {
-                bene.setInteresse(13);
-                check = 1;
-            }
-            if (CheckboxFraldasA.isSelected()) {
-                bene.setInteresse(14);
-                check = 1;
-            }
-            if (CheckboxFraldasI.isSelected()) {
-                bene.setInteresse(15);
-                check = 1;
-            }
-            if (CheckboxAcupuntura.isSelected()) {
-                bene.setInteresse(16);
-                check = 1;
-            }
-            if (CheckboxCestaBasica.isSelected()) {
-                bene.setInteresse(17);
-                check = 1;
-            }
-            if (CheckboxLeite.isSelected()) {
-                bene.setInteresse(18);
-                check = 1;
-            }
-            if (CheckboxOutros.isSelected()) {
-                bene.setInteresse(19);
-                check = 1;
-                bene.setQual(TxtInteresseOutros.getText());
-            }
+        ValidaCampo valida = new ValidaCampo();
+        if (CheckboxContacao.isSelected()) {
+            bene.setInteresse(1);
+            check = 1;
+        } else if (CheckboxEducacaoFinanceira.isSelected()) {
+            bene.setInteresse(2);
+            check = 1;
+        } else if (CheckboxDesenhoMecanico.isSelected()) {
+            bene.setInteresse(3);
+            check = 1;
+        } else if (CheckboxEmprestimo.isSelected()) {
+            bene.setInteresse(4);
+            check = 1;
+        } else if (CheckboxDesignModa.isSelected()) {
+            bene.setInteresse(5);
+            check = 1;
+        } else if (CheckboxAulaReforço.isSelected()) {
+            bene.setInteresse(6);
+            check = 1;
+        } else if (CheckboxInformatica.isSelected()) {
+            bene.setInteresse(7);
+            check = 1;
+        } else if (CheckboxIngles.isSelected()) {
+            bene.setInteresse(8);
+            check = 1;
+        } else if (CheckboxEspanhol.isSelected()) {
+            bene.setInteresse(9);
+            check = 1;
+        } else if (CheckboxArtesanato.isSelected()) {
+            bene.setInteresse(10);
+            check = 1;
+        } else if (CheckboxTeclado.isSelected()) {
+            bene.setInteresse(11);
+            check = 1;
+        } else if (CheckboxViolao.isSelected()) {
+            bene.setInteresse(12);
+            check = 1;
+        } else if (CheckboxCapoeira.isSelected()) {
+            bene.setInteresse(13);
+            check = 1;
+        } else if (CheckboxFraldasA.isSelected()) {
+            bene.setInteresse(14);
+            check = 1;
+        } else if (CheckboxFraldasI.isSelected()) {
+            bene.setInteresse(15);
+            check = 1;
+        } else if (CheckboxAcupuntura.isSelected()) {
+            bene.setInteresse(16);
+            check = 1;
+        } else if (CheckboxCestaBasica.isSelected()) {
+            bene.setInteresse(17);
+            check = 1;
+        } else if (CheckboxLeite.isSelected()) {
+            bene.setInteresse(18);
+            check = 1;
+        } else if (CheckboxOutros.isSelected()) {
+            bene.setInteresse(19);
+            check = 1;
+            bene.setQual(TxtInteresseOutros.getText());
+        }
         if ((valida.validaCampo(TxtNome) || (valida.validaCampo(TxtNascimento)) || (valida.validaCampo(TxtRG)) || (valida.validaCampo(TxtNIS)) || (valida.validaCampo(TxtCPF)) || (valida.validaCampo(TxtEmail)) || (valida.validaCampo(TxtEndereco)) || (valida.validaCampo(TxtNumero)) || (valida.validaCampo(TxtComplemento)) || (valida.validaCampo(TxtCEP)) || (valida.validaCampo(TxtBairro)) || (valida.validaCampo(TxtCidade)) || (valida.validaCampo(ComboEstadoCivil)) || (valida.validaCampo(TxtQuantos)) || (valida.validaCampo(TxtIdadeFilhos)) || (valida.validaCampo(TxtFoneResidencial)) || (valida.validaCampo(TxtFoneRecado)) || (valida.validaCampo(TxtFoneCelular)) || (valida.validaCampo(TxtProfissao)) || (valida.validaCampo(TxtRenda)) || (valida.validaCampo(TxtRenda)) || (valida.validaCampo(TxtInteresseOutros)) || (valida.validaCampo(TxtAreaObservacoes)))) {
             limparMarcação();
             bene.setDataCadastro(formato.parse((TxtDataCadastro.getText())));
@@ -377,7 +359,7 @@ public class TelaCadastroBeneficiarioController implements Initializable {
             bene.setTelCel(TxtFoneCelular.getText());
             bene.setProfissao(TxtProfissao.getText());
             bene.setRendaFamiliar(Float.parseFloat(TxtRenda.getText()));
-           
+
             bene.setObs(TxtAreaObservacoes.getText());
 
             if (dao.salvarBeneficiarios(bene)) {
@@ -397,98 +379,21 @@ public class TelaCadastroBeneficiarioController implements Initializable {
             alert.showAndWait();
         }
 
-
     }
 
     @FXML
     public void atualizarBeneficiario(ActionEvent event) throws ParseException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         Beneficiario bene = new Beneficiario();
         BeneficiarioDAO dao = new BeneficiarioDAO();
-       
 
         //formatar a data atual exibida no textfield em padrao date amricano para colocar no banco
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         //
         ValidaCampo valida = new ValidaCampo();
-         if (CheckboxContacao.isSelected()) {
-                bene.setInteresse(1);
-                check = 1;
-            }
-            if (CheckboxEducacaoFinanceira.isSelected()) {
-                bene.setInteresse(2);
-                check = 1;
-            }
-            if (CheckboxDesenhoMecanico.isSelected()) {
-                bene.setInteresse(3);
-                check = 1;
-            }
-            if (CheckboxEmprestimo.isSelected()) {
-                bene.setInteresse(4);
-                check = 1;
-            }
-            if (CheckboxDesignModa.isSelected()) {
-                bene.setInteresse(5);
-                check = 1;
-            }
-            if (CheckboxAulaReforço.isSelected()) {
-                bene.setInteresse(6);
-                check = 1;
-            }
-            if (CheckboxInformatica.isSelected()) {
-                bene.setInteresse(7);
-                check = 1;
-            }
-            if (CheckboxIngles.isSelected()) {
-                bene.setInteresse(8);
-                check = 1;
-            }
-            if (CheckboxEspanhol.isSelected()) {
-                bene.setInteresse(9);
-                check = 1;
-            }
-            if (CheckboxArtesanato.isSelected()) {
-                bene.setInteresse(10);
-                check = 1;
-            }
-            if (CheckboxTeclado.isSelected()) {
-                bene.setInteresse(11);
-                check = 1;
-            }
-            if (CheckboxViolao.isSelected()) {
-                bene.setInteresse(12);
-                check = 1;
-            }
-            if (CheckboxCapoeira.isSelected()) {
-                bene.setInteresse(13);
-                check = 1;
-            }
-            if (CheckboxFraldasA.isSelected()) {
-                bene.setInteresse(14);
-                check = 1;
-            }
-            if (CheckboxFraldasI.isSelected()) {
-                bene.setInteresse(15);
-                check = 1;
-            }
-            if (CheckboxAcupuntura.isSelected()) {
-                bene.setInteresse(16);
-                check = 1;
-            }
-            if (CheckboxCestaBasica.isSelected()) {
-                bene.setInteresse(17);
-                check = 1;
-            }
-            if (CheckboxLeite.isSelected()) {
-                bene.setInteresse(18);
-                check = 1;
-            }
-            if (CheckboxOutros.isSelected()) {
-                bene.setInteresse(19);
-                check = 1;
-                bene.setQual(TxtInteresseOutros.getText());
-            }
+
         if ((valida.validaCampo(TxtNome) || (valida.validaCampo(TxtNascimento)) || (valida.validaCampo(TxtRG)) || (valida.validaCampo(TxtNIS)) || (valida.validaCampo(TxtCPF)) || (valida.validaCampo(TxtEmail)) || (valida.validaCampo(TxtEndereco)) || (valida.validaCampo(TxtNumero)) || (valida.validaCampo(TxtComplemento)) || (valida.validaCampo(TxtCEP)) || (valida.validaCampo(TxtBairro)) || (valida.validaCampo(TxtCidade)) || (valida.validaCampo(ComboEstadoCivil)) || (valida.validaCampo(TxtQuantos)) || (valida.validaCampo(TxtIdadeFilhos)) || (valida.validaCampo(TxtFoneResidencial)) || (valida.validaCampo(TxtFoneRecado)) || (valida.validaCampo(TxtFoneCelular)) || (valida.validaCampo(TxtProfissao)) || (valida.validaCampo(TxtRenda)) || (valida.validaCampo(TxtRenda)) || (valida.validaCampo(TxtInteresseOutros)) || (valida.validaCampo(TxtAreaObservacoes)))) {
             limparMarcação();
+            bene.setCodigo(Integer.valueOf(TxtCodigoBeneficiario.getText()));
             bene.setDataCadastro(formato.parse((TxtDataCadastro.getText())));
             bene.setNome(TxtNome.getText());
             bene.setDataNascimento(formato.parse((TxtNascimento.getEditor().getText())));
@@ -520,13 +425,89 @@ public class TelaCadastroBeneficiarioController implements Initializable {
             bene.setTelCel(TxtFoneCelular.getText());
             bene.setProfissao(TxtProfissao.getText());
             bene.setRendaFamiliar(Float.parseFloat(TxtRenda.getText()));
-           
+            if (CheckboxContacao.isSelected()) {
+                bene.setInteresse(1);
+                check = 1;
+            }
+            if (CheckboxEducacaoFinanceira.isSelected()) {
+                bene.setInteresse(2);
+                check = 1;
+            }
+            if (CheckboxDesenhoMecanico.isSelected()) {
+                bene.setInteresse(3);
+                check = 1;
+            }
+            if (CheckboxEmprestimo.isSelected()) {
+                bene.setInteresse(4);
+                check = 1;
+            }
+            if (CheckboxDesignModa.isSelected()) {
+                bene.setInteresse(5);
+                check = 1;
+            } 
+            if (CheckboxAulaReforço.isSelected()) {
+                bene.setInteresse(6);
+                check = 1;
+            } 
+            if (CheckboxInformatica.isSelected()) {
+                bene.setInteresse(7);
+                check = 1;
+            } 
+            if (CheckboxIngles.isSelected()) {
+                bene.setInteresse(8);
+                check = 1;
+            } 
+            if (CheckboxEspanhol.isSelected()) {
+                bene.setInteresse(9);
+                check = 1;
+            } 
+            if (CheckboxArtesanato.isSelected()) {
+                bene.setInteresse(10);
+                check = 1;
+            } 
+            if (CheckboxTeclado.isSelected()) {
+                bene.setInteresse(11);
+                check = 1;
+            } 
+            if (CheckboxViolao.isSelected()) {
+                bene.setInteresse(12);
+                check = 1;
+            } 
+            if (CheckboxCapoeira.isSelected()) {
+                bene.setInteresse(13);
+                check = 1;
+            } 
+            if (CheckboxFraldasA.isSelected()) {
+                bene.setInteresse(14);
+                check = 1;
+            } 
+            if (CheckboxFraldasI.isSelected()) {
+                bene.setInteresse(15);
+                check = 1;
+            } 
+            if (CheckboxAcupuntura.isSelected()) {
+                bene.setInteresse(16);
+                check = 1;
+            } 
+            if (CheckboxCestaBasica.isSelected()) {
+                bene.setInteresse(17);
+                check = 1;
+            } 
+            if (CheckboxLeite.isSelected()) {
+                bene.setInteresse(18);
+                check = 1;
+            }
+            if(CheckboxOutros.isSelected()){
+                bene.setInteresse(19);
+                check = 1;
+                bene.setQual(TxtInteresseOutros.getText());
+            }
             bene.setObs(TxtAreaObservacoes.getText());
 
-            if (dao.salvarBeneficiarios(bene)) {
+            if (dao.atualizarBeneficiario(bene)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
-                alert.setContentText("Salvado com sucesso");
+                alert.setContentText("Atualizado com sucesso");
                 alert.showAndWait();
                 limparCampos(event);
 
@@ -559,8 +540,12 @@ public class TelaCadastroBeneficiarioController implements Initializable {
 
     @FXML
     public void consultarBeneficiario(ActionEvent event
-    ) {
+    ) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IllegalAccessException {
         Beneficiario bene = new Beneficiario();
+        ValidaCampo valida =  new ValidaCampo();
+        if(valida.validaCampo(TxtCPF)){
+            valida.removerEstilo(TxtCPF, ValidaCampo.popUp);
+       
         bene.setCpf(TxtCPF.getText());
         try {
             BeneficiarioDAO dao = new BeneficiarioDAO();
@@ -587,7 +572,7 @@ public class TelaCadastroBeneficiarioController implements Initializable {
         alert.setTitle("Sistema G.onG - Gerenciamento de ONG - Projeto Shalom");
         alert.setContentText("Pesquisado com sucesso");
         alert.showAndWait();
-
+ }
     }
 
     public void limparMarcação() {
