@@ -2,11 +2,8 @@ package fxsistemaong.Controle;
 
 import fxsistemaong.DAO.BeneficiarioDAO;
 import fxsistemaong.DAO.DependentesDAO;
-<<<<<<< Updated upstream
 import fxsistemaong.Objeto.Beneficiario;
-import fxsistemaong.Objeto.Dependentes;
-=======
->>>>>>> Stashed changes
+
 
 import fxsistemaong.Objeto.Dependentes;
 import fxsistemaong.Validacao.ValidaCampo;
